@@ -17,14 +17,10 @@ public class TowerSystem : MonoBehaviour
 
 
     //Mejoras de la torre
-    public GameObject[] upgrade;
+    public Sprite[] upgrade;
 
     //ACESOS
     private LvlUpSystem _LvlSystem;
-
-
-
-    public int currentUpgrade;
 
 
     // Intervalo de tiempo entre disparos (en segundos)
@@ -101,7 +97,7 @@ public class TowerSystem : MonoBehaviour
 
 
 
-void Disparar()
+    void Disparar()
     {
         Instantiate(proyectile, transform.position, transform.rotation);
     }
@@ -111,6 +107,105 @@ void Disparar()
     {
         _LvlSystem.currentTower = this.gameObject;
         _LvlSystem.SelectTower();
+    }
+
+    public void LvlUps()
+    {
+        switch (currentLvl)
+        {
+           //RAMA 1
+            case 4:
+                print("hace mucho danyo");
+                break;
+            case 3:                         //NUMERO LIMITE
+                print("Ve camuflados");
+                break;
+            case 2:
+                print("dispara mas rapido");
+                break;
+            case 1:
+                print("mas danyo");
+                break;
+
+           //RAMA 2
+            case 5:
+                print("dont destroy bullet");
+                break;
+
+            case 10:
+                print("doble cannon");
+                break;
+            case 15:                    //NUMERO LIMITE
+                print("will shoot fire");
+                break;
+            case 20:
+                print("4 cannons");
+                break;
+
+
+                //COMBOS
+            case 6:
+                print("mas danyo");
+                print("dont destroy bullet");
+                break;
+
+            case 7:
+                print("dispara mas rapido");
+                print("dont destroy bullet");
+                break;
+
+            case 8:                         //NUMERO LIMITE
+                print("dont destroy bullet");
+                print("Ve camuflados");
+                break;
+
+            case 9:
+                print("hace mucho danyo");
+                print("dont destroy bullet");
+                break;
+
+            case 11:
+                print("doble cannon");
+                print("mas danyo");
+                break;
+
+            case 12:
+                print("doble cannon");
+                print("mas danyo");
+                break;
+
+            case 13:                    //NUMERO LIMITE
+                print("Ve camuflados");
+                print("doble cannon");
+                break;
+
+            case 14:
+                print("hace mucho danyo");
+                print("doble cannon");
+                break;
+
+            case 16:
+                print("will shoot fire");
+                print("mas danyo");
+                break;
+            case 17:
+                print("will shoot fire");
+                print("dispara mas rapido");
+                break;
+
+            case 21:
+                print("4 cannons");
+                print("mas danyo");
+                break;
+
+            case 22:
+                print("4 cannons");
+                print("dispara mas rapido");
+                break;
+
+                
+
+        }
     }
     
 
