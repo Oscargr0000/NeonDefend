@@ -7,22 +7,25 @@ using UnityEngine.UI;
 public class LvlUpSystem : MonoBehaviour
 {
     private TowerSystem _towerSystem;
-    private TowerSystem stats_tower;
+    public TowerSystem stats_tower;
+    private Upgrades _upgrades;
     private SpriteRenderer spriteRenderer;
 
 
     public GameObject currentTower;
     
 
-    public TextMeshProUGUI lvltext;
+    public TextMeshProUGUI R1text;
+    public TextMeshProUGUI R2text;
     public TextMeshProUGUI currentTowerText;
 
-    public GameObject rama1Button;
-    public GameObject rama2Button;
+    public Button rama1Button;
+    public Button rama2Button;
 
 
     private void Awake()
     {
+        _upgrades = FindObjectOfType<Upgrades>();
         _towerSystem = FindObjectOfType<TowerSystem>();    
     }
 
@@ -30,46 +33,83 @@ public class LvlUpSystem : MonoBehaviour
 
     public void SelectTower()
     {
-        
         stats_tower = currentTower.GetComponent<TowerSystem>();
         spriteRenderer = currentTower.GetComponent<SpriteRenderer>();
 
 
         //Update Selection
-        currentTowerText.text = currentTower.name;
-        lvltext.text = stats_tower.currentLvl.ToString();
+        currentTowerText.text = stats_tower.scriptable_Stats.TowerName;
+        R1text.text = stats_tower.idxR1.ToString();
+        R2text.text = stats_tower.idxR2.ToString();
+
+        RefreshButtons();
 
     }
 
     public void OnButtonLvl(int added)
     {
-        
-        stats_tower.currentLvl += added;
-        lvltext.text = stats_tower.currentLvl.ToString();
-        spriteRenderer.sprite = _towerSystem.upgrade[stats_tower.currentLvl];
-        stats_tower.LvlUps();
 
-        switch (stats_tower.currentLvl)
+        if(stats_tower.idxR1 != stats_tower.maxR1)
         {
-            case 8:
-                rama2Button.SetActive(false);
-                break;
-            case 13:
-                rama2Button.SetActive(false);
-                break;
-
-            case 15:
-                rama1Button.SetActive(false);
-                break;
-            case 3:
-                rama1Button.SetActive(false);
-                break;
-
-            default:
-                rama1Button.SetActive(true);
-                rama2Button.SetActive(true);
-                break;
+            if (added.Equals(1))
+            {
+                stats_tower.idxR1++;
+                _upgrades.UpgradeR1();
+            }
+        }
+        
+        if(stats_tower.idxR2 != stats_tower.maxR2)
+        {
+            if(added.Equals(2))
+            {
+                stats_tower.idxR2++;
+                _upgrades.UpgradeR2();
+            }
         }
 
+
+        //LIMITA EL NIVEL
+        if (stats_tower.idxR1 >= 3)
+        {
+            stats_tower.maxR2 = 2;
+            RefreshButtons();
+        }else if(stats_tower.idxR2 >= 3)
+        {
+            stats_tower.maxR1 = 2;
+            RefreshButtons();
+        }
+
+        
+        
+
+        R1text.text = stats_tower.idxR1.ToString();
+        R2text.text = stats_tower.idxR2.ToString();
+        
     }
+
+    void RefreshButtons()
+    {
+        if (stats_tower.maxR1.Equals(stats_tower.idxR1))
+        {
+            rama1Button.interactable = false;
+        }
+        else
+        {
+            rama1Button.interactable = true;
+        }
+
+        if (stats_tower.maxR2.Equals(stats_tower.idxR2))
+        {
+            rama2Button.interactable = false;
+        }
+        else
+        {
+            rama2Button.interactable = true;
+        }
+
+
+    }
+
+
+   
 }

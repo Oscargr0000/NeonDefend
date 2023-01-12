@@ -6,18 +6,27 @@ using UnityEngine;
 public class TowerSystem : MonoBehaviour
 {
 
-    public float damage;
-    public float speed;
+    public TowerScriptableObject scriptable_Stats;
+
+    //--------------------------------STATS--------------------------------
+    public int damage;
+    public float shootingSpeed;
+
+    public float range;
+
+    public bool fireBullet;
+    public bool seeCamuf;
+    //---------------------------------------------------------------------
 
     private bool hasToShoot;
-
     public int currentLvl;
 
-    public GameObject proyectile;
+    public int idxR1;
+    public int idxR2;
 
+    public int maxR1 = 4;
+    public int maxR2 = 4;
 
-    //Mejoras de la torre
-    public Sprite[] upgrade;
 
     //ACESOS
     private LvlUpSystem _LvlSystem;
@@ -28,10 +37,6 @@ public class TowerSystem : MonoBehaviour
 
     // Tiempo del próximo disparo permitido
     private float tiempoSiguienteDisparo = 0.0f;
-
-
-    // Distancia máxima del rayo
-    private float radius = 5f;
 
     // Resultado de la detección
     private RaycastHit2D hit;
@@ -46,23 +51,27 @@ public class TowerSystem : MonoBehaviour
 
     void Start()
     {
-        //STATS
-        currentLvl = 0;
+        //-----------------STATS--------------------
+        damage = scriptable_Stats.damage;
+        shootingSpeed = scriptable_Stats.shootingSpeed;
 
-    }
+        range = scriptable_Stats.range;
+
+        fireBullet = scriptable_Stats.fireBullet;
+        seeCamuf = scriptable_Stats.seeCamuf;
+        //---------------------------------------------
+}
 
     void Update()
     {
-        //hasToShoot = false;
-
         // Lanzar rayo circular desde la posición de la torre
-        hit = Physics2D.CircleCast(transform.position, radius, Vector2.zero);
+        hit = Physics2D.CircleCast(transform.position, range, Vector2.zero);
 
         // Dibujar rayo circular en la escena
-        Debug.DrawRay(transform.position, Vector2.right * radius, Color.red);
-        Debug.DrawRay(transform.position, Vector2.up * radius, Color.red);
-        Debug.DrawRay(transform.position, Vector2.left * radius, Color.red);
-        Debug.DrawRay(transform.position, Vector2.down * radius, Color.red);
+        Debug.DrawRay(transform.position, Vector2.right * range, Color.red);
+        Debug.DrawRay(transform.position, Vector2.up * range, Color.red);
+        Debug.DrawRay(transform.position, Vector2.left * range, Color.red);
+        Debug.DrawRay(transform.position, Vector2.down * range, Color.red);
 
         // Si el rayo colisiona con algún collider
         if (hit.collider != null)
@@ -91,7 +100,7 @@ public class TowerSystem : MonoBehaviour
             Disparar();
 
             // Actualizamos el tiempo del próximo disparo permitido
-            tiempoSiguienteDisparo = Time.time + intervaloDisparo;
+            tiempoSiguienteDisparo = Time.time + shootingSpeed;
         }
     }
 
@@ -99,7 +108,7 @@ public class TowerSystem : MonoBehaviour
 
     void Disparar()
     {
-        Instantiate(proyectile, transform.position, transform.rotation);
+        Instantiate(scriptable_Stats.MainBullet, transform.position, transform.rotation);
     }
 
     //SELECIONA LA TORRE
@@ -108,106 +117,4 @@ public class TowerSystem : MonoBehaviour
         _LvlSystem.currentTower = this.gameObject;
         _LvlSystem.SelectTower();
     }
-
-    public void LvlUps()
-    {
-        switch (currentLvl)
-        {
-           //RAMA 1
-            case 4:
-                print("hace mucho danyo");
-                break;
-            case 3:                         //NUMERO LIMITE
-                print("Ve camuflados");
-                break;
-            case 2:
-                print("dispara mas rapido");
-                break;
-            case 1:
-                print("mas danyo");
-                break;
-
-           //RAMA 2
-            case 5:
-                print("dont destroy bullet");
-                break;
-
-            case 10:
-                print("doble cannon");
-                break;
-            case 15:                    //NUMERO LIMITE
-                print("will shoot fire");
-                break;
-            case 20:
-                print("4 cannons");
-                break;
-
-
-                //COMBOS
-            case 6:
-                print("mas danyo");
-                print("dont destroy bullet");
-                break;
-
-            case 7:
-                print("dispara mas rapido");
-                print("dont destroy bullet");
-                break;
-
-            case 8:                         //NUMERO LIMITE
-                print("dont destroy bullet");
-                print("Ve camuflados");
-                break;
-
-            case 9:
-                print("hace mucho danyo");
-                print("dont destroy bullet");
-                break;
-
-            case 11:
-                print("doble cannon");
-                print("mas danyo");
-                break;
-
-            case 12:
-                print("doble cannon");
-                print("mas danyo");
-                break;
-
-            case 13:                    //NUMERO LIMITE
-                print("Ve camuflados");
-                print("doble cannon");
-                break;
-
-            case 14:
-                print("hace mucho danyo");
-                print("doble cannon");
-                break;
-
-            case 16:
-                print("will shoot fire");
-                print("mas danyo");
-                break;
-            case 17:
-                print("will shoot fire");
-                print("dispara mas rapido");
-                break;
-
-            case 21:
-                print("4 cannons");
-                print("mas danyo");
-                break;
-
-            case 22:
-                print("4 cannons");
-                print("dispara mas rapido");
-                break;
-
-                
-
-        }
-    }
-    
-
-
 }

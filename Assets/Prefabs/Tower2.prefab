@@ -99,13 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e0409467bd62ed4686651e8f63613e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  speed: 0
+  scriptable_Stats: {fileID: 11400000, guid: 54fdfd02d8daaef4789fb975934a76c0, type: 2}
   currentLvl: 0
-  proyectile: {fileID: 5265907975321825447, guid: 316b4e61152eff5498ad36761746538d, type: 3}
-  upgrade:
-  - {fileID: 3389041617228324476, guid: 6cb4687f74118f14a8cd4bc77a36d047, type: 3}
-  - {fileID: 6303987638321047263}
+  idxR1: 0
+  idxR2: 0
+  maxR1: 4
+  maxR2: 4
 --- !u!58 &6303987638321047261
 CircleCollider2D:
   m_ObjectHideFlags: 0
