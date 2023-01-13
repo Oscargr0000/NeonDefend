@@ -38,13 +38,28 @@ public class ProyectailLogic : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            _gm.points += 1;  //Cambiar en un futuro, acceder al daño de la bala y sumar esa cantidad de puntos
-            print(_gm.points);
+            EnemyHitted(1);
 
-            if (_lvl.stats_tower.destroyBullet.Equals(false))
+            
+        }
+
+        if (collision.gameObject.CompareTag("FireEnemy"))
+        {
+            if (_lvl.stats_tower.fireBullet.Equals(true))
             {
-                Destroy(this.gameObject);
+                EnemyHitted(2);
             }
+        }
+    }
+
+    void EnemyHitted(int points)
+    {
+        _gm.points += points;  //Cambiar en un futuro, acceder al daño de la bala y sumar esa cantidad de puntos
+        print(_gm.points);
+
+        if (_lvl.stats_tower.destroyBullet.Equals(false))
+        {
+            Destroy(this.gameObject);
         }
     }
 }

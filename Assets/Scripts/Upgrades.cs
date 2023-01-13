@@ -53,8 +53,9 @@ public class Upgrades : MonoBehaviour
                 break;
 
             case 3:
+                ActivateFire();
                 print("will shoot fire");
-                _lvlUpS.stats_tower.fireBullet = true;  
+               
                 break;
 
             case 4:
@@ -65,7 +66,7 @@ public class Upgrades : MonoBehaviour
 
     void ActivateFire()
     {
-        towerScriptable.fireBullet = true;
+        _lvlUpS.stats_tower.fireBullet = true;
     }
 
     void DontDestroyBullet()
