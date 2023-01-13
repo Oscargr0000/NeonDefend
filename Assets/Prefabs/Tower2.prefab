@@ -100,9 +100,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scriptable_Stats: {fileID: 11400000, guid: 54fdfd02d8daaef4789fb975934a76c0, type: 2}
+  damage: 0
+  shootingSpeed: 0
+  range: 0
+  fireBullet: 0
+  seeCamuf: 0
   currentLvl: 0
   idxR1: 0
   idxR2: 0
+  priceR1: 100
+  priceR2: 150
   maxR1: 4
   maxR2: 4
 --- !u!58 &6303987638321047261

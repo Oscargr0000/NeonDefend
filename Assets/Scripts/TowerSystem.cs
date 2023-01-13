@@ -5,8 +5,14 @@ using UnityEngine;
 
 public class TowerSystem : MonoBehaviour
 {
-
+    //-------------------------------CONNECTIONS--------------------------------
     public TowerScriptableObject scriptable_Stats;
+    private GameManager _gm;
+    private LvlUpSystem _LvlSystem;
+    //___________________________________________________________________________
+
+
+
 
     //--------------------------------STATS--------------------------------
     public int damage;
@@ -16,24 +22,25 @@ public class TowerSystem : MonoBehaviour
 
     public bool fireBullet;
     public bool seeCamuf;
-    //---------------------------------------------------------------------
+    public bool destroyBullet;
+    //_____________________________________________________________________
+
+
 
     private bool hasToShoot;
     public int currentLvl;
 
+    //Contadores de mejora
     public int idxR1;
     public int idxR2;
 
+    //Precios para el sistema de compra
+    public int priceR1;
+    public int priceR2;
+
+    //Maximo de mejora por rama
     public int maxR1 = 4;
     public int maxR2 = 4;
-
-
-    //ACESOS
-    private LvlUpSystem _LvlSystem;
-
-
-    // Intervalo de tiempo entre disparos (en segundos)
-    private float intervaloDisparo = 0.5f;
 
     // Tiempo del próximo disparo permitido
     private float tiempoSiguienteDisparo = 0.0f;
@@ -46,6 +53,7 @@ public class TowerSystem : MonoBehaviour
     private void Awake()
     {
         _LvlSystem = FindObjectOfType<LvlUpSystem>();
+        _gm = FindObjectOfType<GameManager>();
     }
 
 
@@ -59,6 +67,7 @@ public class TowerSystem : MonoBehaviour
 
         fireBullet = scriptable_Stats.fireBullet;
         seeCamuf = scriptable_Stats.seeCamuf;
+        destroyBullet = scriptable_Stats.bulletIsDestroyed;
         //---------------------------------------------
 }
 
@@ -108,6 +117,8 @@ public class TowerSystem : MonoBehaviour
 
     void Disparar()
     {
+
+        // CAMBIAR AL METODO DE POOL PULLING
         Instantiate(scriptable_Stats.MainBullet, transform.position, transform.rotation);
     }
 

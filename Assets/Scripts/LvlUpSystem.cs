@@ -6,9 +6,14 @@ using UnityEngine.UI;
 
 public class LvlUpSystem : MonoBehaviour
 {
+    //-----------------------------CONNECTIONS-----------------------------------
     private TowerSystem _towerSystem;
     public TowerSystem stats_tower;
     private Upgrades _upgrades;
+    private GameManager _gm;
+    //____________________________________________________________________________
+
+
     private SpriteRenderer spriteRenderer;
 
 
@@ -26,7 +31,8 @@ public class LvlUpSystem : MonoBehaviour
     private void Awake()
     {
         _upgrades = FindObjectOfType<Upgrades>();
-        _towerSystem = FindObjectOfType<TowerSystem>();    
+        _towerSystem = FindObjectOfType<TowerSystem>();
+        _gm = FindObjectOfType<GameManager>();
     }
 
     
@@ -53,8 +59,19 @@ public class LvlUpSystem : MonoBehaviour
         {
             if (added.Equals(1))
             {
-                stats_tower.idxR1++;
-                _upgrades.UpgradeR1();
+                if(_gm.points>= stats_tower.priceR1)
+                {
+                    _gm.points -= stats_tower.priceR1;
+                    stats_tower.priceR1 += 100;
+                    stats_tower.idxR1++;
+                    _upgrades.UpgradeR1();
+                    print(_gm.points);
+                }
+                else
+                {
+                    print("No cuentas con puntos suficientes"); 
+                }
+                
             }
         }
         
@@ -62,8 +79,18 @@ public class LvlUpSystem : MonoBehaviour
         {
             if(added.Equals(2))
             {
-                stats_tower.idxR2++;
-                _upgrades.UpgradeR2();
+                if (_gm.points >= stats_tower.priceR2)
+                {
+                    _gm.points -= stats_tower.priceR2;
+                    stats_tower.priceR2 += 100;
+                    stats_tower.idxR2++;
+                    _upgrades.UpgradeR2();
+                    print(_gm.points);
+                }
+                else
+                {
+                    print("No cuentas con puntos suficientes");
+                }
             }
         }
 
@@ -78,9 +105,6 @@ public class LvlUpSystem : MonoBehaviour
             stats_tower.maxR1 = 2;
             RefreshButtons();
         }
-
-        
-        
 
         R1text.text = stats_tower.idxR1.ToString();
         R2text.text = stats_tower.idxR2.ToString();
@@ -109,7 +133,4 @@ public class LvlUpSystem : MonoBehaviour
 
 
     }
-
-
-   
 }

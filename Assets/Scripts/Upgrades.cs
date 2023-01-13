@@ -7,6 +7,7 @@ public class Upgrades : MonoBehaviour
     [SerializeField]private TowerScriptableObject towerScriptable;
     private TowerSystem _ts;
     private LvlUpSystem _lvlUpS;
+    private ProyectailLogic _pl;
 
     private void Awake()
     {
@@ -46,7 +47,9 @@ public class Upgrades : MonoBehaviour
                 print("More Range");
                 break;
             case 2:
-                print("doble cannon");
+                _lvlUpS.stats_tower.destroyBullet = true;
+
+                print("Dont't Destroy on hit");
                 break;
 
             case 3:
@@ -55,7 +58,7 @@ public class Upgrades : MonoBehaviour
                 break;
 
             case 4:
-                print("4 cannons");
+                print("2 cannons");
                 break;
         }
     }

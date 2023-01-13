@@ -15,6 +15,7 @@ public class TowerScriptableObject : ScriptableObject
     public bool fireBullet;
     public bool seeCamuf;
     public bool usesRaycast;
+    public bool bulletIsDestroyed;
 
     public Sprite[] sprites;
 
