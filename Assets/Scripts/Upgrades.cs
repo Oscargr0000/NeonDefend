@@ -59,6 +59,7 @@ public class Upgrades : MonoBehaviour
                 break;
 
             case 4:
+                NumCannon();
                 print("2 cannons");
                 break;
         }
@@ -93,15 +94,10 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    void NumCannon(int numcanyones)
+    void NumCannon()
     {
-        if (numcanyones.Equals(1))
-        {
-            
-        }else if (numcanyones.Equals(2))
-        {
-
-        }
+        _lvlUpS.currentTower.transform.GetChild(0).gameObject.SetActive(false);
+        _lvlUpS.currentTower.transform.GetChild(1).gameObject.SetActive(true);
     }
 
     

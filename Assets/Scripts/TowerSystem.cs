@@ -107,8 +107,16 @@ public class TowerSystem : MonoBehaviour
         // Comprobamos si es el momento de disparar
         if (hasToShoot.Equals(true) && Time.time >= tiempoSiguienteDisparo)
         {
-            // Disparamos
-            Disparar();
+            if (idxR2 != 4)
+            {
+                // Disparamos
+                Disparar();
+            }
+            else //UPGRADED
+            {
+                DobleCannonShot();
+            }
+            
 
             // Actualizamos el tiempo del próximo disparo permitido
             tiempoSiguienteDisparo = Time.time + shootingSpeed;
@@ -120,7 +128,13 @@ public class TowerSystem : MonoBehaviour
     void Disparar()
     {
         // CAMBIAR AL METODO DE POOL PULLING
-        Instantiate(proyectail, transform.position, transform.rotation);
+        Instantiate(proyectail, this.gameObject.transform.GetChild(0).transform.position, transform.rotation);
+    }
+
+    void DobleCannonShot()
+    {
+        Instantiate(proyectail, this.gameObject.transform.GetChild(1).GetChild(0).transform.position, transform.rotation);
+        Instantiate(proyectail, this.gameObject.transform.GetChild(1).GetChild(1).transform.position, transform.rotation);
     }
 
     //SELECIONA LA TORRE

@@ -360,17 +360,17 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298097918}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3.5724866}
-  m_LocalScale: {x: 2.4000003, y: 2.4000003, z: 2.4000003}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 778778572}
-  m_RootOrder: 7
+  m_Father: {fileID: 1585626490}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 231.14256, y: 409.90604}
-  m_SizeDelta: {x: 58.7, y: 30}
+  m_AnchoredPosition: {x: 0.000045776367, y: 0.000030517578}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &298097920
 MonoBehaviour:
@@ -1106,6 +1106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 778778572}
+  - component: {fileID: 778778573}
   m_Layer: 0
   m_Name: GetAllCanvas
   m_TagString: Untagged
@@ -1121,7 +1122,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 778778571}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 106.59057, y: 6.6058087, z: -1.488536}
+  m_LocalPosition: {x: 106.59057, y: 6.605809, z: -1.488536}
   m_LocalScale: {x: 0.41666663, y: 0.41666663, z: 0.41666663}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1132,10 +1133,29 @@ Transform:
   - {fileID: 634596425}
   - {fileID: 1018852533}
   - {fileID: 1585626490}
-  - {fileID: 298097919}
   m_Father: {fileID: 1638428016}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &778778573
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778778571}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6e27b3049309c724cae806117f3b4f7c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &821069376
 GameObject:
   m_ObjectHideFlags: 0
@@ -1166,6 +1186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lvlCanvas: {fileID: 1638428012}
+  animationCanvas: {fileID: 778778573}
+  panelIsOpen: 1
 --- !u!4 &821069378
 Transform:
   m_ObjectHideFlags: 0
@@ -2089,7 +2111,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 3.5724866}
   m_LocalScale: {x: 2.4000003, y: 2.4000003, z: 2.4000003}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 298097919}
   m_Father: {fileID: 778778572}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2141,7 +2164,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1585626492}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 821069377}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: OpenLvlPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1585626492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3216,11 +3251,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6303987638321047250, guid: c86de22951850e0458dfc8e98dbcb985, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.67
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6303987638321047250, guid: c86de22951850e0458dfc8e98dbcb985, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.09
+      value: 0.76
       objectReference: {fileID: 0}
     - target: {fileID: 6303987638321047250, guid: c86de22951850e0458dfc8e98dbcb985, type: 3}
       propertyPath: m_LocalPosition.z
