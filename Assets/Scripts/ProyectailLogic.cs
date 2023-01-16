@@ -30,6 +30,8 @@ public class ProyectailLogic : MonoBehaviour
         transform.Translate(Vector2.up * proyectailSpeed * Time.deltaTime);
     }
 
+
+    // DESTROY AFTER TIME
     IEnumerator DestroyAfter(int timeleft)
     {
         yield return new WaitForSeconds(timeleft);

@@ -2,7 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+public enum EnemyType
+{
+    Cannon,
+    Sniper,
+    Boomerang,
+    Laser
+}
 public class TowerSystem : MonoBehaviour
 {
     //-------------------------------CONNECTIONS--------------------------------
@@ -50,7 +56,7 @@ public class TowerSystem : MonoBehaviour
     // Resultado de la detección
     private RaycastHit2D hit;
 
-
+    public EnemyType Type;
 
     private void Awake()
     {

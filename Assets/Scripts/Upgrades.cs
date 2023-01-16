@@ -20,6 +20,7 @@ public class Upgrades : MonoBehaviour
         switch (_lvlUpS.stats_tower.idxR1)
         {
             case 1:
+                if()
                 print("mas danyo");
                 _lvlUpS.stats_tower.damage += 1;
                 break;

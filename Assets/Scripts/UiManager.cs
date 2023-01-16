@@ -29,9 +29,9 @@ public class UiManager : MonoBehaviour
     {
         pointsText.text = _gm.points.ToString();
     }
+
     public void OpenLvlPanel()
     {
-        print("EL BOTON FUNCIONA");
         if (panelIsOpen.Equals(false)) // ABRIR
         {
             panelIsOpen = true;
