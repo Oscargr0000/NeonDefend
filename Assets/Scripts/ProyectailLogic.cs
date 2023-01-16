@@ -57,7 +57,6 @@ public class ProyectailLogic : MonoBehaviour
     void EnemyHitted(int points)
     {
         _gm.points += points;  //Cambiar en un futuro, acceder al daño de la bala y sumar esa cantidad de puntos
-        print(_gm.points);
 
         if (notDestroy.Equals(false)) //Si la bala no tiene el booleano en true las balas atravesaran los enemigos
         {

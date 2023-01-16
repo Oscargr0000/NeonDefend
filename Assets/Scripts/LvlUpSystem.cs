@@ -76,7 +76,6 @@ public class LvlUpSystem : MonoBehaviour
                     stats_tower.priceR1 += 100;
                     stats_tower.idxR1++;
                     _upgrades.UpgradeR1();
-                    print(_gm.points);
                 }
                 else
                 {
@@ -96,7 +95,6 @@ public class LvlUpSystem : MonoBehaviour
                     stats_tower.priceR2 += 100;
                     stats_tower.idxR2++;
                     _upgrades.UpgradeR2();
-                    print(_gm.points);
                 }
                 else
                 {

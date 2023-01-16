@@ -17,7 +17,7 @@ public class Upgrades : MonoBehaviour
 
     public void UpgradeR1()
     {
-        switch (_ts.idxR1)
+        switch (_lvlUpS.stats_tower.idxR1)
         {
             case 1:
                 print("mas danyo");
@@ -41,9 +41,10 @@ public class Upgrades : MonoBehaviour
 
     public void UpgradeR2()
     {
-        switch (_ts.idxR2)
+        switch (_lvlUpS.stats_tower.idxR2)
         {
             case 1:
+                _lvlUpS.stats_tower.range += 2f;
                 print("More Range");
                 break;
             case 2:
