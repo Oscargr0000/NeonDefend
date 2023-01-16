@@ -24,6 +24,7 @@ public class ProyectailLogic : MonoBehaviour
     {
         StartCoroutine(DestroyAfter(timeToDestroy));
     }
+
     void Update()
     {
         transform.Translate(Vector2.up * proyectailSpeed * Time.deltaTime);
@@ -58,7 +59,7 @@ public class ProyectailLogic : MonoBehaviour
         _gm.points += points;  //Cambiar en un futuro, acceder al daño de la bala y sumar esa cantidad de puntos
         print(_gm.points);
 
-        if (notDestroy.Equals(true)) //PROBLEMA SI NO HAY NADA SELECIONADO NO FUNCIONA 
+        if (notDestroy.Equals(false)) //Si la bala no tiene el booleano en true las balas atravesaran los enemigos
         {
             Destroy(this.gameObject);
         }

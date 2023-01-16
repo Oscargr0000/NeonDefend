@@ -11,6 +11,7 @@ public class LvlUpSystem : MonoBehaviour
     public TowerSystem stats_tower;
     private Upgrades _upgrades;
     private GameManager _gm;
+    private UiManager _uiM;
     //____________________________________________________________________________
 
 
@@ -33,6 +34,7 @@ public class LvlUpSystem : MonoBehaviour
         _upgrades = FindObjectOfType<Upgrades>();
         _towerSystem = FindObjectOfType<TowerSystem>();
         _gm = FindObjectOfType<GameManager>();
+        _uiM = FindObjectOfType<UiManager>();
     }
 
     
@@ -41,6 +43,15 @@ public class LvlUpSystem : MonoBehaviour
     {
         stats_tower = currentTower.GetComponent<TowerSystem>();
         spriteRenderer = currentTower.GetComponent<SpriteRenderer>();
+
+
+        // ABRIR PANEL CUANDO SELECCIONES UNA TORRE
+        if (_uiM.panelIsOpen.Equals(false)) 
+        {
+            _uiM.panelIsOpen = true;
+            _uiM.animationCanvas.SetTrigger("Open");
+            _uiM.animationCanvas.SetBool("isOpen", false);
+        }
 
 
         //Update Selection
@@ -130,7 +141,5 @@ public class LvlUpSystem : MonoBehaviour
         {
             rama2Button.interactable = true;
         }
-
-
     }
 }

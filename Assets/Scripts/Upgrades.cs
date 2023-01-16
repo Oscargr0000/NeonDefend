@@ -66,8 +66,8 @@ public class Upgrades : MonoBehaviour
 
     void ActivateFire()
     {
-        _lvlUpS.stats_tower.fireBullet = true
-            ;
+        _lvlUpS.stats_tower.fireBullet = true;
+
         if (_lvlUpS.stats_tower.destroyBullet.Equals(true))
         {
             _lvlUpS.stats_tower.proyectail = towerScriptable.fireDestroy;
@@ -81,7 +81,7 @@ public class Upgrades : MonoBehaviour
 
     void DontDestroyBullet()
     {
-        _lvlUpS.stats_tower.destroyBullet = true;
+        _lvlUpS.stats_tower.destroyBullet = false;
 
         if (_lvlUpS.stats_tower.fireBullet.Equals(true))
         {

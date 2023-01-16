@@ -105,6 +105,8 @@ MonoBehaviour:
   range: 0
   fireBullet: 0
   seeCamuf: 0
+  destroyBullet: 0
+  proyectail: {fileID: 5265907975321825447, guid: 316b4e61152eff5498ad36761746538d, type: 3}
   currentLvl: 0
   idxR1: 0
   idxR2: 0

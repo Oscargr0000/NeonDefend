@@ -119,7 +119,6 @@ public class TowerSystem : MonoBehaviour
 
     void Disparar()
     {
-
         // CAMBIAR AL METODO DE POOL PULLING
         Instantiate(proyectail, transform.position, transform.rotation);
     }
