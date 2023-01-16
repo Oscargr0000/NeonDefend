@@ -20,6 +20,7 @@ MonoBehaviour:
   fireBullet: 0
   seeCamuf: 0
   usesRaycast: 0
+  bulletIsDestroyed: 0
   sprites:
   - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 21300000, guid: daf2ab606d4db0d4f9ecf4c02137d2a8, type: 3}
@@ -27,5 +28,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 395f6b9556f14704790df6035be6ee3a, type: 3}
   - {fileID: 21300000, guid: 9c0d6ec706e01ce448aea81584af092b, type: 3}
   - {fileID: 21300000, guid: 3a0c527d7f890d64a9b56b086e6e766a, type: 3}
-  fireBulletObject: {fileID: 5265907975321825447, guid: 316b4e61152eff5498ad36761746538d, type: 3}
-  MainBullet: {fileID: 5265907975321825447, guid: 316b4e61152eff5498ad36761746538d, type: 3}
+  fireDontDestroyObj: {fileID: 5265907975321825447, guid: 422f6e6a9c309aa429776472ebc2e419, type: 3}
+  notFireDestroy: {fileID: 5265907975321825447, guid: 316b4e61152eff5498ad36761746538d, type: 3}
+  fireDestroy: {fileID: 5265907975321825447, guid: bfbafab65e89dd84d8ac0e8467bb07a7, type: 3}
+  notFireDontDestroy: {fileID: 5265907975321825447, guid: 0a55dc785b4fb5646a1fe5f052da1e4f, type: 3}

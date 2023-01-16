@@ -23,6 +23,8 @@ public class TowerSystem : MonoBehaviour
     public bool fireBullet;
     public bool seeCamuf;
     public bool destroyBullet;
+
+    public GameObject proyectail;
     //_____________________________________________________________________
 
 
@@ -68,7 +70,8 @@ public class TowerSystem : MonoBehaviour
         fireBullet = scriptable_Stats.fireBullet;
         seeCamuf = scriptable_Stats.seeCamuf;
         destroyBullet = scriptable_Stats.bulletIsDestroyed;
-        //---------------------------------------------
+        proyectail = scriptable_Stats.notFireDestroy;
+    //---------------------------------------------
 }
 
     void Update()
@@ -101,7 +104,6 @@ public class TowerSystem : MonoBehaviour
         }
 
 
-
         // Comprobamos si es el momento de disparar
         if (hasToShoot.Equals(true) && Time.time >= tiempoSiguienteDisparo)
         {
@@ -119,7 +121,7 @@ public class TowerSystem : MonoBehaviour
     {
 
         // CAMBIAR AL METODO DE POOL PULLING
-        Instantiate(scriptable_Stats.MainBullet, transform.position, transform.rotation);
+        Instantiate(proyectail, transform.position, transform.rotation);
     }
 
     //SELECIONA LA TORRE

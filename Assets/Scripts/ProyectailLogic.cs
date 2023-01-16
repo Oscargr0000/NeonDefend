@@ -7,6 +7,9 @@ public class ProyectailLogic : MonoBehaviour
     public float proyectailSpeed;
     private int timeToDestroy = 5;
 
+    public bool bulletIsFire;
+    public bool notDestroy;
+
     private GameManager _gm;
     private LvlUpSystem _lvl;
 
@@ -39,13 +42,11 @@ public class ProyectailLogic : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EnemyHitted(1);
-
-            
         }
 
         if (collision.gameObject.CompareTag("FireEnemy"))
         {
-            if (_lvl.stats_tower.fireBullet.Equals(true))
+            if (bulletIsFire.Equals(true))
             {
                 EnemyHitted(2);
             }
@@ -57,7 +58,7 @@ public class ProyectailLogic : MonoBehaviour
         _gm.points += points;  //Cambiar en un futuro, acceder al daño de la bala y sumar esa cantidad de puntos
         print(_gm.points);
 
-        if (_lvl.stats_tower.destroyBullet.Equals(false))
+        if (notDestroy.Equals(true)) //PROBLEMA SI NO HAY NADA SELECIONADO NO FUNCIONA 
         {
             Destroy(this.gameObject);
         }

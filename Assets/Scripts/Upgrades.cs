@@ -47,7 +47,7 @@ public class Upgrades : MonoBehaviour
                 print("More Range");
                 break;
             case 2:
-                _lvlUpS.stats_tower.destroyBullet = true;
+                DontDestroyBullet();
 
                 print("Dont't Destroy on hit");
                 break;
@@ -66,12 +66,31 @@ public class Upgrades : MonoBehaviour
 
     void ActivateFire()
     {
-        _lvlUpS.stats_tower.fireBullet = true;
+        _lvlUpS.stats_tower.fireBullet = true
+            ;
+        if (_lvlUpS.stats_tower.destroyBullet.Equals(true))
+        {
+            _lvlUpS.stats_tower.proyectail = towerScriptable.fireDestroy;
+        }
+        else
+        {
+            _lvlUpS.stats_tower.proyectail = towerScriptable.fireDontDestroyObj;
+        }
+        
     }
 
     void DontDestroyBullet()
     {
+        _lvlUpS.stats_tower.destroyBullet = true;
 
+        if (_lvlUpS.stats_tower.fireBullet.Equals(true))
+        {
+            _lvlUpS.stats_tower.proyectail = towerScriptable.fireDontDestroyObj;
+        }
+        else
+        {
+            _lvlUpS.stats_tower.proyectail = towerScriptable.notFireDestroy;
+        }
     }
 
     void NumCannon(int numcanyones)

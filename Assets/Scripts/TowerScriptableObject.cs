@@ -19,8 +19,10 @@ public class TowerScriptableObject : ScriptableObject
 
     public Sprite[] sprites;
 
-    public GameObject fireBulletObject;
-    public GameObject MainBullet;
+    public GameObject fireDontDestroyObj;
+    public GameObject notFireDestroy;
+    public GameObject fireDestroy;
+    public GameObject notFireDontDestroy;
 
     
     
