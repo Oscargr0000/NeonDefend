@@ -19,23 +19,106 @@ public class Upgrades : MonoBehaviour
     {
         switch (_lvlUpS.stats_tower.idxR1)
         {
-            case 1:
-                if()
-                print("mas danyo");
-                _lvlUpS.stats_tower.damage += 1;
-                break;
-            case 2:
-                print("dispara mas rapido");
-                _lvlUpS.stats_tower.shootingSpeed -= 0.2f;
+            //---------MEJORA 1----------
+            case 1:  
+
+                switch (_lvlUpS.stats_tower.Type)
+                {
+                    case TowerType.Cannon:
+
+                        print("mas danyo");
+                        _lvlUpS.stats_tower.damage += 1;
+                        break;
+
+                    case TowerType.Sniper:
+
+                        break;
+
+                    case TowerType.Boomerang:
+
+                        break;
+
+                    case TowerType.Laser:
+
+                        break;
+
+                }
                 break;
 
-            case 3:
-                print("Ve camuflados");
-                _lvlUpS.stats_tower.seeCamuf = true;
+            //---------MEJORA 2----------
+            case 2:
+
+                switch (_lvlUpS.stats_tower.Type)
+                {
+                    case TowerType.Cannon:
+
+                        print("dispara mas rapido");
+                        _lvlUpS.stats_tower.shootingSpeed -= 0.2f;
+                        break;
+
+                    case TowerType.Sniper:
+
+                        break;
+
+                    case TowerType.Boomerang:
+
+                        break;
+
+                    case TowerType.Laser:
+
+                        break;
+                }
                 break;
+
+            //---------MEJORA 3----------
+            case 3:
+
+                switch (_lvlUpS.stats_tower.Type)
+                {
+                    case TowerType.Cannon:
+
+                        print("Ve camuflados");
+                        _lvlUpS.stats_tower.seeCamuf = true;
+                        break;
+
+                    case TowerType.Sniper:
+
+                        break;
+
+                    case TowerType.Boomerang:
+
+                        break;
+
+                    case TowerType.Laser:
+
+                        break;
+
+                }
+                break;
+
+            //---------MEJORA 4----------
             case 4:
-                print("hace mucho danyo");
-                _lvlUpS.stats_tower.damage += 2;
+
+                switch (_lvlUpS.stats_tower.Type)
+                {
+                    case TowerType.Cannon:
+
+                        print("hace mucho danyo");
+                        _lvlUpS.stats_tower.damage += 2;
+                        break;
+
+                    case TowerType.Sniper:
+
+                        break;
+
+                    case TowerType.Boomerang:
+
+                        break;
+
+                    case TowerType.Laser:
+
+                        break;
+                }
                 break;
         }
     }
@@ -44,25 +127,111 @@ public class Upgrades : MonoBehaviour
     {
         switch (_lvlUpS.stats_tower.idxR2)
         {
+
+            //---------MEJORA 1----------
             case 1:
-                _lvlUpS.stats_tower.range += 2f;
-                print("More Range");
+                switch (_lvlUpS.stats_tower.Type)
+                {
+                    case TowerType.Cannon:
+
+                        _lvlUpS.stats_tower.range += 1f;
+                        print("More Range");
+                        break;
+
+                    case TowerType.Sniper:
+
+                        print("More Damage");
+
+                        break;
+
+                    case TowerType.Boomerang:
+
+                        break;
+
+                    case TowerType.Laser:
+
+                        break;
+                }
                 break;
+
+            //---------MEJORA 2----------
             case 2:
-                DontDestroyBullet();
 
-                print("Dont't Destroy on hit");
+                switch (_lvlUpS.stats_tower.Type)
+                {
+                    case TowerType.Cannon:
+
+                        DontDestroyBullet();
+
+                        print("Dont't Destroy on hit");
+                        break;
+
+                    case TowerType.Sniper:
+
+                        print("SeeCam");
+                        break;
+
+                    case TowerType.Boomerang:
+
+                        break;
+
+                    case TowerType.Laser:
+
+                        break;
+                }
                 break;
 
+            //---------MEJORA 3----------
             case 3:
-                ActivateFire();
-                print("will shoot fire");
-               
+
+                switch (_lvlUpS.stats_tower.Type)
+                {
+                    case TowerType.Cannon:
+
+                        ActivateFire();
+                        print("will shoot fire");
+                        break;
+
+                    case TowerType.Sniper:
+
+                        print("MORE damage - slower");
+                        break;
+
+                    case TowerType.Boomerang:
+
+                        break;
+
+                    case TowerType.Laser:
+
+                        break;
+                }
+
                 break;
 
+
+            //---------MEJORA 4----------
             case 4:
-                NumCannon();
-                print("2 cannons");
+                switch (_lvlUpS.stats_tower.Type)
+                {
+                    case TowerType.Cannon:
+
+                        NumCannon();
+                        print("2 cannons");
+                        break;
+
+                    case TowerType.Sniper:
+
+                        print("La bala atraviesa globos");
+                        break;
+
+                    case TowerType.Boomerang:
+
+                        break;
+
+                    case TowerType.Laser:
+
+                        break;
+                }
                 break;
         }
     }

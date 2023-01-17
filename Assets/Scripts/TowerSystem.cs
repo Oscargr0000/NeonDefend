@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnemyType
+public enum TowerType
 {
     Cannon,
     Sniper,
@@ -11,6 +11,9 @@ public enum EnemyType
 }
 public class TowerSystem : MonoBehaviour
 {
+    //Select the tower the script is applied
+    public TowerType Type;
+
     //-------------------------------CONNECTIONS--------------------------------
     public TowerScriptableObject scriptable_Stats;
     private GameManager _gm;
@@ -18,16 +21,17 @@ public class TowerSystem : MonoBehaviour
     //___________________________________________________________________________
 
 
-
-
     //--------------------------------STATS--------------------------------
+    public string Name;
     public int damage;
+    public int price;
     public float shootingSpeed;
-
+    
     public float range;
 
     public bool fireBullet;
     public bool seeCamuf;
+    public bool useRayCast;
     public bool destroyBullet;
 
     public GameObject proyectail;
@@ -37,6 +41,8 @@ public class TowerSystem : MonoBehaviour
 
     private bool hasToShoot;
     public int currentLvl;
+    public LayerMask EnemyLayer;
+    private Vector2 enemyPos;
 
     //Contadores de mejora
     public int idxR1;
@@ -56,7 +62,8 @@ public class TowerSystem : MonoBehaviour
     // Resultado de la detección
     private RaycastHit2D hit;
 
-    public EnemyType Type;
+    private RaycastHit2D shottingHit;
+
 
     private void Awake()
     {
@@ -70,27 +77,20 @@ public class TowerSystem : MonoBehaviour
         //-----------------STATS--------------------
         damage = scriptable_Stats.damage;
         shootingSpeed = scriptable_Stats.shootingSpeed;
+        price = scriptable_Stats.price;
 
         range = scriptable_Stats.range;
 
         fireBullet = scriptable_Stats.fireBullet;
         seeCamuf = scriptable_Stats.seeCamuf;
         destroyBullet = scriptable_Stats.bulletIsDestroyed;
-        proyectail = scriptable_Stats.notFireDestroy;
-    //---------------------------------------------
-}
+        useRayCast = scriptable_Stats.usesRaycast;
 
-    void Update()
+        proyectail = scriptable_Stats.notFireDestroy;     
+        //---------------------------------------------
+    }
+    private void Update()
     {
-        // Lanzar rayo circular desde la posición de la torre
-        hit = Physics2D.CircleCast(transform.position, range, Vector2.zero);
-
-        // Dibujar rayo circular en la escena
-        Debug.DrawRay(transform.position, Vector2.right * range, Color.red);
-        Debug.DrawRay(transform.position, Vector2.up * range, Color.red);
-        Debug.DrawRay(transform.position, Vector2.left * range, Color.red);
-        Debug.DrawRay(transform.position, Vector2.down * range, Color.red);
-
         // Si el rayo colisiona con algún collider
         if (hit.collider != null)
         {
@@ -122,19 +122,47 @@ public class TowerSystem : MonoBehaviour
             {
                 DobleCannonShot();
             }
-            
+
 
             // Actualizamos el tiempo del próximo disparo permitido
             tiempoSiguienteDisparo = Time.time + shootingSpeed;
         }
     }
 
+    void FixedUpdate()
+    {
+        // Lanzar rayo circular desde la posición de la torre
+        hit = Physics2D.CircleCast(transform.position, range, Vector2.zero,EnemyLayer);
+
+        // Dibujar rayo circular en la escena
+        Debug.DrawRay(transform.position, Vector2.right * range, Color.red);
+        Debug.DrawRay(transform.position, Vector2.up * range, Color.red);
+        Debug.DrawRay(transform.position, Vector2.left * range, Color.red);
+        Debug.DrawRay(transform.position, Vector2.down * range, Color.red);
+    }
+
 
 
     void Disparar()
     {
-        // CAMBIAR AL METODO DE POOL PULLING
-        Instantiate(proyectail, this.gameObject.transform.GetChild(0).transform.position, transform.rotation);
+        if(!useRayCast)
+        {
+            // CAMBIAR AL METODO DE POOL PULLING
+            Instantiate(proyectail, this.gameObject.transform.GetChild(0).transform.position, transform.rotation);
+        }
+        else
+        {
+            Color raycolor = Color.green;
+
+            shottingHit = Physics2D.Raycast(this.transform.position, transform.up = hit.transform.position - transform.position, range,EnemyLayer);
+            Debug.DrawRay(this.transform.position, transform.up = hit.transform.position - transform.position, raycolor, range);
+
+            if (shottingHit.collider)
+            {
+                Debug.Log("EL FRANCOTIRADOR LE HA REVENTAO");
+            }
+        }
+       
     }
 
     void DobleCannonShot()

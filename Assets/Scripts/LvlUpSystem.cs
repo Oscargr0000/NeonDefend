@@ -70,10 +70,9 @@ public class LvlUpSystem : MonoBehaviour
         {
             if (added.Equals(1))
             {
-                if(_gm.points>= stats_tower.priceR1)
+                if(_gm.points>= stats_tower.scriptable_Stats.priceR1[stats_tower.idxR1])
                 {
-                    _gm.points -= stats_tower.priceR1;
-                    stats_tower.priceR1 += 100;
+                    _gm.points -= stats_tower.scriptable_Stats.priceR1[stats_tower.idxR1];
                     stats_tower.idxR1++;
                     _upgrades.UpgradeR1();
                 }
@@ -89,10 +88,9 @@ public class LvlUpSystem : MonoBehaviour
         {
             if(added.Equals(2))
             {
-                if (_gm.points >= stats_tower.priceR2)
+                if (_gm.points >= stats_tower.scriptable_Stats.priceR2[stats_tower.idxR2])
                 {
-                    _gm.points -= stats_tower.priceR2;
-                    stats_tower.priceR2 += 100;
+                    _gm.points -= stats_tower.scriptable_Stats.priceR2[stats_tower.idxR2];
                     stats_tower.idxR2++;
                     _upgrades.UpgradeR2();
                 }

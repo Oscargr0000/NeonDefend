@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0e01c63aa1093448b823ea76f152f9c, type: 3}
-  m_Name: TowerScriptableObject
+  m_Name: TowerScriptableObject 1
   m_EditorClassIdentifier: 
-  TowerName: Cannon
-  damage: 1
-  shootingSpeed: 0.5
+  TowerName: Sniper
+  damage: 2
+  shootingSpeed: 2
   price: 0
-  priceR1: dc000000c801000078020000cb050000
-  priceR2: 1801000034020000d3040000fc080000
-  range: 3
+  priceR1: 660100000f030000440500003c0b0000
+  priceR2: e00100008e020000b9050000b5090000
+  range: 100
   fireBullet: 0
-  seeCamuf: 0
-  usesRaycast: 0
+  seeCamuf: 1
+  usesRaycast: 1
   bulletIsDestroyed: 0
   sprites: []
   fireDontDestroyObj: {fileID: 5265907975321825447, guid: 422f6e6a9c309aa429776472ebc2e419, type: 3}

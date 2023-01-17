@@ -8,7 +8,10 @@ public class TowerScriptableObject : ScriptableObject
     public string TowerName;
     public int damage;
     public float shootingSpeed;
-    public float bulletSpeed;
+    public int price;
+
+    public int[] priceR1;
+    public int[] priceR2;
 
     public float range;
 
