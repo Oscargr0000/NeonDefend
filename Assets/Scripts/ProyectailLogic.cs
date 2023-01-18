@@ -12,6 +12,7 @@ public class ProyectailLogic : MonoBehaviour
 
     private GameManager _gm;
     private LvlUpSystem _lvl;
+    private Enemy _enemyS;
 
     private void Awake()
     {
@@ -44,14 +45,14 @@ public class ProyectailLogic : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            EnemyHitted(1);
+            EnemyHitted(collision.GetComponent<Enemy>().rewardEnemy);
         }
 
         if (collision.gameObject.CompareTag("FireEnemy"))
         {
             if (bulletIsFire.Equals(true))
             {
-                EnemyHitted(2);
+                EnemyHitted(collision.GetComponent<Enemy>().rewardEnemy);
             }
         }
     }

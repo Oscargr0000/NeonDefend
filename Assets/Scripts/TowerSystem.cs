@@ -18,6 +18,7 @@ public class TowerSystem : MonoBehaviour
     public TowerScriptableObject scriptable_Stats;
     private GameManager _gm;
     private LvlUpSystem _LvlSystem;
+    private Enemy _enemyS;
     //___________________________________________________________________________
 
 
@@ -69,6 +70,7 @@ public class TowerSystem : MonoBehaviour
     {
         _LvlSystem = FindObjectOfType<LvlUpSystem>();
         _gm = FindObjectOfType<GameManager>();
+        _enemyS = FindObjectOfType<Enemy>();
     }
 
 
@@ -159,6 +161,10 @@ public class TowerSystem : MonoBehaviour
 
             if (shottingHit.collider)
             {
+                if (shottingHit.collider.gameObject.CompareTag("Enemy"))
+                {
+                    _gm.points += shottingHit.collider.GetComponent<Enemy>().rewardEnemy; 
+                }
                 Debug.Log("EL FRANCOTIRADOR LE HA REVENTAO");
             }
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public int rewardEnemy;
     public int armor;
     private int maxArmor = 9;
 
@@ -16,6 +17,8 @@ public class Enemy : MonoBehaviour
 
     public bool isFire;
     public bool isCammo;
+
+    
 
     private void Start()
     {
