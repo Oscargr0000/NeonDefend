@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IPoolInterface
 {
     public int rewardEnemy;
     public int armor;
@@ -20,10 +20,20 @@ public class Enemy : MonoBehaviour
 
     
 
-    private void Start()
+    public void OnObjectSpawn()
     {
         enemyRender = this.GetComponent<SpriteRenderer>();
+        //BORAR
+        armor = Random.Range(0, 3);
+        //BORAR
+        UpdateArmor();
     }
+
+    private void Update()
+    {
+        transform.Translate(Vector2.up * 3 * Time.deltaTime);
+    }
+
 
     void UpdateArmor()
     {

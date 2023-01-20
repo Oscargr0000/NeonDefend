@@ -19,6 +19,7 @@ public class TowerSystem : MonoBehaviour
     private GameManager _gm;
     private LvlUpSystem _LvlSystem;
     private Enemy _enemyS;
+    private ObjectPooler _objPool;
     //___________________________________________________________________________
 
 
@@ -38,7 +39,7 @@ public class TowerSystem : MonoBehaviour
     public GameObject proyectail;
     //_____________________________________________________________________
 
-
+    public List<GameObject> priorityList;
 
     private bool hasToShoot;
     public int currentLvl;
@@ -71,6 +72,7 @@ public class TowerSystem : MonoBehaviour
         _LvlSystem = FindObjectOfType<LvlUpSystem>();
         _gm = FindObjectOfType<GameManager>();
         _enemyS = FindObjectOfType<Enemy>();
+        _objPool = ObjectPooler.Instance;
     }
 
 
@@ -99,10 +101,17 @@ public class TowerSystem : MonoBehaviour
             // Acceder al objeto golpeado
             GameObject hitObject = hit.collider.gameObject;
 
+
             // Si el objeto tiene el tag "Enemy"
             if (hitObject.tag == "Enemy")
             {
-                transform.up = hitObject.transform.position - transform.position;
+
+                if (!priorityList.Contains(hitObject))
+                {
+                    priorityList.Add(hitObject);
+                }
+
+                transform.up = priorityList[0].transform.position - transform.position;
                 hasToShoot = true;
             }
             else
