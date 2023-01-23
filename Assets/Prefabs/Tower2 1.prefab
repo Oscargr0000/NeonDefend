@@ -196,6 +196,7 @@ MonoBehaviour:
   useRayCast: 0
   destroyBullet: 0
   proyectail: {fileID: 5265907975321825447, guid: 316b4e61152eff5498ad36761746538d, type: 3}
+  priorityList: []
   currentLvl: 0
   EnemyLayer:
     serializedVersion: 2
@@ -221,7 +222,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.6
+  m_Radius: 20
 --- !u!50 &6303987638321047262
 Rigidbody2D:
   serializedVersion: 4

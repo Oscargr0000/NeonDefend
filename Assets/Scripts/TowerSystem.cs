@@ -67,6 +67,12 @@ public class TowerSystem : MonoBehaviour
     private RaycastHit2D shottingHit;
 
 
+    //Deteccion del globo
+    public Queue<GameObject> EnemyQueue = new Queue<GameObject>();
+    private bool isTargetInRange = false;
+    private GameObject currentTarget;
+
+
     private void Awake()
     {
         _LvlSystem = FindObjectOfType<LvlUpSystem>();
@@ -93,32 +99,11 @@ public class TowerSystem : MonoBehaviour
         proyectail = scriptable_Stats.notFireDestroy;     
         //---------------------------------------------
     }
+
+
     private void Update()
     {
-        // Si el rayo colisiona con algún collider
-        if (hit.collider != null)
-        {
-            // Acceder al objeto golpeado
-            GameObject hitObject = hit.collider.gameObject;
-
-
-            // Si el objeto tiene el tag "Enemy"
-            if (hitObject.tag == "Enemy")
-            {
-
-                if (!priorityList.Contains(hitObject))
-                {
-                    priorityList.Add(hitObject);
-                }
-
-                transform.up = priorityList[0].transform.position - transform.position;
-                hasToShoot = true;
-            }
-            else
-            {
-                hasToShoot = false;
-            }
-        }
+        CheckForTargets();
 
 
         // Comprobamos si es el momento de disparar
@@ -140,6 +125,9 @@ public class TowerSystem : MonoBehaviour
         }
     }
 
+
+   
+
     void FixedUpdate()
     {
         // Lanzar rayo circular desde la posición de la torre
@@ -149,7 +137,7 @@ public class TowerSystem : MonoBehaviour
         Debug.DrawRay(transform.position, Vector2.right * range, Color.red);
         Debug.DrawRay(transform.position, Vector2.up * range, Color.red);
         Debug.DrawRay(transform.position, Vector2.left * range, Color.red);
-        Debug.DrawRay(transform.position, Vector2.down * range, Color.red);
+        Debug.DrawRay(transform.position, Vector2.down * range, Color.red);   
     }
 
 
@@ -165,7 +153,7 @@ public class TowerSystem : MonoBehaviour
         {
             Color raycolor = Color.green;
 
-            shottingHit = Physics2D.Raycast(this.transform.position, transform.up = hit.transform.position - transform.position, range,EnemyLayer);
+            shottingHit = Physics2D.Raycast(this.transform.position, transform.up = currentTarget.transform.position - transform.position, range, EnemyLayer);
             Debug.DrawRay(this.transform.position, transform.up = hit.transform.position - transform.position, raycolor, range);
 
             if (shottingHit.collider)
@@ -180,6 +168,29 @@ public class TowerSystem : MonoBehaviour
        
     }
 
+    void CheckForTargets()
+    {
+        if (EnemyQueue.Count > 0)
+        {
+            currentTarget = EnemyQueue.Peek();
+            transform.up = currentTarget.transform.position - transform.position;
+
+            if (hit.collider != null)
+            {
+                if (hit.collider.gameObject == currentTarget)
+                {
+                    hasToShoot = true;
+                    isTargetInRange = true;
+                }
+            }
+        }
+        else
+        {
+            hasToShoot = false;
+            isTargetInRange = false;
+        }
+    }
+
     void DobleCannonShot()
     {
         Instantiate(proyectail, this.gameObject.transform.GetChild(1).GetChild(0).transform.position, transform.rotation);
@@ -192,4 +203,51 @@ public class TowerSystem : MonoBehaviour
         _LvlSystem.currentTower = this.gameObject;
         _LvlSystem.SelectTower();
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            EnemyQueue.Enqueue(collision.gameObject);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            EnemyQueue.Dequeue();
+        }
+    }
+
+
+    /*// Si el rayo colisiona con algún collider
+       if (hit.collider != null)
+       {
+           // Acceder al objeto golpeado
+           GameObject hitObject = hit.collider.gameObject;
+
+
+           // Si el objeto tiene el tag "Enemy"
+           if (hitObject.tag == "Enemy")
+           {
+               GameObject TargetEnemy;
+               //DETECT WHEN IS OUT OR IN THE RAYCAST and change the list
+               if (!priorityList.Contains(hitObject))
+               {
+                   priorityList.Add(hitObject);
+                   TargetEnemy = priorityList[0];
+               } 
+               else if (!priorityList[0].Equals(hitObject))
+               {
+                   priorityList.Remove(priorityList[0]);
+               }
+               transform.up = priorityList[0].transform.position - transform.position;
+               hasToShoot = true;
+           }
+           else
+           {
+               hasToShoot = false;
+           }
+       }*/
 }
