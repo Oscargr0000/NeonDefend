@@ -365,7 +365,6 @@ MonoBehaviour:
   useRayCast: 0
   destroyBullet: 0
   proyectail: {fileID: 5265907975321825447, guid: 316b4e61152eff5498ad36761746538d, type: 3}
-  priorityList: []
   currentLvl: 0
   EnemyLayer:
     serializedVersion: 2

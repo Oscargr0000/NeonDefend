@@ -9,6 +9,7 @@ public enum TowerType
     Boomerang,
     Laser
 }
+
 public class TowerSystem : MonoBehaviour
 {
     //Select the tower the script is applied
@@ -39,7 +40,7 @@ public class TowerSystem : MonoBehaviour
     public GameObject proyectail;
     //_____________________________________________________________________
 
-    public List<GameObject> priorityList;
+
 
     private bool hasToShoot;
     public int currentLvl;
@@ -73,17 +74,14 @@ public class TowerSystem : MonoBehaviour
     private GameObject currentTarget;
 
 
-    private void Awake()
+    void Start()
     {
+        hasToShoot = false;
         _LvlSystem = FindObjectOfType<LvlUpSystem>();
         _gm = FindObjectOfType<GameManager>();
         _enemyS = FindObjectOfType<Enemy>();
         _objPool = ObjectPooler.Instance;
-    }
 
-
-    void Start()
-    {
         //-----------------STATS--------------------
         damage = scriptable_Stats.damage;
         shootingSpeed = scriptable_Stats.shootingSpeed;
@@ -96,7 +94,7 @@ public class TowerSystem : MonoBehaviour
         destroyBullet = scriptable_Stats.bulletIsDestroyed;
         useRayCast = scriptable_Stats.usesRaycast;
 
-        proyectail = scriptable_Stats.notFireDestroy;     
+        proyectail = scriptable_Stats.notFireDestroy;
         //---------------------------------------------
     }
 
@@ -152,9 +150,10 @@ public class TowerSystem : MonoBehaviour
         else
         {
             Color raycolor = Color.green;
+            Vector2 ShotDirection = transform.up = currentTarget.transform.position - transform.position;
 
-            shottingHit = Physics2D.Raycast(this.transform.position, transform.up = currentTarget.transform.position - transform.position, range, EnemyLayer);
-            Debug.DrawRay(this.transform.position, transform.up = hit.transform.position - transform.position, raycolor, range);
+            shottingHit = Physics2D.Raycast(this.transform.position, ShotDirection , range, EnemyLayer);
+            Debug.DrawRay(this.transform.position, ShotDirection, raycolor, range);
 
             if (shottingHit.collider)
             {
@@ -170,26 +169,50 @@ public class TowerSystem : MonoBehaviour
 
     void CheckForTargets()
     {
-        if (EnemyQueue.Count > 0)
+        if (!useRayCast)
         {
-            currentTarget = EnemyQueue.Peek();
-            transform.up = currentTarget.transform.position - transform.position;
-
-            if (hit.collider != null)
+            if (EnemyQueue.Count > 0)
             {
-                if (hit.collider.gameObject == currentTarget)
+
+                currentTarget = EnemyQueue.Peek();
+
+                transform.up = currentTarget.transform.position - transform.position;
+
+
+                // COMIENZA A DISPARAR CUANDO 
+                if (hit.collider != null)
                 {
-                    hasToShoot = true;
-                    isTargetInRange = true;
+                    if (hit.collider.gameObject == currentTarget)
+                    {
+                        hasToShoot = true;
+                        isTargetInRange = true;
+                    }
                 }
             }
+            else
+            {
+                hasToShoot = false;
+                isTargetInRange = false;
+            }
         }
-        else
+        else if(useRayCast)
         {
-            hasToShoot = false;
-            isTargetInRange = false;
+            if(_objPool.poolDictionary["Enemy1"].Count > 0)
+            {
+                currentTarget = _objPool.poolDictionary["Enemy1"].Peek();
+                Debug.Log(currentTarget);
+
+                transform.up = currentTarget.transform.position - transform.position;
+
+                //CUANDO A DE DISPARAR (CAMBIAR CUANDO COMIENCE EL SISTEMA DE RONDAS)
+                hasToShoot = true;
+            }else
+            {
+                hasToShoot = false;
+            }
+
         }
-    }
+     }
 
     void DobleCannonShot()
     {
@@ -219,35 +242,4 @@ public class TowerSystem : MonoBehaviour
             EnemyQueue.Dequeue();
         }
     }
-
-
-    /*// Si el rayo colisiona con algún collider
-       if (hit.collider != null)
-       {
-           // Acceder al objeto golpeado
-           GameObject hitObject = hit.collider.gameObject;
-
-
-           // Si el objeto tiene el tag "Enemy"
-           if (hitObject.tag == "Enemy")
-           {
-               GameObject TargetEnemy;
-               //DETECT WHEN IS OUT OR IN THE RAYCAST and change the list
-               if (!priorityList.Contains(hitObject))
-               {
-                   priorityList.Add(hitObject);
-                   TargetEnemy = priorityList[0];
-               } 
-               else if (!priorityList[0].Equals(hitObject))
-               {
-                   priorityList.Remove(priorityList[0]);
-               }
-               transform.up = priorityList[0].transform.position - transform.position;
-               hasToShoot = true;
-           }
-           else
-           {
-               hasToShoot = false;
-           }
-       }*/
 }

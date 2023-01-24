@@ -17,7 +17,7 @@ public class UiManager : MonoBehaviour
 
     public TextMeshProUGUI pointsText;
 
-    private void Awake()
+    private void Start()
     {
         _ts = FindObjectOfType<TowerSystem>();
         _ls = FindObjectOfType<LvlUpSystem>();

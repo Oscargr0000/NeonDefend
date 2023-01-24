@@ -9,12 +9,11 @@ public class Upgrades : MonoBehaviour
     private LvlUpSystem _lvlUpS;
     private ProyectailLogic _pl;
 
-    private void Awake()
+    private void Start()
     {
         _ts = FindObjectOfType<TowerSystem>();
         _lvlUpS = FindObjectOfType<LvlUpSystem>();
     }
-
     public void UpgradeR1()
     {
         switch (_lvlUpS.stats_tower.idxR1)

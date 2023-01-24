@@ -29,15 +29,13 @@ public class LvlUpSystem : MonoBehaviour
     public Button rama2Button;
 
 
-    private void Awake()
+    private void Start()
     {
         _upgrades = FindObjectOfType<Upgrades>();
         _towerSystem = FindObjectOfType<TowerSystem>();
         _gm = FindObjectOfType<GameManager>();
         _uiM = FindObjectOfType<UiManager>();
     }
-
-    
 
     public void SelectTower()
     {

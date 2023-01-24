@@ -14,15 +14,11 @@ public class ProyectailLogic : MonoBehaviour
     private LvlUpSystem _lvl;
     private Enemy _enemyS;
 
-    private void Awake()
-    {
-        _gm = FindObjectOfType<GameManager>();
-        _lvl = FindObjectOfType<LvlUpSystem>();
-    }
-
 
     private void Start()
     {
+        _gm = FindObjectOfType<GameManager>();
+        _lvl = FindObjectOfType<LvlUpSystem>();
         StartCoroutine(DestroyAfter(timeToDestroy));
     }
 
