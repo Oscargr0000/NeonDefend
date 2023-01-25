@@ -13,12 +13,14 @@ public class ProyectailLogic : MonoBehaviour
     private GameManager _gm;
     private LvlUpSystem _lvl;
     private Enemy _enemyS;
+    private ObjectPooler _objP;
 
 
     private void Start()
     {
         _gm = FindObjectOfType<GameManager>();
         _lvl = FindObjectOfType<LvlUpSystem>();
+        _objP = ObjectPooler.Instance;
         StartCoroutine(DestroyAfter(timeToDestroy));
     }
 
@@ -42,12 +44,20 @@ public class ProyectailLogic : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EnemyHitted(collision.GetComponent<Enemy>().rewardEnemy);
+
+            if (_objP.poolDictionary["Enemy1"].Contains(collision.gameObject))
+            {
+                collision.gameObject.SetActive(false);
+                _objP.poolDictionary["Enemy1"].Enqueue(collision.gameObject);
+            }
+            
         }
 
         if (collision.gameObject.CompareTag("FireEnemy"))
         {
             if (bulletIsFire.Equals(true))
             {
+
                 EnemyHitted(collision.GetComponent<Enemy>().rewardEnemy);
             }
         }
@@ -56,6 +66,9 @@ public class ProyectailLogic : MonoBehaviour
     void EnemyHitted(int points)
     {
         _gm.points += points;  //Cambiar en un futuro, acceder al daño de la bala y sumar esa cantidad de puntos
+
+
+        
 
         if (notDestroy.Equals(false)) //Si la bala no tiene el booleano en true las balas atravesaran los enemigos
         {

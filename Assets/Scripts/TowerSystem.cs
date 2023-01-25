@@ -149,6 +149,7 @@ public class TowerSystem : MonoBehaviour
         }
         else
         {
+            //Lanza el rayo a la posicion del enemigo mas alto en la cola
             Color raycolor = Color.green;
             Vector2 ShotDirection = transform.up = currentTarget.transform.position - transform.position;
 
@@ -159,7 +160,17 @@ public class TowerSystem : MonoBehaviour
             {
                 if (shottingHit.collider.gameObject.CompareTag("Enemy"))
                 {
-                    _gm.points += shottingHit.collider.GetComponent<Enemy>().rewardEnemy; 
+                    //Comprueba que exista el gameobject en la cola y desactiva y devuelve a la cola
+                    if (_objPool.poolDictionary["Enemy1"].Contains(shottingHit.collider.gameObject))
+                    {
+                        _gm.points += shottingHit.collider.GetComponent<Enemy>().rewardEnemy;
+
+                        //Reset del Enemy
+                        shottingHit.collider.gameObject.SetActive(false);
+                        _objPool.poolDictionary["Enemy1"].Enqueue(shottingHit.collider.gameObject);
+
+                        print("Le ha dado");
+                    }
                 }
                 Debug.Log("EL FRANCOTIRADOR LE HA REVENTAO");
             }

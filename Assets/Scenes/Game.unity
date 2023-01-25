@@ -1965,7 +1965,7 @@ MonoBehaviour:
   pools:
   - tag: Enemy1
     prefab: {fileID: 1669740243026547497, guid: 91c5f991289c04f438752afb043491cd, type: 3}
-    size: 10
+    size: 30
 --- !u!4 &1242883304
 Transform:
   m_ObjectHideFlags: 0
@@ -1994,7 +1994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasToSpawn: 0
-  spawRate: 1
+  spawRate: 0.4
 --- !u!1 &1297666878
 GameObject:
   m_ObjectHideFlags: 0
