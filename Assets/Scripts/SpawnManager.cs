@@ -8,6 +8,18 @@ public class SpawnManager : MonoBehaviour
     public bool hasToSpawn;
     public float spawRate;
 
+    public int rounds;
+    public int dificultLvl;
+
+    private void Update()
+    {
+        int roundstoUpgrade;
+
+        
+
+        lvlDificultUp(3);
+    }
+
     private void Start()
     {
         hasToSpawn = true;
@@ -22,6 +34,14 @@ public class SpawnManager : MonoBehaviour
             _objPool.SpawnFromPool("Enemy1", transform.transform.position, Quaternion.identity);
 
             yield return new WaitForSeconds(spawnTime);
+        }
+    }
+
+    void lvlDificultUp(int rondas)
+    {
+        if(rounds % rounds == 0)
+        {
+
         }
     }
 

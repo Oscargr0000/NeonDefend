@@ -145,7 +145,9 @@ public class TowerSystem : MonoBehaviour
         if(!useRayCast)
         {
             // CAMBIAR AL METODO DE POOL PULLING
-            Instantiate(proyectail, this.gameObject.transform.GetChild(0).transform.position, transform.rotation);
+            GameObject proyectailToSpawn = proyectail;
+            proyectailToSpawn.GetComponent<ProyectailLogic>().damage = damage;
+            Instantiate(proyectailToSpawn, this.gameObject.transform.GetChild(0).transform.position, transform.rotation);
         }
         else
         {

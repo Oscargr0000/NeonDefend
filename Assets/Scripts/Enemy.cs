@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour, IPoolInterface
 {
     public int rewardEnemy;
     public int armor;
-    private int maxArmor = 9;
+    private int maxArmor = 10;
 
     private SpriteRenderer enemyRender;
 
@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour, IPoolInterface
     {
         enemyRender = this.GetComponent<SpriteRenderer>();
         //BORAR
-        armor = Random.Range(0, 3);
+        armor = Random.Range(1, maxArmor);
         //BORAR
         UpdateArmor();
     }
@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour, IPoolInterface
     }
 
 
-    void UpdateArmor()
+    public void UpdateArmor()
     {
         enemyRender.color = ArmorColor[armor];
     }
