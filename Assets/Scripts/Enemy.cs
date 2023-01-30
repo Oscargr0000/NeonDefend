@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour, IPoolInterface
 {
     public int rewardEnemy;
     public int armor;
-    private int maxArmor = 10;
+    private int maxArmor;
 
     private SpriteRenderer enemyRender;
 
@@ -18,10 +18,15 @@ public class Enemy : MonoBehaviour, IPoolInterface
     public bool isFire;
     public bool isCammo;
 
-    
 
     public void OnObjectSpawn()
     {
+        maxArmor = SpawnManager.Instance.upgradedRounds + 1;
+        if (maxArmor >= 10)
+        {
+            maxArmor = 10;
+        }
+
         enemyRender = this.GetComponent<SpriteRenderer>();
         //BORAR
         armor = Random.Range(1, maxArmor);

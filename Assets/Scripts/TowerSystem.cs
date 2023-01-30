@@ -255,4 +255,15 @@ public class TowerSystem : MonoBehaviour
             EnemyQueue.Dequeue();
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            hasToShoot = true;
+        }
+        else
+        {
+            hasToShoot = false;
+        }
+    }
 }
