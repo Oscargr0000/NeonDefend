@@ -15,10 +15,20 @@ public class TowerSystem : MonoBehaviour
     //Select the tower the script is applied
     public TowerType Type;
 
+    #region Singleton
+    public static TowerSystem Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    #endregion  
+
     //-------------------------------CONNECTIONS--------------------------------
     public TowerScriptableObject scriptable_Stats;
     private GameManager _gm;
-    private LvlUpSystem _LvlSystem;
+    
     private Enemy _enemyS;
     private ObjectPooler _objPool;
     //___________________________________________________________________________
@@ -77,7 +87,7 @@ public class TowerSystem : MonoBehaviour
     void Start()
     {
         hasToShoot = false;
-        _LvlSystem = FindObjectOfType<LvlUpSystem>();
+       
         _gm = FindObjectOfType<GameManager>();
         _enemyS = FindObjectOfType<Enemy>();
         _objPool = ObjectPooler.Instance;
@@ -213,7 +223,6 @@ public class TowerSystem : MonoBehaviour
             if(_objPool.poolDictionary["Enemy1"].Count > 0)
             {
                 currentTarget = _objPool.poolDictionary["Enemy1"].Peek();
-                Debug.Log(currentTarget);
 
                 transform.up = currentTarget.transform.position - transform.position;
 
@@ -233,12 +242,7 @@ public class TowerSystem : MonoBehaviour
         Instantiate(proyectail, this.gameObject.transform.GetChild(1).GetChild(1).transform.position, transform.rotation);
     }
 
-    //SELECIONA LA TORRE
-    private void OnMouseDown()
-    {
-        _LvlSystem.currentTower = this.gameObject;
-        _LvlSystem.SelectTower();
-    }
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

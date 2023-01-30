@@ -16,6 +16,7 @@ public class SpawnManager : MonoBehaviour
     #endregion   
 
     private ObjectPooler _objPool;
+    private TowerSystem _ts;
     public bool hasToSpawn;
     public float spawRate;
 
@@ -101,6 +102,8 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(EnemySpawnTime(spawRate));
         hasBeenUpraded = false;
         isWaiting = false;
+
+
     }
 
     //ACCEDO A LA POOL Y SPAWNEO UN ENEMIGO
