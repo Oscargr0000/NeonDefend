@@ -121,6 +121,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 4.49
       objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047262, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6303987638321047263, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
       propertyPath: m_Name
       value: Tower2 1

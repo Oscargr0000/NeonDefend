@@ -43,5 +43,18 @@ public class Enemy : MonoBehaviour, IPoolInterface
     public void UpdateArmor()
     {
         enemyRender.color = ArmorColor[armor];
+
+        if (armor <= 0)
+        {
+            if (ObjectPooler.Instance.poolDictionary["Enemy1"].Contains(this.gameObject))
+            {
+                ObjectPooler.Instance.poolDictionary["Enemy1"].Enqueue(this.gameObject);
+                this.gameObject.SetActive(false);
+            }
+            else
+            {
+                return;
+            }
+        }
     }
 }

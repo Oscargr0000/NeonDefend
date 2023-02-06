@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TowerName: Boomerang
   damage: 2
-  shootingSpeed: 1
+  shootingSpeed: 2
   price: 0
   priceR1: 16020000ea0400008c0d000026190000
   priceR2: e2010000c3050000130b0000b6120000
@@ -24,7 +24,7 @@ MonoBehaviour:
   usesRaycast: 0
   bulletIsDestroyed: 0
   sprites: []
-  fireDontDestroyObj: {fileID: 0}
-  notFireDestroy: {fileID: 0}
-  fireDestroy: {fileID: 0}
-  notFireDontDestroy: {fileID: 0}
+  fireDontDestroyObj: {fileID: 4340854936036259791, guid: e4a2803984c501548b043e3ec190a33f, type: 3}
+  notFireDestroy: {fileID: 4340854936036259791, guid: e4a2803984c501548b043e3ec190a33f, type: 3}
+  fireDestroy: {fileID: 4340854936036259791, guid: e4a2803984c501548b043e3ec190a33f, type: 3}
+  notFireDontDestroy: {fileID: 4340854936036259791, guid: e4a2803984c501548b043e3ec190a33f, type: 3}

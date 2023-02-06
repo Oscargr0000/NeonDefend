@@ -133,7 +133,7 @@ public class Upgrades : MonoBehaviour
                 {
                     case TowerType.Cannon:
 
-                        _lvlUpS.stats_tower.range += 1f;
+                        _lvlUpS.stats_tower.UpdateRange(_lvlUpS.stats_tower.range += 1f);
                         print("More Range");
                         break;
 

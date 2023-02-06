@@ -34,6 +34,8 @@ public class ProyectailBoomerang : MonoBehaviour
 
             EnemyHitted(collision.GetComponent<Enemy>().rewardEnemy);
 
+            print("Boomerang Detecta");
+
 
             hittedEnemy.armor -= damage;
             if (hittedEnemy.armor <= 0)
@@ -42,15 +44,6 @@ public class ProyectailBoomerang : MonoBehaviour
             }
 
             hittedEnemy.UpdateArmor();
-
-            if (hittedEnemy.armor <= 0)
-            {
-                if (_objP.poolDictionary["Enemy1"].Contains(collision.gameObject))
-                {
-                    _objP.poolDictionary["Enemy1"].Enqueue(collision.gameObject);
-                    collision.gameObject.SetActive(false);
-                }
-            }
         }
 
         if (collision.gameObject.CompareTag("FireEnemy"))

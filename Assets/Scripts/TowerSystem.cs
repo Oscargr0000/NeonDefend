@@ -31,6 +31,8 @@ public class TowerSystem : MonoBehaviour
     
     private Enemy _enemyS;
     private ObjectPooler _objPool;
+
+    private CircleCollider2D TowerCollider;
     //___________________________________________________________________________
 
 
@@ -78,10 +80,14 @@ public class TowerSystem : MonoBehaviour
     private RaycastHit2D shottingHit;
 
 
+
+    public Vector3 toGo;
+
+
     //Deteccion del globo
     public Queue<GameObject> EnemyQueue = new Queue<GameObject>();
-    private bool isTargetInRange = false;
     private GameObject currentTarget;
+
 
 
     void Start()
@@ -91,6 +97,8 @@ public class TowerSystem : MonoBehaviour
         _gm = FindObjectOfType<GameManager>();
         _enemyS = FindObjectOfType<Enemy>();
         _objPool = ObjectPooler.Instance;
+        TowerCollider = this.GetComponent<CircleCollider2D>();
+        
 
         //-----------------STATS--------------------
         damage = scriptable_Stats.damage;
@@ -106,6 +114,8 @@ public class TowerSystem : MonoBehaviour
 
         proyectail = scriptable_Stats.notFireDestroy;
         //---------------------------------------------
+
+        UpdateRange(range);
     }
 
 
@@ -156,7 +166,15 @@ public class TowerSystem : MonoBehaviour
         {
             // CAMBIAR AL METODO DE POOL PULLING
             GameObject proyectailToSpawn = proyectail;
-            proyectailToSpawn.GetComponent<ProyectailLogic>().damage = damage;
+            if (Type.Equals(TowerType.Cannon))
+            {
+                proyectailToSpawn.GetComponent<ProyectailLogic>().damage = damage;
+            }
+            else if (Type.Equals(TowerType.Boomerang))
+            {
+                proyectailToSpawn.transform.GetChild(0).transform.GetChild(0).GetComponent<ProyectailBoomerang>().damage = damage;
+            }
+            
             Instantiate(proyectailToSpawn, this.gameObject.transform.GetChild(0).transform.position, transform.rotation);
         }
         else
@@ -208,14 +226,12 @@ public class TowerSystem : MonoBehaviour
                     if (hit.collider.gameObject == currentTarget)
                     {
                         hasToShoot = true;
-                        isTargetInRange = true;
                     }
                 }
             }
             else
             {
                 hasToShoot = false;
-                isTargetInRange = false;
             }
         }
         else if(useRayCast)
@@ -269,5 +285,10 @@ public class TowerSystem : MonoBehaviour
         {
             hasToShoot = false;
         }
+    }
+
+    public void UpdateRange(float newRange)
+    {
+        TowerCollider.radius = newRange;
     }
 }
