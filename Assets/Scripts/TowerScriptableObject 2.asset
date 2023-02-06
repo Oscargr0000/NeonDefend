@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e01c63aa1093448b823ea76f152f9c, type: 3}
+  m_Name: TowerScriptableObject 2
+  m_EditorClassIdentifier: 
+  TowerName: Boomerang
+  damage: 2
+  shootingSpeed: 1
+  price: 0
+  priceR1: 16020000ea0400008c0d000026190000
+  priceR2: e2010000c3050000130b0000b6120000
+  range: 4
+  fireBullet: 0
+  seeCamuf: 0
+  usesRaycast: 0
+  bulletIsDestroyed: 0
+  sprites: []
+  fireDontDestroyObj: {fileID: 0}
+  notFireDestroy: {fileID: 0}
+  fireDestroy: {fileID: 0}
+  notFireDontDestroy: {fileID: 0}

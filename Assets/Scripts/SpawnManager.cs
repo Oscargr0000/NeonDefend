@@ -64,8 +64,11 @@ public class SpawnManager : MonoBehaviour
                 isWaiting = true;
                 //Reset del contador de enemigos spawneados por ronda
                 spawnedEnemys = 0;
+
                 //Particulas de pase de rondas
-                lvlDificultUp(3 * upgradedRounds);
+
+               
+                
 
                 StartCoroutine(WaitToStart(waitForRounds));
             }
@@ -98,6 +101,9 @@ public class SpawnManager : MonoBehaviour
     void OnRoundsStart()
     {
         rounds++;
+        //Aumenta la dificultad de los enemigos
+        lvlDificultUp(3 * upgradedRounds);
+
         hasToSpawn = true;
         StartCoroutine(EnemySpawnTime(spawRate));
         hasBeenUpraded = false;

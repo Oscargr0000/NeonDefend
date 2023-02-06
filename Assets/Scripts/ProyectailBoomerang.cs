@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProyectailLogic : MonoBehaviour
+public class ProyectailBoomerang : MonoBehaviour
 {
     public float proyectailSpeed;
-    private int timeToDestroy = 5;
+    
 
     public int damage;
 
@@ -23,23 +23,8 @@ public class ProyectailLogic : MonoBehaviour
         _gm = FindObjectOfType<GameManager>();
         _lvl = FindObjectOfType<LvlUpSystem>();
         _objP = ObjectPooler.Instance;
-        StartCoroutine(DestroyAfter(timeToDestroy));
+        
     }
-
-    void Update()
-    {
-        transform.Translate(Vector2.up * proyectailSpeed * Time.deltaTime);
-    }
-
-
-    // DESTROY AFTER TIME
-    IEnumerator DestroyAfter(int timeleft)
-    {
-        yield return new WaitForSeconds(timeleft);
-        Destroy(gameObject);
-    }
-
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -49,7 +34,7 @@ public class ProyectailLogic : MonoBehaviour
 
             EnemyHitted(collision.GetComponent<Enemy>().rewardEnemy);
 
-            
+
             hittedEnemy.armor -= damage;
             if (hittedEnemy.armor <= 0)
             {
@@ -58,7 +43,7 @@ public class ProyectailLogic : MonoBehaviour
 
             hittedEnemy.UpdateArmor();
 
-            if(hittedEnemy.armor <= 0)
+            if (hittedEnemy.armor <= 0)
             {
                 if (_objP.poolDictionary["Enemy1"].Contains(collision.gameObject))
                 {
@@ -81,7 +66,6 @@ public class ProyectailLogic : MonoBehaviour
     void EnemyHitted(int points)
     {
         _gm.points += points * damage;  //Cambiar en un futuro, acceder al daño de la bala y sumar esa cantidad de puntos
-
 
 
         if (notDestroy.Equals(false)) //Si la bala no tiene el booleano en true las balas atravesaran los enemigos
