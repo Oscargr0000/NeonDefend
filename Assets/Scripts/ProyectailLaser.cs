@@ -16,12 +16,11 @@ public class ProyectailLaser : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") && !GetComponentInParent<LaserTowerScript>().isSettingUp)
         {
             Enemy hittedEnemy = collision.GetComponent<Enemy>();
 
             EnemyHitted(collision.GetComponent<Enemy>().rewardEnemy);
-
 
             StartCoroutine(MakeDamage(GetComponentInParent<LaserTowerScript>().shootingSpeed, hittedEnemy)); //MAKE DAMAGE
 

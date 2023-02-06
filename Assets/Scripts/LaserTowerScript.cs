@@ -48,7 +48,7 @@ public class LaserTowerScript : MonoBehaviour
     public int maxR2 = 4;
 
 
-    private bool isSettingUp;
+    public bool isSettingUp;
 
 
 
