@@ -79,6 +79,8 @@ public class TowerSystem : MonoBehaviour
 
     private RaycastHit2D shottingHit;
 
+    public bool notShoot;
+
 
 
     public Vector3 toGo;
@@ -121,6 +123,11 @@ public class TowerSystem : MonoBehaviour
 
     private void Update()
     {
+        if (notShoot)
+        {
+            return;
+        }
+
         CheckForTargets();
 
 
@@ -216,8 +223,10 @@ public class TowerSystem : MonoBehaviour
             {
 
                 currentTarget = EnemyQueue.Peek();
+                
+                //ROTACION PARA MIRAR AL ENEMIGO
+                transform.up = new Vector3(currentTarget.transform.position.x - transform.position.x, currentTarget.transform.position.y - transform.position.y,0);
 
-                transform.up = currentTarget.transform.position - transform.position;
 
 
                 // COMIENZA A DISPARAR CUANDO 
@@ -262,6 +271,10 @@ public class TowerSystem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (notShoot)
+        {
+            return;
+        }
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EnemyQueue.Enqueue(collision.gameObject);
@@ -270,6 +283,10 @@ public class TowerSystem : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (notShoot)
+        {
+            return;
+        }
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EnemyQueue.Dequeue();
@@ -277,6 +294,11 @@ public class TowerSystem : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (notShoot)
+        {
+            return;
+        }
+
         if (collision.gameObject.CompareTag("Enemy"))
         {
             hasToShoot = true;

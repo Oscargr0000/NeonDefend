@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 8680815385795469993}
   - component: {fileID: 8680815385795469992}
   - component: {fileID: 8680815385795469994}
+  - component: {fileID: 5131218627656483490}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -223,7 +224,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -243,6 +244,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   scriptable_Stats: {fileID: 11400000, guid: f54c8b2bced78e94b8838f4edfb19540, type: 2}
+  isSettingUp: 0
+--- !u!114 &5131218627656483490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8680815385795469997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e0409467bd62ed4686651e8f63613e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 0
+  scriptable_Stats: {fileID: 11400000, guid: 54fdfd02d8daaef4789fb975934a76c0, type: 2}
   Name: 
   damage: 0
   price: 0
@@ -250,6 +266,9 @@ MonoBehaviour:
   range: 0
   fireBullet: 0
   seeCamuf: 0
+  useRayCast: 0
+  destroyBullet: 0
+  proyectail: {fileID: 0}
   currentLvl: 0
   EnemyLayer:
     serializedVersion: 2
@@ -260,7 +279,8 @@ MonoBehaviour:
   priceR2: 0
   maxR1: 4
   maxR2: 4
-  isSettingUp: 0
+  notShoot: 1
+  toGo: {x: 0, y: 0, z: 0}
 --- !u!1 &8680815386288588753
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - FireEnemy
+  - Ladder
+  - Platform
+  - GoPoints
   layers:
   - Default
   - TransparentFX

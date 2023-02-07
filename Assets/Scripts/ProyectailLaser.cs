@@ -22,7 +22,7 @@ public class ProyectailLaser : MonoBehaviour
 
             EnemyHitted(collision.GetComponent<Enemy>().rewardEnemy);
 
-            StartCoroutine(MakeDamage(GetComponentInParent<LaserTowerScript>().shootingSpeed, hittedEnemy)); //MAKE DAMAGE
+            StartCoroutine(MakeDamage(GetComponentInParent<TowerSystem>().shootingSpeed, hittedEnemy)); //MAKE DAMAGE
 
             //LIMIT DE ARMOR
             if (hittedEnemy.armor <= 0)
@@ -49,7 +49,7 @@ public class ProyectailLaser : MonoBehaviour
     {
         Enemy hittedEnemy = collision.GetComponent<Enemy>();
 
-        StopCoroutine(MakeDamage(GetComponentInParent<LaserTowerScript>().shootingSpeed, hittedEnemy));
+        StopCoroutine(MakeDamage(GetComponentInParent<TowerSystem>().shootingSpeed, hittedEnemy));
 
     }
     void EnemyHitted(int points)

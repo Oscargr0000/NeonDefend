@@ -12,49 +12,21 @@ public class LaserTowerScript : MonoBehaviour
 
     private Enemy _enemyS;
     private ObjectPooler _objPool;
+    private TowerSystem _ts;
 
     private CircleCollider2D TowerCollider;
     //___________________________________________________________________________
 
-
-    //--------------------------------STATS--------------------------------
-    public string Name;
-    public int damage;
-    public int price;
-    public float shootingSpeed;
-
-    public float range;
-
-    public bool fireBullet;
-    public bool seeCamuf;
-
-    //_____________________________________________________________________
-
-
-
-    public int currentLvl;
-    public LayerMask EnemyLayer;
-
-    //Contadores de mejora
-    public int idxR1;
-    public int idxR2;
-
-    //Precios para el sistema de compra
-    public int priceR1;
-    public int priceR2;
-
-    //Maximo de mejora por rama
-    public int maxR1 = 4;
-    public int maxR2 = 4;
-
-
     public bool isSettingUp;
 
-
+    private void Awake()
+    {
+        _ts = GetComponent<TowerSystem>();
+    }
 
     void Start()
     {
-
+       
 
         _gm = FindObjectOfType<GameManager>();
         _enemyS = FindObjectOfType<Enemy>();
@@ -62,21 +34,8 @@ public class LaserTowerScript : MonoBehaviour
         TowerCollider = this.GetComponent<CircleCollider2D>();
 
 
-        //-----------------STATS--------------------
-        damage = scriptable_Stats.damage;
-        shootingSpeed = scriptable_Stats.shootingSpeed;
-        price = scriptable_Stats.price;
-
-        range = scriptable_Stats.range;
-
-        fireBullet = scriptable_Stats.fireBullet;
-        seeCamuf = scriptable_Stats.seeCamuf;
-
-
-        //---------------------------------------------
-
         isSettingUp = true;
-        UpdateRange(range);
+        UpdateRange(_ts.range);
 
     }
 
@@ -104,11 +63,5 @@ public class LaserTowerScript : MonoBehaviour
     public void UpdateRange(float newRange)
     {
         TowerCollider.radius = newRange;
-    }
-
-    IEnumerator DoDamage(float time)
-    {
-
-        yield return new WaitForSeconds(time);
     }
 }
