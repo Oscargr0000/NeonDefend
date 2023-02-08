@@ -19,6 +19,8 @@ public class SetToweSystem : MonoBehaviour
     public int[] priceList;
     private int towerPrice;
 
+    public SpriteRenderer[] bluePrints;
+
     private void Start()
     {
         _gm = FindObjectOfType<GameManager>();
@@ -27,22 +29,16 @@ public class SetToweSystem : MonoBehaviour
     {
         if (settingMode && Input.GetKeyDown(KeyCode.Mouse0))
         {
-            SetTower();
+            SetTower(MousePos());
         }
+       
     }
 
 
-    void SetTower()
+    void SetTower(Vector2 MousePos)
     {
-        //Acede a la posicion del mouse cuando hace click
-        Vector3 mousePos = Input.mousePosition;
-        Vector3 objectPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main.nearClipPlane));
-        Vector2 objectPos2D = new Vector2(objectPos.x, objectPos.y);
-
-
-
         //Colocar la torre en la posicion del raton
-        Instantiate(selectedTower, objectPos2D, Quaternion.identity);
+        Instantiate(selectedTower, MousePos, Quaternion.identity);
 
         //Resta del precio a los puntos
         _gm.points = _gm.points -= towerPrice;
@@ -74,5 +70,21 @@ public class SetToweSystem : MonoBehaviour
     void EditMode()
     {
         editModeText.text = "ON";
+    }
+    
+    void SelectionGhost()
+    {
+
+    }
+
+
+    Vector2 MousePos()
+    {
+        //Acede a la posicion del mouse cuando hace click
+        Vector3 mousePos = Input.mousePosition;
+        Vector3 objectPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main.nearClipPlane));
+        Vector2 objectPos2D = new Vector2(objectPos.x, objectPos.y);
+
+        return objectPos2D;
     }
 }
