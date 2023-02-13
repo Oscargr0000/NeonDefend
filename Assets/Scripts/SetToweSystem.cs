@@ -24,6 +24,7 @@ public class SetToweSystem : MonoBehaviour
 
     private void Start()
     {
+        settingMode = false;
         _gm = FindObjectOfType<GameManager>();
 
         for(int i = 0; i < bluePrints.Length; i++)

@@ -57,15 +57,6 @@ public class ProyectailLogic : MonoBehaviour
             }
 
             hittedEnemy.UpdateArmor();
-
-            if(hittedEnemy.armor <= 0)
-            {
-                if (_objP.poolDictionary["Enemy1"].Contains(collision.gameObject))
-                {
-                    _objP.poolDictionary["Enemy1"].Enqueue(collision.gameObject);
-                    collision.gameObject.SetActive(false);
-                }
-            }
         }
 
         if (collision.gameObject.CompareTag("FireEnemy"))
@@ -81,8 +72,6 @@ public class ProyectailLogic : MonoBehaviour
     void EnemyHitted(int points)
     {
         _gm.points += points * damage;  //Cambiar en un futuro, acceder al daño de la bala y sumar esa cantidad de puntos
-
-
 
         if (notDestroy.Equals(false)) //Si la bala no tiene el booleano en true las balas atravesaran los enemigos
         {

@@ -63,6 +63,11 @@ public class LvlUpSystem : MonoBehaviour
 
     public void OnButtonLvl(int added)
     {
+        if(currentTower == null)
+        {
+            print("No tienes ningnuna torre seleccionada");
+            return;
+        }
 
         if(stats_tower.idxR1 != stats_tower.maxR1)
         {

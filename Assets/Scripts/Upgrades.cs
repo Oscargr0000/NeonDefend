@@ -8,6 +8,7 @@ public class Upgrades : MonoBehaviour
     private TowerSystem _ts;
     private LvlUpSystem _lvlUpS;
     private ProyectailLogic _pl;
+    private TowerSystem mejorar;
 
     private void Start()
     {
@@ -30,15 +31,18 @@ public class Upgrades : MonoBehaviour
                         break;
 
                     case TowerType.Sniper:
-
+                        print("mas rango");
+                        _lvlUpS.stats_tower.UpdateRange(_lvlUpS.stats_tower.range += 2);
                         break;
 
                     case TowerType.Boomerang:
-
+                        print("mas velocidad ataque");
+                        _lvlUpS.stats_tower.shootingSpeed -= 0.2f;
                         break;
 
                     case TowerType.Laser:
-
+                        print("velocidad");
+                        _lvlUpS.stats_tower.shootingSpeed -= 0.1f; //EL DAÑO DEL LASER FUNCIONA POR VELOCIDAD
                         break;
 
                 }
@@ -52,19 +56,22 @@ public class Upgrades : MonoBehaviour
                     case TowerType.Cannon:
 
                         print("dispara mas rapido");
-                        _lvlUpS.stats_tower.shootingSpeed -= 0.2f;
+                        _lvlUpS.stats_tower.shootingSpeed -= 0.1f;
                         break;
 
                     case TowerType.Sniper:
-
+                        print("danyo");
+                        _lvlUpS.stats_tower.damage += 1;
                         break;
 
                     case TowerType.Boomerang:
-
+                        print("mas rango");
+                        _lvlUpS.stats_tower.UpdateRange(_lvlUpS.stats_tower.range += 1);
                         break;
 
                     case TowerType.Laser:
-
+                        print("Rango");
+                        _lvlUpS.stats_tower.UpdateRange(_lvlUpS.stats_tower.range += 2);
                         break;
                 }
                 break;
@@ -81,15 +88,18 @@ public class Upgrades : MonoBehaviour
                         break;
 
                     case TowerType.Sniper:
-
+                        print("velocidad");
+                        _lvlUpS.stats_tower.shootingSpeed -= 0.2f;
                         break;
 
                     case TowerType.Boomerang:
-
+                        print("Camuflados");
+                        _lvlUpS.stats_tower.seeCamuf = true;
                         break;
 
                     case TowerType.Laser:
-
+                        print("danyo");
+                        _lvlUpS.stats_tower.shootingSpeed -= 0.2f;
                         break;
 
                 }
@@ -107,15 +117,18 @@ public class Upgrades : MonoBehaviour
                         break;
 
                     case TowerType.Sniper:
-
+                        print("velocidad");
+                        _lvlUpS.stats_tower.shootingSpeed -= 0.2f;
                         break;
 
                     case TowerType.Boomerang:
-
+                        print("velocidad");
+                        _lvlUpS.stats_tower.shootingSpeed -= 0.2f;
                         break;
 
                     case TowerType.Laser:
-
+                        print("danyo");
+                        _lvlUpS.stats_tower.shootingSpeed -= 0.3f;
                         break;
                 }
                 break;
@@ -140,15 +153,18 @@ public class Upgrades : MonoBehaviour
                     case TowerType.Sniper:
 
                         print("More Damage");
+                        _lvlUpS.stats_tower.damage += 1;
 
                         break;
 
                     case TowerType.Boomerang:
-
+                        print("DAMAGE");
+                        _lvlUpS.stats_tower.damage += 1;
                         break;
 
                     case TowerType.Laser:
-
+                        print("range");
+                        _lvlUpS.stats_tower.range += 1;
                         break;
                 }
                 break;
@@ -168,14 +184,18 @@ public class Upgrades : MonoBehaviour
                     case TowerType.Sniper:
 
                         print("SeeCam");
+                        _lvlUpS.stats_tower.seeCamuf = true;
                         break;
 
                     case TowerType.Boomerang:
+                        print("range");
+                        _lvlUpS.stats_tower.UpdateRange(_lvlUpS.stats_tower.range += 1);
 
                         break;
 
                     case TowerType.Laser:
-
+                        print("danyo");
+                        _lvlUpS.stats_tower.shootingSpeed -= 0.1f;
                         break;
                 }
                 break;
@@ -194,14 +214,17 @@ public class Upgrades : MonoBehaviour
                     case TowerType.Sniper:
 
                         print("MORE damage - slower");
+                        _lvlUpS.stats_tower.damage += 2;
+                        _lvlUpS.stats_tower.shootingSpeed += 0.8f;
                         break;
 
                     case TowerType.Boomerang:
-
+                        print("fire");
+                        ActivateFire();
                         break;
 
                     case TowerType.Laser:
-
+                        _lvlUpS.stats_tower.seeCamuf = true;
                         break;
                 }
 
@@ -220,15 +243,18 @@ public class Upgrades : MonoBehaviour
 
                     case TowerType.Sniper:
 
-                        print("La bala atraviesa globos");
+                        print("damage");
+                        _lvlUpS.stats_tower.damage += 2;
                         break;
 
                     case TowerType.Boomerang:
-
+                        print("danyo");
+                        _lvlUpS.stats_tower.damage += 2;
                         break;
 
                     case TowerType.Laser:
-
+                        print("muxo rango");
+                        _lvlUpS.stats_tower.UpdateRange(_lvlUpS.stats_tower.range += 5);
                         break;
                 }
                 break;

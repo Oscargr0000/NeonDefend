@@ -87,14 +87,9 @@ public class Enemy : MonoBehaviour, IPoolInterface
 
         if (armor <= 0)
         {
-            if (ObjectPooler.Instance.poolDictionary["Enemy1"].Contains(this.gameObject))
+            if (!ObjectPooler.Instance.poolDictionary["Enemy1"].Contains(this.gameObject))
             {
-                ObjectPooler.Instance.poolDictionary["Enemy1"].Enqueue(this.gameObject);
-                this.gameObject.SetActive(false);
-            }
-            else
-            {
-                return;
+                ObjectPooler.Instance.ReturnToQueue("Enemy1", this.gameObject);
             }
         }
     }

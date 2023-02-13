@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   proyectailSpeed: 40
-  damage: 0
+  damage: 1
   bulletIsFire: 0
   notDestroy: 1
 --- !u!61 &7203674252555747037

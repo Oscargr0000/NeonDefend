@@ -64,8 +64,11 @@ public class ObjectPooler : MonoBehaviour
             return null;
         }
 
+        //Accede al primer de la lista para spawnear y lo activa
         GameObject objectToSpawn = poolDictionary[tag].Dequeue();
         objectToSpawn.SetActive(true);
+
+        //Accede a la posicion donde debe spawnear
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
 
@@ -76,8 +79,14 @@ public class ObjectPooler : MonoBehaviour
             pooledObj.OnObjectSpawn();
         }
 
-        poolDictionary[tag].Enqueue(objectToSpawn);
+        //poolDictionary[tag].Enqueue(objectToSpawn);
 
         return objectToSpawn;
+    }
+
+    public void ReturnToQueue(string dictionaryTag, GameObject objectdestroyet)
+    {
+        poolDictionary[dictionaryTag].Enqueue(objectdestroyet);
+        objectdestroyet.SetActive(false);
     }
 }

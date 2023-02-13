@@ -4198,7 +4198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasToSpawn: 0
-  spawRate: 0.4
+  spawRate: 0.8
   rounds: 0
   upgradedRounds: 1
   dificultLvl: 0

@@ -134,15 +134,23 @@ public class TowerSystem : MonoBehaviour
         // Comprobamos si es el momento de disparar
         if (hasToShoot.Equals(true) && Time.time >= tiempoSiguienteDisparo)
         {
-            if (idxR2 != 4)
+            if (Type.Equals(TowerType.Cannon))
             {
-                // Disparamos
+                if (idxR2 != 4)
+                {
+                    // Disparamos
+                    Disparar();
+                }
+                else //UPGRADED
+                {
+                    DobleCannonShot();
+                }
+            }
+            else
+            {
                 Disparar();
             }
-            else //UPGRADED
-            {
-                DobleCannonShot();
-            }
+           
 
 
             // Actualizamos el tiempo del próximo disparo permitido
@@ -263,6 +271,11 @@ public class TowerSystem : MonoBehaviour
 
     void DobleCannonShot()
     {
+
+        GameObject proyectailToSpawn = proyectail;
+
+            proyectailToSpawn.GetComponent<ProyectailLogic>().damage = damage;
+
         Instantiate(proyectail, this.gameObject.transform.GetChild(1).GetChild(0).transform.position, transform.rotation);
         Instantiate(proyectail, this.gameObject.transform.GetChild(1).GetChild(1).transform.position, transform.rotation);
     }
@@ -312,5 +325,6 @@ public class TowerSystem : MonoBehaviour
     public void UpdateRange(float newRange)
     {
         TowerCollider.radius = newRange;
+        range = TowerCollider.radius;
     }
 }

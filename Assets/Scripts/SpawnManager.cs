@@ -101,6 +101,8 @@ public class SpawnManager : MonoBehaviour
     void OnRoundsStart()
     {
         rounds++;
+        Debug.Log("ha empezado la ronda" + rounds);
+
         //Aumenta la dificultad de los enemigos
         lvlDificultUp(3 * upgradedRounds);
 
