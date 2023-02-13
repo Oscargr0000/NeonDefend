@@ -55,9 +55,9 @@ public class Enemy : MonoBehaviour, IPoolInterface
     private void Update()
     {
         //Seguro de posicion
-        this.transform.position = new Vector3(transform.position.x, transform.position.y, 0); 
-       
+        this.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 
+      
         agente.SetDestination(GoPoints[indicePoints].position);
         //transform.Translate(Vector2.up * 3 * Time.deltaTime);
     }

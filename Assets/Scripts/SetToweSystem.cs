@@ -19,17 +19,29 @@ public class SetToweSystem : MonoBehaviour
     public int[] priceList;
     private int towerPrice;
 
+    private int indxTowerSel;
     public SpriteRenderer[] bluePrints;
 
     private void Start()
     {
         _gm = FindObjectOfType<GameManager>();
+
+        for(int i = 0; i < bluePrints.Length; i++)
+        {
+            bluePrints[i].gameObject.SetActive(false);
+        }
     }
     private void Update()
     {
         if (settingMode && Input.GetKeyDown(KeyCode.Mouse0))
         {
             SetTower(MousePos());
+            return;
+        }
+        
+        if (settingMode)
+        {
+            SelectionGhost(MousePos());
         }
        
     }
@@ -43,12 +55,14 @@ public class SetToweSystem : MonoBehaviour
         //Resta del precio a los puntos
         _gm.points = _gm.points -= towerPrice;
 
+       
 
         //Quita todo lo relacionado con la seleccion
         editModeText.text = "OFF";
         selectedTower = null;
         towerPrice = 0;
         settingMode = false;
+        bluePrints[indxTowerSel].gameObject.SetActive(false);
     }
 
 
@@ -57,6 +71,9 @@ public class SetToweSystem : MonoBehaviour
         if(_gm.points >= priceList[towerToSelect])
         {
             settingMode = true;
+
+            indxTowerSel = towerToSelect;
+            bluePrints[indxTowerSel].gameObject.SetActive(true);
 
             //Accede a la torre que pretende colocar
             selectedTower = towersObjets[towerToSelect];
@@ -72,9 +89,10 @@ public class SetToweSystem : MonoBehaviour
         editModeText.text = "ON";
     }
     
-    void SelectionGhost()
+    void SelectionGhost(Vector2 MousePos)
     {
-
+        print("AGARRA");
+        bluePrints[indxTowerSel].transform.position = MousePos;
     }
 
 
