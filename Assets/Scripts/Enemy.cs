@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour, IPoolInterface
 
     private void Start()
     {
+        indicePoints = 1;
         agente.updateRotation = false;
         agente.updateUpAxis = false;
     }
