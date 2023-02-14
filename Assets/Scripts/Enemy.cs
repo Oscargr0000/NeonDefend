@@ -84,7 +84,14 @@ public class Enemy : MonoBehaviour, IPoolInterface
 
     public void UpdateArmor()
     {
+
+        if (armor <= 0)
+        {
+            armor = 0;
+        }
+
         enemyRender.color = ArmorColor[armor];
+
 
         if (armor <= 0)
         {

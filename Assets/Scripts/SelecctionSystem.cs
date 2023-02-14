@@ -15,7 +15,11 @@ public class SelecctionSystem : MonoBehaviour
     //SELECIONA LA TORRE
     private void OnMouseDown()
     {
-        _LvlSystem.currentTower = this.transform.GetChild(0).gameObject;
-        _LvlSystem.SelectTower();
+        if(this.transform.GetChild(0).gameObject != null)
+        {
+            _LvlSystem.currentTower = this.transform.GetChild(0).gameObject;
+            _LvlSystem.SelectTower();
+        }
+       
     }
 }

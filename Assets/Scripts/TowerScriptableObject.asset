@@ -15,7 +15,7 @@ MonoBehaviour:
   TowerName: Cannon
   damage: 1
   shootingSpeed: 0.5
-  price: 0
+  price: 125
   priceR1: dc000000c801000078020000cb050000
   priceR2: 1801000034020000d3040000fc080000
   range: 3

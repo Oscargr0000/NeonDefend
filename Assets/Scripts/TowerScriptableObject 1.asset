@@ -15,7 +15,7 @@ MonoBehaviour:
   TowerName: Sniper
   damage: 2
   shootingSpeed: 2
-  price: 0
+  price: 325
   priceR1: 660100000f030000440500003c0b0000
   priceR2: e00100008e020000b9050000b5090000
   range: 100

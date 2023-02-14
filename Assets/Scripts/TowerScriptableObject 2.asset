@@ -15,7 +15,7 @@ MonoBehaviour:
   TowerName: Boomerang
   damage: 2
   shootingSpeed: 2
-  price: 0
+  price: 575
   priceR1: 16020000ea0400008c0d000026190000
   priceR2: e2010000c3050000130b0000b6120000
   range: 4

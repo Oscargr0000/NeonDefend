@@ -49,7 +49,7 @@ public class ProyectailLaser : MonoBehaviour
     {
         Enemy hittedEnemy = collision.GetComponent<Enemy>();
 
-        StopCoroutine(MakeDamage(GetComponentInParent<TowerSystem>().shootingSpeed, hittedEnemy));
+        StopAllCoroutines();
 
     }
     void EnemyHitted(int points)
@@ -61,7 +61,11 @@ public class ProyectailLaser : MonoBehaviour
     IEnumerator MakeDamage(float time, Enemy hitted)
     {
         hitted.armor -= damage;
+        print("HA GOLPEADO");
+        hitted.UpdateArmor();
+
         yield return new WaitForSeconds(time);
+        StartCoroutine(MakeDamage(time, hitted));
     }
 
 }

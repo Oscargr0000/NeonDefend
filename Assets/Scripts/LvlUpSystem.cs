@@ -141,4 +141,16 @@ public class LvlUpSystem : MonoBehaviour
             rama2Button.interactable = true;
         }
     }
+
+
+    public void SellTower()
+    {
+        if(currentTower.gameObject != null)
+        {
+            _gm.points += stats_tower.price / 2;
+            Destroy(stats_tower.gameObject);
+            RefreshButtons();
+        }
+        
+    }
 }

@@ -51,10 +51,6 @@ public class ProyectailLogic : MonoBehaviour
 
             
             hittedEnemy.armor -= damage;
-            if (hittedEnemy.armor <= 0)
-            {
-                hittedEnemy.armor = 0;
-            }
 
             hittedEnemy.UpdateArmor();
         }
