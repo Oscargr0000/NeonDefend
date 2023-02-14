@@ -15,17 +15,14 @@ public class EndTrailScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Enemy enemyEnter = collision.GetComponent<Enemy>();
-            int indxDmg = 1;
 
-            if (enemyEnter.armor % 2 == 0)
+            _gm.playerHP -= enemyEnter.armor;
+            print(_gm.playerHP);
+            
+            if(_gm.playerHP <= 0)
             {
-                indxDmg++;
-            }
-            
 
-            print(indxDmg);
-            _gm.playerHP -= enemyEnter.armor * indxDmg;
-            
+            }
 
             //Lo desactiva y lo envia a la cola
             if (!ObjectPooler.Instance.poolDictionary["Enemy1"].Contains(collision.gameObject))

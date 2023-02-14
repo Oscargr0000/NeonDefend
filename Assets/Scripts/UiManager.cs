@@ -18,6 +18,10 @@ public class UiManager : MonoBehaviour
     
     public TextMeshProUGUI roundsText;
     public TextMeshProUGUI pointsText;
+    public TextMeshProUGUI hpText;
+
+    public GameObject[] visualsR1;
+    public GameObject[] visualsR2;
 
     private void Start()
     {
@@ -30,8 +34,9 @@ public class UiManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        roundsText.text = _sp.rounds.ToString();
+        roundsText.text = _sp.rounds.ToString(); // CAMBIAR ESTO y colocar las actualzacion cada vez que ocurra algo
         pointsText.text = _gm.points.ToString();
+        hpText.text = _gm.playerHP.ToString();
     }
 
     public void OpenLvlPanel()

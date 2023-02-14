@@ -58,6 +58,7 @@ public class LvlUpSystem : MonoBehaviour
         R2text.text = stats_tower.idxR2.ToString();
 
         RefreshButtons();
+        UpdateVisuals();
 
     }
 
@@ -116,8 +117,9 @@ public class LvlUpSystem : MonoBehaviour
             RefreshButtons();
         }
 
-        R1text.text = stats_tower.idxR1.ToString();
-        R2text.text = stats_tower.idxR2.ToString();
+        UpdateVisuals();
+
+        
         
     }
 
@@ -152,5 +154,37 @@ public class LvlUpSystem : MonoBehaviour
             RefreshButtons();
         }
         
+    }
+
+    void UpdateVisuals()
+    {
+        //Desactiva todos los visuales
+        for (int i = 0; i <= 4; i++)
+        {
+            _uiM.visualsR1[i].SetActive(false);
+            _uiM.visualsR2[i].SetActive(false);
+        }
+
+
+        //Activa los visuales
+        if (stats_tower.idxR1 > 0)
+        {
+            for (int i = 0; i <= stats_tower.idxR1; i++)
+            {
+
+                _uiM.visualsR1[i].SetActive(true);
+            }
+        }
+
+        if (stats_tower.idxR2 > 0)
+        {
+            for (int i = 0; i <= stats_tower.idxR2; i++)
+            {
+                _uiM.visualsR2[i].SetActive(true);
+            }
+        }
+
+        R1text.text = stats_tower.idxR1.ToString();
+        R2text.text = stats_tower.idxR2.ToString();
     }
 }
