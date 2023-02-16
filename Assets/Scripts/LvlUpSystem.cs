@@ -150,7 +150,7 @@ public class LvlUpSystem : MonoBehaviour
         if(currentTower.gameObject != null)
         {
             _gm.points += stats_tower.price / 2;
-            Destroy(stats_tower.gameObject);
+            Destroy(stats_tower.transform.parent.gameObject);
             RefreshButtons();
         }
         

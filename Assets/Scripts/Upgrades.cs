@@ -219,8 +219,8 @@ public class Upgrades : MonoBehaviour
                         break;
 
                     case TowerType.Boomerang:
-                        print("fire");
-                        ActivateFire();
+                        print("volocidad");
+                        _lvlUpS.stats_tower.shootingSpeed -= 0.2f;
                         break;
 
                     case TowerType.Laser:

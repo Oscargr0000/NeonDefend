@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour, IPoolInterface
 {
     //IA
-    private NavMeshAgent agente;
+    public NavMeshAgent agente;
     public Transform[] GoPoints;
     private int indicePoints;
 
@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour, IPoolInterface
 
     private void Start()
     {
+        agente.speed = 4;
         indicePoints = 1;
         agente.updateRotation = false;
         agente.updateUpAxis = false;

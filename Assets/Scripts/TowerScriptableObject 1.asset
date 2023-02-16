@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TowerName: Sniper
   damage: 2
-  shootingSpeed: 2
+  shootingSpeed: 4
   price: 325
   priceR1: 660100000f030000440500003c0b0000
   priceR2: e00100008e020000b9050000b5090000

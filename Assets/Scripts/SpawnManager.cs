@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class SpawnManager : MonoBehaviour
     #endregion   
 
     private ObjectPooler _objPool;
+    public NavMeshAgent enemyPref;
     private TowerSystem _ts;
     public bool hasToSpawn;
     public float spawRate;
@@ -46,8 +48,6 @@ public class SpawnManager : MonoBehaviour
     private void Update()
     {
 
-        
-
         //Si ha spawneado todos los enemigos que tocan en esa rondas, deja de spawnear
         if (spawnedEnemys >= enemyLimit)
         {
@@ -67,9 +67,6 @@ public class SpawnManager : MonoBehaviour
 
                 //Particulas de pase de rondas
 
-               
-                
-
                 StartCoroutine(WaitToStart(waitForRounds));
             }
            
@@ -84,7 +81,10 @@ public class SpawnManager : MonoBehaviour
                 upgradedRounds++;
 
                 //Aumenta la cantidad de globos por ronda o no
-                enemyLimit = enemyLimit += Random.Range(0, 3);
+                enemyLimit = enemyLimit += Random.Range(1, 4);
+                spawRate -= 0.05f;
+                enemyPref.speed += 0.2f;
+            
 
                 hasBeenUpraded = true; 
         }

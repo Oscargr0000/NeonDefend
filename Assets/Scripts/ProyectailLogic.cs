@@ -18,6 +18,8 @@ public class ProyectailLogic : MonoBehaviour
     private ObjectPooler _objP;
 
 
+
+
     private void Start()
     {
         _gm = FindObjectOfType<GameManager>();

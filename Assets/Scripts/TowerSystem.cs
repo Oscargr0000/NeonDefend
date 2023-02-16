@@ -57,7 +57,6 @@ public class TowerSystem : MonoBehaviour
     private bool hasToShoot;
     public int currentLvl;
     public LayerMask EnemyLayer;
-    private Vector2 enemyPos;
 
     //Contadores de mejora
     public int idxR1;
@@ -139,16 +138,16 @@ public class TowerSystem : MonoBehaviour
                 if (idxR2 != 4)
                 {
                     // Disparamos
-                    Disparar();
+                    Disparar(proyectail.name);
                 }
                 else //UPGRADED
                 {
-                    DobleCannonShot();
+                    DobleCannonShot(proyectail.name);
                 }
             }
             else
             {
-                Disparar();
+                Disparar(proyectail.name);
             }
            
 
@@ -175,22 +174,21 @@ public class TowerSystem : MonoBehaviour
 
 
 
-    void Disparar()
+    void Disparar(string proyectailPool)
     {
         if(!useRayCast)
         {
-            // CAMBIAR AL METODO DE POOL PULLING
-            GameObject proyectailToSpawn = proyectail;
+
             if (Type.Equals(TowerType.Cannon))
             {
-                proyectailToSpawn.GetComponent<ProyectailLogic>().damage = damage;
+                _objPool.poolDictionary[proyectailPool].Peek().GetComponent<ProyectailLogic>().damage = damage;
             }
             else if (Type.Equals(TowerType.Boomerang))
             {
-                proyectailToSpawn.transform.GetChild(0).transform.GetChild(0).GetComponent<ProyectailBoomerang>().damage = damage;
+                _objPool.poolDictionary[proyectailPool].Peek().GetComponentInChildren<ProyectailBoomerang>().damage = damage; 
             }
-            
-            Instantiate(proyectailToSpawn, this.gameObject.transform.GetChild(0).transform.position, transform.rotation);
+
+            _objPool.SpawnFromPool(proyectailPool, this.gameObject.transform.GetChild(0).transform.position, transform.rotation);
         }
         else
         {
@@ -269,15 +267,23 @@ public class TowerSystem : MonoBehaviour
         }
      }
 
-    void DobleCannonShot()
+    void DobleCannonShot(string proyectailPool)
     {
+        _objPool.poolDictionary[proyectailPool].Peek().GetComponent<ProyectailLogic>().damage = damage;
+        _objPool.SpawnFromPool(proyectailPool, this.gameObject.transform.GetChild(1).GetChild(0).transform.position, transform.rotation);
 
+        _objPool.poolDictionary[proyectailPool].Peek().GetComponent<ProyectailLogic>().damage = damage;
+        _objPool.SpawnFromPool(proyectailPool, this.gameObject.transform.GetChild(1).GetChild(1).transform.position, transform.rotation);
+
+        /*
         GameObject proyectailToSpawn = proyectail;
 
             proyectailToSpawn.GetComponent<ProyectailLogic>().damage = damage;
 
+        
+
         Instantiate(proyectail, this.gameObject.transform.GetChild(1).GetChild(0).transform.position, transform.rotation);
-        Instantiate(proyectail, this.gameObject.transform.GetChild(1).GetChild(1).transform.position, transform.rotation);
+        Instantiate(proyectail, this.gameObject.transform.GetChild(1).GetChild(1).transform.position, transform.rotation);*/
     }
 
     
