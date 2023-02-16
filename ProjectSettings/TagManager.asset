@@ -9,6 +9,8 @@ TagManager:
   - Ladder
   - Platform
   - GoPoints
+  - Restricted
+  - Tower
   layers:
   - Default
   - TransparentFX
