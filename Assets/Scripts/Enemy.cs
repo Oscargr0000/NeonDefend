@@ -10,8 +10,6 @@ public class Enemy : MonoBehaviour, IPoolInterface
     public Transform[] GoPoints;
     private int indicePoints;
 
-
-
     public int rewardEnemy;
     public int armor;
     private int maxArmor;
@@ -48,10 +46,38 @@ public class Enemy : MonoBehaviour, IPoolInterface
         }
 
         enemyRender = this.GetComponent<SpriteRenderer>();
-        //BORAR
         armor = Random.Range(1, maxArmor);
-        //BORAR
+
         UpdateArmor();
+
+        //Selecciona si es fire o camo o nada
+
+        int selectType = Random.Range(1, 20);
+
+        switch (selectType)
+        {
+            case 1:
+                isFire = true;
+                isCammo = false;
+
+                enemyRender.color = Color.gray;
+                //Colocar textura metal
+                break;
+            case 2:
+                isCammo = true;
+                isFire = false;
+
+                enemyRender.color = Color.magenta;
+                //Colocar textura cammo
+                break;
+
+            default:
+                isFire = false;
+                isCammo = false;
+                //QUITAR TEXTURAS
+                break;
+
+        }
     }
 
     private void Update()

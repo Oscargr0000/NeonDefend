@@ -61,7 +61,7 @@ public class ProyectailLaser : MonoBehaviour
     IEnumerator MakeDamage(float time, Enemy hitted)
     {
         hitted.armor -= damage;
-        print("HA GOLPEADO");
+
         hitted.UpdateArmor();
 
         yield return new WaitForSeconds(time);

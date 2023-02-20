@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProyectailLogic : MonoBehaviour
+public class ProyectailLogic : MonoBehaviour, IPoolInterface
 {
     public float proyectailSpeed;
     private int timeToDestroy = 5;
@@ -11,6 +11,7 @@ public class ProyectailLogic : MonoBehaviour
 
     public bool bulletIsFire;
     public bool notDestroy;
+    public bool seeCamo;
 
     private GameManager _gm;
     private LvlUpSystem _lvl;
@@ -18,14 +19,17 @@ public class ProyectailLogic : MonoBehaviour
     private ObjectPooler _objP;
 
 
-
+    public void OnObjectSpawn()
+    {
+        StartCoroutine(DestroyAfter(timeToDestroy));
+    }
 
     private void Start()
     {
         _gm = FindObjectOfType<GameManager>();
         _lvl = FindObjectOfType<LvlUpSystem>();
         _objP = ObjectPooler.Instance;
-        StartCoroutine(DestroyAfter(timeToDestroy));
+       
     }
 
     void Update()
@@ -38,7 +42,11 @@ public class ProyectailLogic : MonoBehaviour
     IEnumerator DestroyAfter(int timeleft)
     {
         yield return new WaitForSeconds(timeleft);
-        Destroy(gameObject);
+        string name = gameObject.name;
+        string a = "(Clone)";
+        name = name.Replace(a, "");
+
+        ObjectPooler.Instance.ReturnToQueue(name, gameObject);
     }
 
 
@@ -49,21 +57,42 @@ public class ProyectailLogic : MonoBehaviour
         {
             Enemy hittedEnemy = collision.GetComponent<Enemy>();
 
+            //Si el enemigo es de fuego y la bala no, no hace NADA
+            if (hittedEnemy.isFire.Equals(true)&& !bulletIsFire)
+            {
+                if (notDestroy.Equals(false)) //Si la bala no tiene el booleano en true las balas atravesaran los enemigos
+                {
+                    string name = gameObject.name;
+                    string a = "(Clone)";
+                    name = name.Replace(a, "");
+
+                    ObjectPooler.Instance.ReturnToQueue(name, gameObject);
+                }
+
+                return;
+            }
+
+            //Si el enemigo es de camuflaje y la bala no, no hace NADA
+            if (hittedEnemy.isCammo.Equals(true) && !seeCamo)
+            {
+                if (notDestroy.Equals(false)) //Si la bala no tiene el booleano en true las balas atravesaran los enemigos
+                {
+                    string name = gameObject.name;
+                    string a = "(Clone)";
+                    name = name.Replace(a, "");
+
+                    ObjectPooler.Instance.ReturnToQueue(name, gameObject);
+                }
+
+                return;
+            }
+
             EnemyHitted(collision.GetComponent<Enemy>().rewardEnemy);
 
             
             hittedEnemy.armor -= damage;
 
             hittedEnemy.UpdateArmor();
-        }
-
-        if (collision.gameObject.CompareTag("FireEnemy"))
-        {
-            if (bulletIsFire.Equals(true))
-            {
-
-                EnemyHitted(collision.GetComponent<Enemy>().rewardEnemy);
-            }
         }
     }
 
@@ -73,7 +102,11 @@ public class ProyectailLogic : MonoBehaviour
 
         if (notDestroy.Equals(false)) //Si la bala no tiene el booleano en true las balas atravesaran los enemigos
         {
-            Destroy(this.gameObject);
+            string name = gameObject.name;
+            string a = "(Clone)";
+            name = name.Replace(a, "");
+
+            ObjectPooler.Instance.ReturnToQueue(name, gameObject);
         }
     }
 }

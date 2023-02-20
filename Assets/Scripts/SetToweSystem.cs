@@ -21,6 +21,12 @@ public class SetToweSystem : MonoBehaviour
 
     private int indxTowerSel;
     public SpriteRenderer[] bluePrints;
+    public LayerMask carrilLayer;
+
+
+    public float radius = 1f;
+    public Color rayColor = Color.green;
+
 
     private void Start()
     {
@@ -34,8 +40,28 @@ public class SetToweSystem : MonoBehaviour
     }
     private void Update()
     {
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(MousePos(), radius, Vector2.zero, 0, carrilLayer);
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider != null)
+            {
+                rayColor = Color.red;
+                print("No puedes colocar aqui");
+
+            }
+        }
+
         if (settingMode && Input.GetKeyDown(KeyCode.Mouse0))
         {
+            foreach (RaycastHit2D hit in hits)
+            {
+                if (hit.collider != null)
+                {
+
+                    return;
+                }
+            }
+
             SetTower(MousePos());
             return;
         }
@@ -44,7 +70,11 @@ public class SetToweSystem : MonoBehaviour
         {
             SelectionGhost(MousePos());
         }
-       
+
+
+        
+            
+
     }
 
 
@@ -106,4 +136,26 @@ public class SetToweSystem : MonoBehaviour
 
         return objectPos2D;
     }
+
+    void OnDrawGizmosSelected()
+    {
+        DrawCircleCast(MousePos());
+    }
+
+    void OnDrawGizmos()
+    {
+        DrawCircleCast(MousePos());
+    }
+
+    private void DrawCircleCast(Vector3 center)
+    {
+        Gizmos.color = rayColor;
+        Vector3 direction = (center - transform.position).normalized;
+        Vector3 endPoint = transform.position + direction * radius;
+
+        Gizmos.DrawWireSphere(center, radius);
+        Gizmos.DrawLine(center, endPoint);
+    }
+
+
 }

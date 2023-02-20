@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProyectailBoomerang : MonoBehaviour
+public class ProyectailBoomerang : MonoBehaviour, IPoolInterface
 {
     public float proyectailSpeed;
     
@@ -11,12 +11,17 @@ public class ProyectailBoomerang : MonoBehaviour
 
     public bool bulletIsFire;
     public bool notDestroy;
+    public bool seeCamo;
 
     private GameManager _gm;
     private LvlUpSystem _lvl;
     private Enemy _enemyS;
     private ObjectPooler _objP;
 
+    public void OnObjectSpawn()
+    {
+        StartCoroutine(DestroyAfter(8));
+    }
 
     private void Start()
     {
@@ -32,9 +37,38 @@ public class ProyectailBoomerang : MonoBehaviour
         {
             Enemy hittedEnemy = collision.GetComponent<Enemy>();
 
-            EnemyHitted(collision.GetComponent<Enemy>().rewardEnemy);
+            //Si el enemigo es de fuego y la bala no, no hace NADA
+            if (hittedEnemy.isFire.Equals(true) && !bulletIsFire)
+            {
+                if (notDestroy.Equals(false)) //Si la bala no tiene el booleano en true las balas atravesaran los enemigos
+                {
+                    string name = gameObject.name;
+                    string a = "(Clone)";
+                    name = name.Replace(a, "");
 
-            print("Boomerang Detecta");
+                    ObjectPooler.Instance.ReturnToQueue(name, gameObject);
+                }
+
+                return;
+            }
+
+            //Si el enemigo es de camuflaje y la bala no, no hace NADA
+            if (hittedEnemy.isCammo.Equals(true) && !seeCamo)
+            {
+                if (notDestroy.Equals(false)) //Si la bala no tiene el booleano en true las balas atravesaran los enemigos
+                {
+                    string name = gameObject.name;
+                    string a = "(Clone)";
+                    name = name.Replace(a, "");
+
+                    ObjectPooler.Instance.ReturnToQueue(name, gameObject);
+                }
+
+                return;
+            }
+
+
+            EnemyHitted(collision.GetComponent<Enemy>().rewardEnemy);
 
 
             hittedEnemy.armor -= damage;
@@ -56,14 +90,18 @@ public class ProyectailBoomerang : MonoBehaviour
         }
     }
 
+    IEnumerator DestroyAfter(int timeleft)
+    {
+        yield return new WaitForSeconds(timeleft);
+        string name = gameObject.name;
+        string a = "(Clone)";
+        name = name.Replace(a, "");
+
+        ObjectPooler.Instance.ReturnToQueue(name, gameObject);
+    }
+
     void EnemyHitted(int points)
     {
         _gm.points += points * damage;  //Cambiar en un futuro, acceder al daño de la bala y sumar esa cantidad de puntos
-
-
-        if (notDestroy.Equals(false)) //Si la bala no tiene el booleano en true las balas atravesaran los enemigos
-        {
-            Destroy(this.gameObject);
-        }
     }
 }

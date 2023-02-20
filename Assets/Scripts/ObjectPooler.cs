@@ -82,6 +82,15 @@ public class ObjectPooler : MonoBehaviour
         return objectToSpawn;
     }
 
+
+    public void AddObject(string tag, GameObject gameobject)
+    {
+        GameObject obj = Instantiate(gameObject);
+        obj.SetActive(false);
+        poolDictionary[tag].Enqueue(obj);
+    }
+
+
     public void ReturnToQueue(string dictionaryTag, GameObject objectdestroyet)
     {
         poolDictionary[dictionaryTag].Enqueue(objectdestroyet);

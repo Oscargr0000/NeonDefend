@@ -18,8 +18,8 @@ TagManager:
   - EnemyLayer
   - Water
   - UI
-  - 
-  - 
+  - CarrilLayer
+  - Postprocess
   - 
   - 
   - 

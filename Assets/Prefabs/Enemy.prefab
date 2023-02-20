@@ -145,8 +145,6 @@ MonoBehaviour:
   - {fileID: 7253620016947657961, guid: fd8c5f39ee7aa84418045a5aea708683, type: 3}
   - {fileID: 5996135381715109559, guid: 0ddb8d5508561bc4fab7091e6fd81c35, type: 3}
   - {fileID: 8842677151262795328, guid: 955a39f99ca268d43bb80a49e976c8c3, type: 3}
-  - {fileID: 6344833022697971674, guid: 9360830c13b8ff84688a2a4ddf42ba26, type: 3}
-  - {fileID: 8417563674984622293, guid: f99505b0466a6e4448ed20feecedb883, type: 3}
   rewardEnemy: 1
   armor: 0
   ArmorColor:
@@ -174,7 +172,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.15
-  m_Speed: 5.899998
+  m_Speed: 8.299996
   m_Acceleration: 200
   avoidancePriority: 50
   m_AngularSpeed: 0

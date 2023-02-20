@@ -181,13 +181,31 @@ public class TowerSystem : MonoBehaviour
 
             if (Type.Equals(TowerType.Cannon))
             {
+                //Si no existen objetos en la cola es dificil dispararlos
+                if (_objPool.poolDictionary[proyectailPool].Count.Equals(0))
+                {
+                    _objPool.AddObject(proyectailPool, proyectail);
+                }
+
+                //Agrega el daño al proyectil
                 _objPool.poolDictionary[proyectailPool].Peek().GetComponent<ProyectailLogic>().damage = damage;
+                _objPool.poolDictionary[proyectailPool].Peek().GetComponent<ProyectailLogic>().seeCamo = seeCamuf;
             }
             else if (Type.Equals(TowerType.Boomerang))
             {
-                _objPool.poolDictionary[proyectailPool].Peek().GetComponentInChildren<ProyectailBoomerang>().damage = damage; 
+                //Si no existen objetos en la cola es dificil dispararlos
+                if (_objPool.poolDictionary[proyectailPool].Count.Equals(0))
+                {
+                    _objPool.AddObject(proyectailPool, proyectail);
+                }
+
+                //Agrega el daño al proyectil
+                _objPool.poolDictionary[proyectailPool].Peek().GetComponentInChildren<ProyectailBoomerang>().damage = damage;
+                _objPool.poolDictionary[proyectailPool].Peek().GetComponent<ProyectailBoomerang>().seeCamo = seeCamuf;
             }
 
+
+            //Dispara el proyectil
             _objPool.SpawnFromPool(proyectailPool, this.gameObject.transform.GetChild(0).transform.position, transform.rotation);
         }
         else

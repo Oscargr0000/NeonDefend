@@ -119,6 +119,11 @@ public class SpawnManager : MonoBehaviour
     {
         while (hasToSpawn.Equals(true))
         {
+            if (_objPool.poolDictionary["Enemy1"].Count.Equals(0))
+            {
+                _objPool.AddObject("Enemy1", enemyPref.gameObject);
+            }
+
             _objPool.SpawnFromPool("Enemy1", transform.transform.position, Quaternion.identity);
             spawnedEnemys++;
 
