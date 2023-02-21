@@ -201,7 +201,7 @@ public class TowerSystem : MonoBehaviour
 
                 //Agrega el daño al proyectil
                 _objPool.poolDictionary[proyectailPool].Peek().GetComponentInChildren<ProyectailBoomerang>().damage = damage;
-                _objPool.poolDictionary[proyectailPool].Peek().GetComponent<ProyectailBoomerang>().seeCamo = seeCamuf;
+                _objPool.poolDictionary[proyectailPool].Peek().GetComponentInChildren<ProyectailBoomerang>().seeCamo = seeCamuf;
             }
 
 

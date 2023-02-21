@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class SetToweSystem : MonoBehaviour
 {
@@ -22,14 +24,23 @@ public class SetToweSystem : MonoBehaviour
     private int indxTowerSel;
     public SpriteRenderer[] bluePrints;
     public LayerMask carrilLayer;
+    
 
 
     public float radius = 1f;
     public Color rayColor = Color.green;
 
 
+    public GameObject postProcess;
+    private ChannelMixer cm;
+
     private void Start()
     {
+        Volume postpro = postProcess.GetComponent<Volume>();
+        postpro.profile.TryGet(out cm);
+
+        cm.active = false;
+
         settingMode = false;
         _gm = FindObjectOfType<GameManager>();
 
@@ -45,9 +56,17 @@ public class SetToweSystem : MonoBehaviour
         {
             if (hit.collider != null)
             {
-                rayColor = Color.red;
+                Volume postpro = postProcess.GetComponent<Volume>();
+
+                postpro.profile.TryGet(out cm);
+
+                //cm.active = true;
                 print("No puedes colocar aqui");
 
+            }
+            else
+            {
+                cm.active = false;
             }
         }
 
