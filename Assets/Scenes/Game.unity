@@ -5759,6 +5759,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats_tower: {fileID: 0}
+  r1Price: {fileID: 1637511557}
+  r2Price: {fileID: 1153656559}
   currentTower: {fileID: 0}
   currentTowerText: {fileID: 1504945531}
   rama1Button: {fileID: 1297666880}

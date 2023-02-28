@@ -20,7 +20,7 @@ public class EndTrailScript : MonoBehaviour
             
             if(_gm.playerHP <= 0)
             {
-
+                _gm.GameOver();
             }
 
             //Lo desactiva y lo envia a la cola

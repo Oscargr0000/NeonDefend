@@ -17,6 +17,8 @@ public class LvlUpSystem : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    public TextMeshProUGUI r1Price;
+    public TextMeshProUGUI r2Price;
 
     public GameObject currentTower;
     public TextMeshProUGUI currentTowerText;
@@ -77,8 +79,7 @@ public class LvlUpSystem : MonoBehaviour
                 else
                 {
                     print("No cuentas con puntos suficientes"); 
-                }
-                
+                }  
             }
         }
         
@@ -98,6 +99,8 @@ public class LvlUpSystem : MonoBehaviour
                 }
             }
         }
+
+        
 
 
         //LIMITA EL NIVEL
@@ -152,6 +155,11 @@ public class LvlUpSystem : MonoBehaviour
 
     void UpdateVisuals()
     {
+        int updatedPriceR1 = stats_tower.scriptable_Stats.priceR1[stats_tower.idxR1];
+        int updatedPriceR2 = stats_tower.scriptable_Stats.priceR2[stats_tower.idxR2];
+        r1Price.text = updatedPriceR1.ToString();
+        r2Price.text = updatedPriceR2.ToString();
+
         //Desactiva todos los visuales
         for (int i = 0; i <= 4; i++)
         {
@@ -177,7 +185,5 @@ public class LvlUpSystem : MonoBehaviour
                 _uiM.visualsR2[i].SetActive(true);
             }
         }
-
-
     }
 }

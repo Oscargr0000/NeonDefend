@@ -103,6 +103,12 @@ public class SpawnManager : MonoBehaviour
     void OnRoundsStart()
     {
         rounds++;
+        if(rounds <= 41)
+        {
+            print("win");
+            return;
+        }
+
         _gm.points += 50;
         Debug.Log("ha empezado la ronda" + rounds);
 
