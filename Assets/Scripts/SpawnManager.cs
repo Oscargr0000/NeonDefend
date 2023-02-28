@@ -18,6 +18,7 @@ public class SpawnManager : MonoBehaviour
 
     private ObjectPooler _objPool;
     public NavMeshAgent enemyPref;
+    private GameManager _gm;
     private TowerSystem _ts;
     public bool hasToSpawn;
     public float spawRate;
@@ -38,6 +39,7 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         _objPool = ObjectPooler.Instance;
+        _gm = FindObjectOfType<GameManager>();
 
         //Al principio siempre apareceran 8 globos
         enemyLimit = 8;
@@ -101,6 +103,7 @@ public class SpawnManager : MonoBehaviour
     void OnRoundsStart()
     {
         rounds++;
+        _gm.points += 50;
         Debug.Log("ha empezado la ronda" + rounds);
 
         //Aumenta la dificultad de los enemigos

@@ -60,7 +60,7 @@ public class SetToweSystem : MonoBehaviour
 
                 postpro.profile.TryGet(out cm);
 
-                //cm.active = true;
+                
                 print("No puedes colocar aqui");
 
             }
@@ -76,7 +76,7 @@ public class SetToweSystem : MonoBehaviour
             {
                 if (hit.collider != null)
                 {
-
+                    StartCoroutine(AnimationRed());
                     return;
                 }
             }
@@ -89,10 +89,6 @@ public class SetToweSystem : MonoBehaviour
         {
             SelectionGhost(MousePos());
         }
-
-
-        
-            
 
     }
 
@@ -108,7 +104,6 @@ public class SetToweSystem : MonoBehaviour
        
 
         //Quita todo lo relacionado con la seleccion
-        editModeText.text = "OFF";
         selectedTower = null;
         towerPrice = 0;
         settingMode = false;
@@ -130,18 +125,13 @@ public class SetToweSystem : MonoBehaviour
 
             towerPrice = priceList[towerToSelect];
 
-            EditMode();
         }
     }
 
-    void EditMode()
-    {
-        editModeText.text = "ON";
-    }
+   
     
     void SelectionGhost(Vector2 MousePos)
     {
-        print("AGARRA");
         bluePrints[indxTowerSel].transform.position = MousePos;
     }
 
@@ -176,5 +166,12 @@ public class SetToweSystem : MonoBehaviour
         Gizmos.DrawLine(center, endPoint);
     }
 
+
+    IEnumerator AnimationRed()
+    {
+        cm.active = true;
+        yield return new WaitForSeconds(0.2f);
+        cm.active = false;
+    }
 
 }

@@ -16,8 +16,8 @@ MonoBehaviour:
   damage: 1
   shootingSpeed: 3
   price: 575
-  priceR1: 16020000ea0400008c0d000026190000
-  priceR2: e2010000c3050000130b0000b6120000
+  priceR1: fa0000004001000058020000e8030000
+  priceR2: 2c010000d60100006c02000098030000
   range: 4
   fireBullet: 0
   seeCamuf: 0

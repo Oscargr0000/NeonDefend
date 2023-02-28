@@ -17,7 +17,6 @@ public class EndTrailScript : MonoBehaviour
             Enemy enemyEnter = collision.GetComponent<Enemy>();
 
             _gm.playerHP -= enemyEnter.armor;
-            print(_gm.playerHP);
             
             if(_gm.playerHP <= 0)
             {

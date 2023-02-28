@@ -287,21 +287,13 @@ public class TowerSystem : MonoBehaviour
 
     void DobleCannonShot(string proyectailPool)
     {
+
+        //Accede a la pool de proyectil y los dispara
         _objPool.poolDictionary[proyectailPool].Peek().GetComponent<ProyectailLogic>().damage = damage;
         _objPool.SpawnFromPool(proyectailPool, this.gameObject.transform.GetChild(1).GetChild(0).transform.position, transform.rotation);
 
         _objPool.poolDictionary[proyectailPool].Peek().GetComponent<ProyectailLogic>().damage = damage;
         _objPool.SpawnFromPool(proyectailPool, this.gameObject.transform.GetChild(1).GetChild(1).transform.position, transform.rotation);
-
-        /*
-        GameObject proyectailToSpawn = proyectail;
-
-            proyectailToSpawn.GetComponent<ProyectailLogic>().damage = damage;
-
-        
-
-        Instantiate(proyectail, this.gameObject.transform.GetChild(1).GetChild(0).transform.position, transform.rotation);
-        Instantiate(proyectail, this.gameObject.transform.GetChild(1).GetChild(1).transform.position, transform.rotation);*/
     }
 
     

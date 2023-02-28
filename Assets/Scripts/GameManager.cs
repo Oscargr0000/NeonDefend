@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        points = 10000000;
+        points = 150;
         playerHP = 100;
     }
 

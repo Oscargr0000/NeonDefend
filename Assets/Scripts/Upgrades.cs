@@ -15,11 +15,12 @@ public class Upgrades : MonoBehaviour
         _ts = FindObjectOfType<TowerSystem>();
         _lvlUpS = FindObjectOfType<LvlUpSystem>();
     }
+
     public void UpgradeR1()
     {
         switch (_lvlUpS.stats_tower.idxR1)
         {
-            //---------MEJORA 1----------
+            //---------MEJORA 1---------- 
             case 1:  
 
                 switch (_lvlUpS.stats_tower.Type)
@@ -71,7 +72,7 @@ public class Upgrades : MonoBehaviour
 
                     case TowerType.Laser:
                         print("Rango");
-                        _lvlUpS.stats_tower.UpdateRange(_lvlUpS.stats_tower.range += 2);
+                        _lvlUpS.stats_tower.GetComponent<LaserTowerScript>().UpdateRange(0.3f);
                         break;
                 }
                 break;
@@ -164,7 +165,7 @@ public class Upgrades : MonoBehaviour
 
                     case TowerType.Laser:
                         print("range");
-                        _lvlUpS.stats_tower.range += 1;
+                        _lvlUpS.stats_tower.GetComponent<LaserTowerScript>().UpdateRange(0.2f);
                         break;
                 }
                 break;
@@ -254,7 +255,7 @@ public class Upgrades : MonoBehaviour
 
                     case TowerType.Laser:
                         print("muxo rango");
-                        _lvlUpS.stats_tower.UpdateRange(_lvlUpS.stats_tower.range += 5);
+                        _lvlUpS.stats_tower.GetComponent<LaserTowerScript>().UpdateRange(0.5f);
                         break;
                 }
                 break;

@@ -62,6 +62,7 @@ public class LaserTowerScript : MonoBehaviour
 
     public void UpdateRange(float newRange)
     {
-        TowerCollider.radius = newRange;
+        transform.GetChild(1).transform.localScale += new Vector3(0f, newRange, 0f);
+        print(transform.GetChild(1).name);
     }
 }

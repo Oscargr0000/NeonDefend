@@ -50,9 +50,18 @@ public class Enemy : MonoBehaviour, IPoolInterface
 
         UpdateArmor();
 
-        //Selecciona si es fire o camo o nada
 
-        int selectType = Random.Range(1, 20);
+
+
+        //SELECIONAR FIRE O CAMMO
+
+        if (SpawnManager.Instance.rounds < 15)
+        {
+            return;
+        }
+
+        
+        int selectType = Random.Range(1, 40);
 
         switch (selectType)
         {

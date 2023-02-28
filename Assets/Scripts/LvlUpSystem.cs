@@ -19,10 +19,6 @@ public class LvlUpSystem : MonoBehaviour
 
 
     public GameObject currentTower;
-    
-
-    public TextMeshProUGUI R1text;
-    public TextMeshProUGUI R2text;
     public TextMeshProUGUI currentTowerText;
 
     public Button rama1Button;
@@ -54,8 +50,6 @@ public class LvlUpSystem : MonoBehaviour
 
         //Update Selection
         currentTowerText.text = stats_tower.scriptable_Stats.TowerName;
-        R1text.text = stats_tower.idxR1.ToString();
-        R2text.text = stats_tower.idxR2.ToString();
 
         RefreshButtons();
         UpdateVisuals();
@@ -184,7 +178,6 @@ public class LvlUpSystem : MonoBehaviour
             }
         }
 
-        R1text.text = stats_tower.idxR1.ToString();
-        R2text.text = stats_tower.idxR2.ToString();
+
     }
 }
