@@ -62,7 +62,6 @@ public class LvlUpSystem : MonoBehaviour
     {
         if(currentTower == null)
         {
-            print("No tienes ningnuna torre seleccionada");
             return;
         }
 
@@ -78,7 +77,7 @@ public class LvlUpSystem : MonoBehaviour
                 }
                 else
                 {
-                    print("No cuentas con puntos suficientes"); 
+                    UiManager.Instance.NoPointsAnoun();
                 }  
             }
         }
@@ -95,6 +94,7 @@ public class LvlUpSystem : MonoBehaviour
                 }
                 else
                 {
+                    UiManager.Instance.NoPointsAnoun();
                     print("No cuentas con puntos suficientes");
                 }
             }
@@ -149,6 +149,7 @@ public class LvlUpSystem : MonoBehaviour
             _gm.points += stats_tower.price / 2;
             Destroy(stats_tower.transform.parent.gameObject);
             RefreshButtons();
+            UiManager.Instance.UpdatePoints();
         }
         
     }
@@ -159,6 +160,9 @@ public class LvlUpSystem : MonoBehaviour
         int updatedPriceR2 = stats_tower.scriptable_Stats.priceR2[stats_tower.idxR2];
         r1Price.text = updatedPriceR1.ToString();
         r2Price.text = updatedPriceR2.ToString();
+
+        UpdateTextButton(rama1Button.gameObject,stats_tower.r1Powers[stats_tower.idxR1]);
+        UpdateTextButton(rama2Button.gameObject,stats_tower.r2Powers[stats_tower.idxR2]);
 
         //Desactiva todos los visuales
         for (int i = 0; i <= 4; i++)
@@ -186,4 +190,11 @@ public class LvlUpSystem : MonoBehaviour
             }
         }
     }
+
+
+    public void UpdateTextButton(GameObject boton, string poderText)
+    {
+        boton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = poderText;
+    }
+
 }

@@ -16,6 +16,17 @@ public class GameManager : MonoBehaviour
     {
         points = 150;
         playerHP = 100;
+
+        UiManager.Instance.HpUpdate();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            points += 1000;
+            UiManager.Instance.UpdatePoints();
+        }
     }
 
     public void GameOver()

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4331420942354363075}
   - component: {fileID: 1915066942801757455}
   - component: {fileID: 3525126463696523555}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Selection_Sniper
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -113,9 +113,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047251, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047251, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
+      propertyPath: m_Color.g
+      value: 0.13914824
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047251, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6303987638321047260, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
       propertyPath: useRayCast
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047260, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
+      propertyPath: r1Powers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047260, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
+      propertyPath: r2Powers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047260, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
+      propertyPath: r1Powers.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047260, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
+      propertyPath: r2Powers.Array.data[4]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6303987638321047261, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
       propertyPath: m_Radius

@@ -10,6 +10,9 @@ public class Upgrades : MonoBehaviour
     private ProyectailLogic _pl;
     private TowerSystem mejorar;
 
+    public GameObject botonR1;
+    public GameObject botonR2;
+
     private void Start()
     {
         _ts = FindObjectOfType<TowerSystem>();
@@ -67,6 +70,7 @@ public class Upgrades : MonoBehaviour
 
                     case TowerType.Boomerang:
                         print("mas rango");
+
                         _lvlUpS.stats_tower.UpdateRange(_lvlUpS.stats_tower.range += 1);
                         break;
 
@@ -134,6 +138,9 @@ public class Upgrades : MonoBehaviour
                 }
                 break;
         }
+
+
+        UiManager.Instance.UpdatePoints();
     }
 
     public void UpgradeR2()
@@ -148,6 +155,7 @@ public class Upgrades : MonoBehaviour
                     case TowerType.Cannon:
 
                         _lvlUpS.stats_tower.UpdateRange(_lvlUpS.stats_tower.range += 1f);
+
                         print("More Range");
                         break;
 
@@ -239,12 +247,14 @@ public class Upgrades : MonoBehaviour
                     case TowerType.Cannon:
 
                         NumCannon();
+
                         print("2 cannons");
                         break;
 
                     case TowerType.Sniper:
 
                         print("damage");
+
                         _lvlUpS.stats_tower.damage += 2;
                         break;
 
@@ -260,6 +270,7 @@ public class Upgrades : MonoBehaviour
                 }
                 break;
         }
+        UiManager.Instance.UpdatePoints();
     }
 
     void ActivateFire()
@@ -287,7 +298,7 @@ public class Upgrades : MonoBehaviour
         }
         else
         {
-            _lvlUpS.stats_tower.proyectail = towerScriptable.notFireDestroy;
+            _lvlUpS.stats_tower.proyectail = towerScriptable.notFireDontDestroy;
         }
     }
 

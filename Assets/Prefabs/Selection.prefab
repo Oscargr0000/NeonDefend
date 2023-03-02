@@ -206,6 +206,18 @@ MonoBehaviour:
   priceR2: 0
   maxR1: 4
   maxR2: 4
+  r1Powers:
+  - VELOCIDAD DE ATAQUE
+  - RANGO
+  - VER CAMUFLADOS
+  - VELOCIDAD DE ATAQUE
+  - 
+  r2Powers:
+  - "DA\xD1O"
+  - RANGO
+  - VELOCIDAD DE ATAQUE
+  - "DA\xD1O"
+  - 
   notShoot: 0
   toGo: {x: 0, y: 0, z: 0}
 --- !u!58 &4019061060302420222
@@ -256,7 +268,7 @@ GameObject:
   - component: {fileID: 4019061062081061342}
   - component: {fileID: 4019061062081061340}
   - component: {fileID: 4019061062081061343}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Selection
   m_TagString: Tower
   m_Icon: {fileID: 0}

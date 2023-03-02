@@ -70,6 +70,11 @@ public class TowerSystem : MonoBehaviour
     public int maxR1 = 4;
     public int maxR2 = 4;
 
+    //Nombre de los poderes
+
+    public string[] r1Powers;
+    public string[] r2Powers;
+
     // Tiempo del próximo disparo permitido
     private float tiempoSiguienteDisparo = 0.0f;
 

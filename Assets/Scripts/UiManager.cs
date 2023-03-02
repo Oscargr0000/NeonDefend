@@ -6,6 +6,17 @@ using TMPro;
 public class UiManager : MonoBehaviour
 {
 
+
+    #region Singleton
+    public static UiManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    #endregion   
+
     private TowerSystem _ts;
     private LvlUpSystem _ls;
     private GameManager _gm;
@@ -15,10 +26,11 @@ public class UiManager : MonoBehaviour
     public GameObject lvlCanvas;
     public Animator animationCanvas;
     public bool panelIsOpen;
-    
+
     public TextMeshProUGUI roundsText;
     public TextMeshProUGUI pointsText;
     public TextMeshProUGUI hpText;
+    public TextMeshProUGUI noPoints;
 
     public GameObject[] visualsR1;
     public GameObject[] visualsR2;
@@ -29,14 +41,11 @@ public class UiManager : MonoBehaviour
         _ls = FindObjectOfType<LvlUpSystem>();
         _gm = FindObjectOfType<GameManager>();
         _sp = FindObjectOfType<SpawnManager>();
-    }
 
-
-    private void LateUpdate()
-    {
-        roundsText.text = _sp.rounds.ToString(); // CAMBIAR ESTO y colocar las actualzacion cada vez que ocurra algo
-        pointsText.text = _gm.points.ToString();
-        hpText.text = _gm.playerHP.ToString();
+        noPoints.gameObject.SetActive(false);
+        UpdatePoints();
+        UpdateRounds();
+        HpUpdate();
     }
 
     public void OpenLvlPanel()
@@ -54,6 +63,33 @@ public class UiManager : MonoBehaviour
             animationCanvas.SetTrigger("Close");
             animationCanvas.SetBool("isOpen", true);
         }
-        
+
+    }
+
+    public void HpUpdate()
+    {
+        hpText.text = _gm.playerHP.ToString();
+    }
+
+    public void UpdatePoints()
+    {
+        pointsText.text = _gm.points.ToString();
+    }
+
+    public void UpdateRounds()
+    {
+        roundsText.text = _sp.rounds.ToString();
+    }
+
+    public void NoPointsAnoun()
+    {
+        noPoints.gameObject.SetActive(true);
+        StartCoroutine(CoolDown(1, noPoints.gameObject));
+    }
+
+    IEnumerator CoolDown(int time, GameObject text)
+    {
+        yield return new WaitForSeconds(time);
+        text.SetActive(false);
     }
 }

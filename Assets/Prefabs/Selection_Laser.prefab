@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 3
-  scriptable_Stats: {fileID: 11400000, guid: 54fdfd02d8daaef4789fb975934a76c0, type: 2}
+  scriptable_Stats: {fileID: 11400000, guid: f54c8b2bced78e94b8838f4edfb19540, type: 2}
   Name: 
   damage: 0
   price: 0
@@ -311,6 +311,18 @@ MonoBehaviour:
   priceR2: 0
   maxR1: 4
   maxR2: 4
+  r1Powers:
+  - "DA\xD1O"
+  - RANGO
+  - "DA\xD1O"
+  - "DA\xD1O"
+  - 
+  r2Powers:
+  - RANGO
+  - "DA\xD1O"
+  - VER CAMUFLADOS
+  - RANGO
+  - 
   notShoot: 1
   toGo: {x: 0, y: 0, z: 0}
 --- !u!1 &8680815386288588753
@@ -324,7 +336,7 @@ GameObject:
   - component: {fileID: 8680815386288588754}
   - component: {fileID: 3660878507946328723}
   - component: {fileID: 6486870754265851235}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Selection_Laser
   m_TagString: Tower
   m_Icon: {fileID: 0}

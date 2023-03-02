@@ -375,6 +375,16 @@ MonoBehaviour:
   priceR2: 150
   maxR1: 4
   maxR2: 4
+  r1Powers:
+  - "DA\xD1O"
+  - VELOCIDAD DE ATAQUE
+  - VER CAMUFLADOS
+  - "DA\xD1O"
+  r2Powers:
+  - RANGO
+  - BALA PERFORANTE
+  - BALA DE FUEGO
+  - "DOBLE CA\xD1ON"
   notShoot: 0
   toGo: {x: 0, y: 0, z: 0}
 --- !u!58 &6303987638321047261

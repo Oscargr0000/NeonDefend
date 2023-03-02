@@ -66,8 +66,14 @@ public class ObjectPooler : MonoBehaviour
 
         //Accede al primer de la lista para spawnear y lo activa
         GameObject objectToSpawn = poolDictionary[tag].Dequeue();
-        objectToSpawn.SetActive(true);
 
+        
+        if (poolDictionary["Enemy1"].Contains(objectToSpawn))
+        {
+            poolDictionary["Enemy1"].Dequeue();
+        }
+
+        objectToSpawn.SetActive(true);
         //Accede a la posicion donde debe spawnear
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;

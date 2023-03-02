@@ -102,15 +102,19 @@ public class SpawnManager : MonoBehaviour
 
     void OnRoundsStart()
     {
+
+
         rounds++;
-        if(rounds <= 41)
+        if(rounds >= 41)
         {
             print("win");
             return;
         }
 
+        UiManager.Instance.UpdateRounds();
+        UiManager.Instance.UpdatePoints();
+
         _gm.points += 50;
-        Debug.Log("ha empezado la ronda" + rounds);
 
         //Aumenta la dificultad de los enemigos
         lvlDificultUp(3 * upgradedRounds);

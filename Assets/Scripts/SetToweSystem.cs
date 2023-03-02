@@ -60,9 +60,6 @@ public class SetToweSystem : MonoBehaviour
 
                 postpro.profile.TryGet(out cm);
 
-                
-                print("No puedes colocar aqui");
-
             }
             else
             {
@@ -108,6 +105,7 @@ public class SetToweSystem : MonoBehaviour
         towerPrice = 0;
         settingMode = false;
         bluePrints[indxTowerSel].gameObject.SetActive(false);
+        UiManager.Instance.UpdatePoints();
     }
 
 
@@ -124,7 +122,12 @@ public class SetToweSystem : MonoBehaviour
             selectedTower = towersObjets[towerToSelect];
 
             towerPrice = priceList[towerToSelect];
+            UiManager.Instance.UpdatePoints();
 
+        }
+        else
+        {
+            UiManager.Instance.NoPointsAnoun();
         }
     }
 

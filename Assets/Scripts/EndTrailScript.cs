@@ -23,6 +23,7 @@ public class EndTrailScript : MonoBehaviour
                 _gm.GameOver();
             }
 
+            UiManager.Instance.HpUpdate();
             //Lo desactiva y lo envia a la cola
             if (!ObjectPooler.Instance.poolDictionary["Enemy1"].Contains(collision.gameObject))
             {

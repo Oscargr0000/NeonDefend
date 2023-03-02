@@ -120,6 +120,7 @@ public class Enemy : MonoBehaviour, IPoolInterface
 
     public void UpdateArmor()
     {
+        UiManager.Instance.UpdatePoints();
 
         if (armor <= 0)
         {

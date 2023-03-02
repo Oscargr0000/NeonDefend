@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 713613350090940539}
   - component: {fileID: 713613350090940541}
   - component: {fileID: 713613350090940540}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Selection_Cannon
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -112,6 +112,22 @@ PrefabInstance:
     - target: {fileID: 6303987638321047250, guid: c86de22951850e0458dfc8e98dbcb985, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047260, guid: c86de22951850e0458dfc8e98dbcb985, type: 3}
+      propertyPath: r1Powers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047260, guid: c86de22951850e0458dfc8e98dbcb985, type: 3}
+      propertyPath: r2Powers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047260, guid: c86de22951850e0458dfc8e98dbcb985, type: 3}
+      propertyPath: r1Powers.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047260, guid: c86de22951850e0458dfc8e98dbcb985, type: 3}
+      propertyPath: r2Powers.Array.data[4]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6303987638321047263, guid: c86de22951850e0458dfc8e98dbcb985, type: 3}
       propertyPath: m_Name
