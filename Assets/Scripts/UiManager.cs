@@ -78,7 +78,7 @@ public class UiManager : MonoBehaviour
 
     public void UpdateRounds()
     {
-        roundsText.text = _sp.rounds.ToString();
+        roundsText.text = _sp.rounds.ToString() +"/40";
     }
 
     public void NoPointsAnoun()

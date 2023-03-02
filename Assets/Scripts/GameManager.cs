@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     public int playerHP;
 
+    public int totalEnemyKill;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,5 +34,12 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         SceneManager.LoadScene(0);
+
+        // HIGH SCORE
+        if(totalEnemyKill > PlayerPrefs.GetInt("EnemyKill"))
+        {
+            PlayerPrefs.SetInt("EnemyKill", totalEnemyKill);
+        }
+        
     }
 }

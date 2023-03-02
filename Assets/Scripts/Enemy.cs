@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour, IPoolInterface
 {
     //IA
     public NavMeshAgent agente;
+    public GameManager _gm;
     public Transform[] GoPoints;
     private int indicePoints;
 
@@ -35,6 +36,8 @@ public class Enemy : MonoBehaviour, IPoolInterface
         indicePoints = 1;
         agente.updateRotation = false;
         agente.updateUpAxis = false;
+
+        _gm = FindObjectOfType<GameManager>();
     }
     public void OnObjectSpawn()
     {
@@ -135,6 +138,8 @@ public class Enemy : MonoBehaviour, IPoolInterface
             if (!ObjectPooler.Instance.poolDictionary["Enemy1"].Contains(this.gameObject))
             {
                 ObjectPooler.Instance.ReturnToQueue("Enemy1", this.gameObject);
+                _gm.totalEnemyKill++;
+                print(_gm.totalEnemyKill);
             }
         }
     }
