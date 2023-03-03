@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class SpawnManager : MonoBehaviour
 
     public int rounds;
     public int upgradedRounds = 1;
+    public int minArmor = 1;
     public int dificultLvl;
     public int waitForRounds;
 
@@ -86,9 +88,7 @@ public class SpawnManager : MonoBehaviour
                 enemyLimit = enemyLimit += Random.Range(1, 4);
                 spawRate -= 0.05f;
                 enemyPref.speed += 0.2f;
-            
-
-                hasBeenUpraded = true; 
+            hasBeenUpraded = true;
         }
     }
 
@@ -102,11 +102,13 @@ public class SpawnManager : MonoBehaviour
 
     void OnRoundsStart()
     {
-
-
         rounds++;
-        if(rounds >= 41)
+        if(rounds > 30)
         {
+            PlayerPrefs.SetString("Resul", "WIN");
+            PlayerPrefs.SetInt("Rounds", rounds - 1);
+            SceneManager.LoadScene(2);
+            
             print("win");
             return;
         }
@@ -116,8 +118,17 @@ public class SpawnManager : MonoBehaviour
 
         _gm.points += 50;
 
+        // REMOVE THE POSIBILITY TO SPAWN WEAK ENEMYS
+        if (rounds % 7 == 0 && hasBeenUpraded.Equals(false))
+        {
+            minArmor++;
+        }
+
         //Aumenta la dificultad de los enemigos
         lvlDificultUp(3 * upgradedRounds);
+
+        
+
 
         hasToSpawn = true;
         StartCoroutine(EnemySpawnTime(spawRate));

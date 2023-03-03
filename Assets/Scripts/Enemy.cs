@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour, IPoolInterface
     public int rewardEnemy;
     public int armor;
     private int maxArmor;
+    private int minArmor = 1;
 
     private SpriteRenderer enemyRender;
 
@@ -42,14 +43,15 @@ public class Enemy : MonoBehaviour, IPoolInterface
     public void OnObjectSpawn()
     {
         
-        maxArmor = SpawnManager.Instance.upgradedRounds + 1;
+        maxArmor = SpawnManager.Instance.upgradedRounds +1;
+        minArmor = SpawnManager.Instance.minArmor;
         if (maxArmor >= 10)
         {
             maxArmor = 10;
         }
 
         enemyRender = this.GetComponent<SpriteRenderer>();
-        armor = Random.Range(1, maxArmor);
+        armor = Random.Range(minArmor, maxArmor);
 
         UpdateArmor();
 
