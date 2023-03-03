@@ -26,6 +26,11 @@ public class Enemy : MonoBehaviour, IPoolInterface
     public bool isFire;
     public bool isCammo;
 
+    public AudioClip[] enemySounds;
+
+    //Particulas
+    public ParticleSystem dieParticle;
+
     private void Awake()
     {
         agente = GetComponent<NavMeshAgent>();
@@ -45,6 +50,8 @@ public class Enemy : MonoBehaviour, IPoolInterface
         
         maxArmor = SpawnManager.Instance.upgradedRounds +1;
         minArmor = SpawnManager.Instance.minArmor;
+
+        indicePoints = 1;
         if (maxArmor >= 10)
         {
             maxArmor = 10;
@@ -116,7 +123,6 @@ public class Enemy : MonoBehaviour, IPoolInterface
             else if (indicePoints == GoPoints.Length - 1)
             {
                 print("Ha llegado a su destino");
-                //Desactiva el enemgio y hace danyo al jugador
             }
         }
        
@@ -139,6 +145,10 @@ public class Enemy : MonoBehaviour, IPoolInterface
         {
             if (!ObjectPooler.Instance.poolDictionary["Enemy1"].Contains(this.gameObject))
             {
+                Instantiate(dieParticle.gameObject, this.transform.position, Quaternion.identity);
+
+                //REPRODUCIR SONIDO
+
                 ObjectPooler.Instance.ReturnToQueue("Enemy1", this.gameObject);
                 _gm.totalEnemyKill++;
                 print(_gm.totalEnemyKill);

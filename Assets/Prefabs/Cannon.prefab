@@ -376,17 +376,16 @@ MonoBehaviour:
   maxR1: 4
   maxR2: 4
   r1Powers:
-  - "DA\xD1O"
-  - VELOCIDAD DE ATAQUE
-  - VER CAMUFLADOS
-  - "DA\xD1O"
+  - DAMAGE
+  - ATTACK SPEED
+  - SEE CAMMO
+  - DAMAGE
   r2Powers:
-  - RANGO
-  - BALA PERFORANTE
-  - BALA DE FUEGO
-  - "DOBLE CA\xD1ON"
+  - RANGE
+  - PERFORATIVE BULLET
+  - FIRE BULLET
+  - DOBLE CANNON
   notShoot: 0
-  toGo: {x: 0, y: 0, z: 0}
 --- !u!58 &6303987638321047261
 CircleCollider2D:
   m_ObjectHideFlags: 0

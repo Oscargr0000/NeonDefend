@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         points = 150;
-        playerHP = 10;
+        playerHP = 100;
 
         UiManager.Instance.HpUpdate();
     }

@@ -312,19 +312,18 @@ MonoBehaviour:
   maxR1: 4
   maxR2: 4
   r1Powers:
-  - "DA\xD1O"
-  - RANGO
-  - "DA\xD1O"
-  - "DA\xD1O"
+  - DAMAGE
+  - RANGE
+  - DAMAGE
+  - DAMAGE
   - 
   r2Powers:
-  - RANGO
-  - "DA\xD1O"
-  - VER CAMUFLADOS
-  - RANGO
+  - RANGE
+  - DAMAGE
+  - SEE CAMMO
+  - RANGE
   - 
   notShoot: 1
-  toGo: {x: 0, y: 0, z: 0}
 --- !u!1 &8680815386288588753
 GameObject:
   m_ObjectHideFlags: 0

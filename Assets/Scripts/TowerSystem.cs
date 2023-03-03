@@ -70,7 +70,7 @@ public class TowerSystem : MonoBehaviour
     public int maxR1 = 4;
     public int maxR2 = 4;
 
-    //Nombre de los poderes
+    //Name of the powerUps
 
     public string[] r1Powers;
     public string[] r2Powers;
@@ -78,7 +78,7 @@ public class TowerSystem : MonoBehaviour
     // Tiempo del próximo disparo permitido
     private float tiempoSiguienteDisparo = 0.0f;
 
-    // Resultado de la detección
+    // Result of the dedtection
     private RaycastHit2D hit;
 
     private RaycastHit2D shottingHit;
@@ -87,10 +87,8 @@ public class TowerSystem : MonoBehaviour
 
 
 
-    public Vector3 toGo;
 
-
-    //Deteccion del globo
+    //Detect the enemy by a system of queue in every tower
     public Queue<GameObject> EnemyQueue = new Queue<GameObject>();
     private GameObject currentTarget;
 

@@ -138,8 +138,40 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6303987638321047260, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
+      propertyPath: r1Powers.Array.data[0]
+      value: RANGE
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047260, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
+      propertyPath: r1Powers.Array.data[1]
+      value: DAMAGE
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047260, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
+      propertyPath: r1Powers.Array.data[2]
+      value: ATTACK SPEED
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047260, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
+      propertyPath: r1Powers.Array.data[3]
+      value: ATTACK SPEED
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047260, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
       propertyPath: r1Powers.Array.data[4]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047260, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
+      propertyPath: r2Powers.Array.data[0]
+      value: RANGE
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047260, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
+      propertyPath: r2Powers.Array.data[1]
+      value: DAMAGE
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047260, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
+      propertyPath: r2Powers.Array.data[2]
+      value: SEE CAMMO
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303987638321047260, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
+      propertyPath: r2Powers.Array.data[3]
+      value: DAMAGE
       objectReference: {fileID: 0}
     - target: {fileID: 6303987638321047260, guid: 9366266b9e3cba34b988285f3583c850, type: 3}
       propertyPath: r2Powers.Array.data[4]
