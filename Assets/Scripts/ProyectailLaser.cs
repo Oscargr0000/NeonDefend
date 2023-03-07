@@ -33,7 +33,7 @@ public class ProyectailLaser : MonoBehaviour
             }
 
             //REFRESH ARMOR
-            hittedEnemy.UpdateArmor();
+            hittedEnemy.UpdateArmor(false);
 
             // PLAY SOUND OF HIT
             if (hittedEnemy.armor > 0)
@@ -74,7 +74,7 @@ public class ProyectailLaser : MonoBehaviour
     {
         hitted.armor -= damage;
 
-        hitted.UpdateArmor();
+        hitted.UpdateArmor(false);
 
         yield return new WaitForSeconds(time);
         StartCoroutine(MakeDamage(time, hitted));

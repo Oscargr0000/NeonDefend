@@ -233,7 +233,7 @@ public class TowerSystem : MonoBehaviour
 
                 AudioManager.Instance.PlaySound(this.gameObject, towerSounds[0]);
 
-                hittedEnemy.UpdateArmor();
+                hittedEnemy.UpdateArmor(true);
 
                 if(hittedEnemy.armor > 0)
                 {

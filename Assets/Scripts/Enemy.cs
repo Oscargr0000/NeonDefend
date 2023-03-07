@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour, IPoolInterface
         
         armor = Random.Range(minArmor, maxArmor);
 
-        UpdateArmor();
+        UpdateArmor(false);
 
 
 
@@ -134,7 +134,7 @@ public class Enemy : MonoBehaviour, IPoolInterface
     }
 
 
-    public void UpdateArmor()
+    public void UpdateArmor(bool playsound)
     {
         UiManager.Instance.UpdatePoints();
 
@@ -144,6 +144,11 @@ public class Enemy : MonoBehaviour, IPoolInterface
         }
 
         enemyRender.color = ArmorColor[armor];
+
+        if(armor> 0 && playsound)
+        {
+            AudioManager.Instance.PlaySound(this.gameObject, enemySounds[0]);
+        }
 
 
         if (armor <= 0)

@@ -85,17 +85,8 @@ public class ProyectailBoomerang : MonoBehaviour, IPoolInterface
                 hittedEnemy.armor = 0;
             }
 
-            // PLAY SOUND OF HIT
-            if (hittedEnemy.armor > 0)
-            {
-                AudioManager.Instance.PlaySound(this.gameObject,sounds[0]);
-            }
-            else
-            {
-                AudioManager.Instance.PlaySound(this.gameObject, sounds[1]);
-            }
 
-            hittedEnemy.UpdateArmor();
+            hittedEnemy.UpdateArmor(true);
         }
     }
 

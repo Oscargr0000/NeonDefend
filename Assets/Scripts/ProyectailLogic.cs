@@ -104,17 +104,7 @@ public class ProyectailLogic : MonoBehaviour, IPoolInterface
             
             hittedEnemy.armor -= damage;
 
-            // PLAY SOUND OF HIT
-            if (hittedEnemy.armor > 0)
-            {
-                AudioManager.Instance.PlaySound(this.gameObject, sounds[0]);
-            }
-            else
-            {
-                AudioManager.Instance.PlaySound(this.gameObject, sounds[1]);
-            }
-
-            hittedEnemy.UpdateArmor();
+            hittedEnemy.UpdateArmor(true);
         }
     }
 

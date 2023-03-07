@@ -9,17 +9,31 @@ public class MainMenu : MonoBehaviour
 {
     public Canvas mainMenuCanvas;
     public Canvas optionsCanvas;
+    public Canvas howtoCanvas;
 
     public Slider loadbar;
 
     public AudioMixer mixerMusic;
     public AudioMixer mixerEffects;
 
+    public Slider musicSlide;
+    public Slider effectSlide;
+
+    public AudioSource effectsMenu;
+
+    public AudioClip[] sounds;
+
     private void Start()
     {
         mainMenuCanvas.gameObject.SetActive(true);
         optionsCanvas.gameObject.SetActive(false);
+        howtoCanvas.gameObject.SetActive(false);
         loadbar.gameObject.SetActive(false);
+
+        musicSlide.value = PlayerPrefs.GetFloat("Music");
+        effectSlide.value = PlayerPrefs.GetFloat("Efectoss");
+
+        
     }
     public void ChangeScene(int scene)
     {
@@ -30,16 +44,30 @@ public class MainMenu : MonoBehaviour
     {
         optionsCanvas.gameObject.SetActive(true);
         mainMenuCanvas.gameObject.SetActive(false);
+
+        effectsMenu.PlayOneShot(sounds[1]);
     }
 
     public void GoMenu()
     {
         optionsCanvas.gameObject.SetActive(false);
         mainMenuCanvas.gameObject.SetActive(true);
+        howtoCanvas.gameObject.SetActive(false);
+
+        effectsMenu.PlayOneShot(sounds[0]);
+    }
+
+    public void GoHow()
+    {
+        mainMenuCanvas.gameObject.SetActive(false);
+        howtoCanvas.gameObject.SetActive(true);
+
+        effectsMenu.PlayOneShot(sounds[1]);
     }
 
     public void SceneLoad(int sceneInx)
     {
+        effectsMenu.PlayOneShot(sounds[2]);
         loadbar.gameObject.SetActive(true);
 
         StartCoroutine(LoadAsync(sceneInx));
@@ -58,12 +86,21 @@ public class MainMenu : MonoBehaviour
 
     public void ChangeMusicVol(float sliderValue)
     {
-        mixerMusic.SetFloat("MusicVol", Mathf.Log10( sliderValue)*20);
+        PlayerPrefs.SetFloat("Music", sliderValue);
+        mixerMusic.SetFloat("MusicVol", Mathf.Log10(PlayerPrefs.GetFloat("Music")) *20);
+        
     }
 
     public void ChangeEffectVol(float sliderValue)
     {
-        mixerEffects.SetFloat("EffectVol", Mathf.Log10(sliderValue) * 20);
+        PlayerPrefs.SetFloat("Efectoss", sliderValue);
+        mixerEffects.SetFloat("EfectosVol", Mathf.Log10(PlayerPrefs.GetFloat("Efectoss")) * 20);
+
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 
 }
