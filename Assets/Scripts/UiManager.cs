@@ -35,6 +35,8 @@ public class UiManager : MonoBehaviour
     public GameObject[] visualsR1;
     public GameObject[] visualsR2;
 
+    public AudioClip[] sounds;
+
     private void Start()
     {
         _ts = FindObjectOfType<TowerSystem>();
@@ -64,6 +66,7 @@ public class UiManager : MonoBehaviour
             animationCanvas.SetBool("isOpen", true);
         }
 
+        AudioManager.Instance.PlaySound(this.gameObject, sounds[0]);
     }
 
     public void HpUpdate()

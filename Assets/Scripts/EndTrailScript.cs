@@ -6,6 +6,8 @@ public class EndTrailScript : MonoBehaviour
 {
     private GameManager _gm;
 
+    public AudioClip[] sounds;
+
     private void Start()
     {
         _gm = FindObjectOfType<GameManager>();
@@ -14,6 +16,7 @@ public class EndTrailScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            AudioManager.Instance.PlaySound(this.gameObject, sounds[0]);
             Enemy enemyEnter = collision.GetComponent<Enemy>();
 
             _gm.playerHP -= enemyEnter.armor *2;

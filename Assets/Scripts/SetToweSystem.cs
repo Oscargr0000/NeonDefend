@@ -34,6 +34,8 @@ public class SetToweSystem : MonoBehaviour
     public GameObject postProcess;
     private ChannelMixer cm;
 
+    public AudioClip[] sounds;
+
     private void Start()
     {
         Volume postpro = postProcess.GetComponent<Volume>();
@@ -98,6 +100,9 @@ public class SetToweSystem : MonoBehaviour
         //Resta del precio a los puntos
         _gm.points = _gm.points -= towerPrice;
 
+
+        //PLAY SOUNDS
+        AudioManager.Instance.PlaySound(this.gameObject, sounds[0]);
        
 
         //Quita todo lo relacionado con la seleccion
@@ -114,6 +119,8 @@ public class SetToweSystem : MonoBehaviour
         if(_gm.points >= priceList[towerToSelect])
         {
             settingMode = true;
+
+            AudioManager.Instance.PlaySound(this.gameObject, sounds[1]);
 
             indxTowerSel = towerToSelect;
             bluePrints[indxTowerSel].gameObject.SetActive(true);

@@ -20,11 +20,15 @@ public class Enemy : MonoBehaviour, IPoolInterface
 
     public Color[] ArmorColor;
 
+    public Color fireColor;
+    public Color cammoColor;
+
     public int speed;
     public int damage;
 
     public bool isFire;
     public bool isCammo;
+
 
     public AudioClip[] enemySounds;
 
@@ -44,10 +48,11 @@ public class Enemy : MonoBehaviour, IPoolInterface
         agente.updateUpAxis = false;
 
         _gm = FindObjectOfType<GameManager>();
+        
     }
     public void OnObjectSpawn()
     {
-        
+        enemyRender = this.GetComponent<SpriteRenderer>();
         maxArmor = SpawnManager.Instance.upgradedRounds +1;
         minArmor = SpawnManager.Instance.minArmor;
 
@@ -57,7 +62,7 @@ public class Enemy : MonoBehaviour, IPoolInterface
             maxArmor = 10;
         }
 
-        enemyRender = this.GetComponent<SpriteRenderer>();
+        
         armor = Random.Range(minArmor, maxArmor);
 
         UpdateArmor();
@@ -81,21 +86,21 @@ public class Enemy : MonoBehaviour, IPoolInterface
                 isFire = true;
                 isCammo = false;
 
-                enemyRender.color = Color.gray;
-                //Colocar textura metal
+                enemyRender.color = cammoColor;
                 break;
             case 2:
                 isCammo = true;
                 isFire = false;
 
-                enemyRender.color = Color.magenta;
-                //Colocar textura cammo
+                enemyRender.color = fireColor;
+
                 break;
 
             default:
                 isFire = false;
                 isCammo = false;
                 //QUITAR TEXTURAS
+                
                 break;
 
         }
@@ -146,8 +151,6 @@ public class Enemy : MonoBehaviour, IPoolInterface
             if (!ObjectPooler.Instance.poolDictionary["Enemy1"].Contains(this.gameObject))
             {
                 Instantiate(dieParticle.gameObject, this.transform.position, Quaternion.identity);
-
-                //REPRODUCIR SONIDO
 
                 ObjectPooler.Instance.ReturnToQueue("Enemy1", this.gameObject);
                 _gm.totalEnemyKill++;

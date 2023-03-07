@@ -8,6 +8,8 @@ public class ProyectailLaser : MonoBehaviour
 
     public int damage = 1;
 
+    public AudioClip[] sounds;
+
     private void Start()
     {
         _gm = FindObjectOfType<GameManager>();
@@ -32,6 +34,16 @@ public class ProyectailLaser : MonoBehaviour
 
             //REFRESH ARMOR
             hittedEnemy.UpdateArmor();
+
+            // PLAY SOUND OF HIT
+            if (hittedEnemy.armor > 0)
+            {
+                AudioManager.Instance.PlaySound(this.gameObject, sounds[0]);
+            }
+            else
+            {
+                AudioManager.Instance.PlaySound(this.gameObject, sounds[1]);
+            }
 
             if (hittedEnemy.armor <= 0)
             {

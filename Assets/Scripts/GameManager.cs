@@ -14,8 +14,6 @@ public class GameManager : MonoBehaviour
 
     public int totalEnemyKill;
 
-    
-
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +34,6 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        PlayerPrefs.SetString("Resul", "GAME OVER");
         PlayerPrefs.SetInt("TotalKill", totalEnemyKill);
         PlayerPrefs.SetInt("Rounds",SpawnManager.Instance.rounds);
        

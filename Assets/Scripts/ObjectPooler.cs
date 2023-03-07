@@ -91,6 +91,7 @@ public class ObjectPooler : MonoBehaviour
 
     public void AddObject(string tag, GameObject gameobject)
     {
+        print("Ha creado uno nuevo");
         GameObject obj = Instantiate(gameObject);
         obj.SetActive(false);
         poolDictionary[tag].Enqueue(obj);

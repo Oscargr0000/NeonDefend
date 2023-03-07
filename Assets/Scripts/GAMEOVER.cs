@@ -9,6 +9,8 @@ public class GAMEOVER : MonoBehaviour
     public TextMeshProUGUI totalRounds;
     public TextMeshProUGUI enemyText;
     public TextMeshProUGUI highScore;
+
+    public AudioClip[] sounds;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,20 @@ public class GAMEOVER : MonoBehaviour
 
         int HighScore = PlayerPrefs.GetInt("EnemyKill");
         int totalKill = PlayerPrefs.GetInt("TotalKill");
+        int currentRounds = PlayerPrefs.GetInt("Rounds");
+
+        if(currentRounds>= 30)
+        {
+            resultText.text = "WIN";
+            AudioManager.Instance.PlaySound(this.gameObject, sounds[0]);
+        }
+        else
+        {
+            resultText.text = "GAME OVER";
+            AudioManager.Instance.PlaySound(this.gameObject, sounds[1]);
+
+        }
+
         // HIGH SCORE
         if (totalKill > HighScore)
         {
@@ -24,11 +40,8 @@ public class GAMEOVER : MonoBehaviour
             PlayerPrefs.SetInt("EnemyKill", totalKill);
         }
 
-
-
-        resultText.text = PlayerPrefs.GetString("Resul");
-        totalRounds.text = PlayerPrefs.GetInt("Rounds").ToString();
-        enemyText.text = PlayerPrefs.GetInt("TotalKill").ToString();
+        totalRounds.text = currentRounds.ToString();
+        enemyText.text = totalKill.ToString();
         highScore.text = PlayerPrefs.GetInt("EnemyKill").ToString();
 
     }

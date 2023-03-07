@@ -26,6 +26,8 @@ public class LvlUpSystem : MonoBehaviour
     public Button rama1Button;
     public Button rama2Button;
 
+    public AudioClip[] sound;
+
 
     private void Start()
     {
@@ -146,6 +148,8 @@ public class LvlUpSystem : MonoBehaviour
     {
         if(currentTower.gameObject != null)
         {
+
+            AudioManager.Instance.PlaySound(this.gameObject, sound[0]);
             _gm.points += stats_tower.price / 2;
             Destroy(stats_tower.transform.parent.gameObject);
             RefreshButtons();

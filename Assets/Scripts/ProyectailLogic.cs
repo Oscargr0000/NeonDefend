@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProyectailLogic : MonoBehaviour, IPoolInterface
 {
     public float proyectailSpeed;
-    private int timeToDestroy = 5;
+    private int timeToDestroy = 1;
 
     public int damage;
 
@@ -18,10 +18,16 @@ public class ProyectailLogic : MonoBehaviour, IPoolInterface
     private Enemy _enemyS;
     private ObjectPooler _objP;
 
+    private bool hasbeenDesactivated;
+
+    public AudioClip[] sounds;
+
 
     public void OnObjectSpawn()
     {
+        hasbeenDesactivated = false;
         StartCoroutine(DestroyAfter(timeToDestroy));
+        
     }
 
     private void Start()
@@ -41,12 +47,16 @@ public class ProyectailLogic : MonoBehaviour, IPoolInterface
     // DESTROY AFTER TIME
     IEnumerator DestroyAfter(int timeleft)
     {
-        yield return new WaitForSeconds(timeleft);
-        string name = gameObject.name;
-        string a = "(Clone)";
-        name = name.Replace(a, "");
+        if (hasbeenDesactivated.Equals(false))
+        {
+            yield return new WaitForSeconds(timeleft);
+            string name = gameObject.name;
+            string a = "(Clone)";
+            name = name.Replace(a, "");
 
-        ObjectPooler.Instance.ReturnToQueue(name, gameObject);
+            ObjectPooler.Instance.ReturnToQueue(name, gameObject);
+            hasbeenDesactivated = true;
+        } 
     }
 
 
@@ -67,6 +77,7 @@ public class ProyectailLogic : MonoBehaviour, IPoolInterface
                     name = name.Replace(a, "");
 
                     ObjectPooler.Instance.ReturnToQueue(name, gameObject);
+                    hasbeenDesactivated = true;
                 }
 
                 return;
@@ -82,6 +93,7 @@ public class ProyectailLogic : MonoBehaviour, IPoolInterface
                     name = name.Replace(a, "");
 
                     ObjectPooler.Instance.ReturnToQueue(name, gameObject);
+                    hasbeenDesactivated = true;
                 }
 
                 return;
@@ -91,6 +103,16 @@ public class ProyectailLogic : MonoBehaviour, IPoolInterface
 
             
             hittedEnemy.armor -= damage;
+
+            // PLAY SOUND OF HIT
+            if (hittedEnemy.armor > 0)
+            {
+                AudioManager.Instance.PlaySound(this.gameObject, sounds[0]);
+            }
+            else
+            {
+                AudioManager.Instance.PlaySound(this.gameObject, sounds[1]);
+            }
 
             hittedEnemy.UpdateArmor();
         }
@@ -107,6 +129,7 @@ public class ProyectailLogic : MonoBehaviour, IPoolInterface
             name = name.Replace(a, "");
 
             ObjectPooler.Instance.ReturnToQueue(name, gameObject);
+            hasbeenDesactivated = true;
         }
     }
 }

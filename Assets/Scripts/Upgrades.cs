@@ -13,6 +13,8 @@ public class Upgrades : MonoBehaviour
     public GameObject botonR1;
     public GameObject botonR2;
 
+    public AudioClip[] sounds;
+
     private void Start()
     {
         _ts = FindObjectOfType<TowerSystem>();
@@ -21,6 +23,7 @@ public class Upgrades : MonoBehaviour
 
     public void UpgradeR1()
     {
+        AudioManager.Instance.PlaySound(this.gameObject, sounds[0]);
         switch (_lvlUpS.stats_tower.idxR1)
         {
             //---------MEJORA 1---------- 
@@ -145,6 +148,8 @@ public class Upgrades : MonoBehaviour
 
     public void UpgradeR2()
     {
+        AudioManager.Instance.PlaySound(this.gameObject, sounds[0]);
+
         switch (_lvlUpS.stats_tower.idxR2)
         {
 

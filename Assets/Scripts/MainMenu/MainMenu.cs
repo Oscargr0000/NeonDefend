@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class MainMenu : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class MainMenu : MonoBehaviour
     public Canvas optionsCanvas;
 
     public Slider loadbar;
+
+    public AudioMixer mixer;
 
     private void Start()
     {
@@ -39,8 +42,6 @@ public class MainMenu : MonoBehaviour
         loadbar.gameObject.SetActive(true);
 
         StartCoroutine(LoadAsync(sceneInx));
-
-
     }
 
     IEnumerator LoadAsync(int sceneindx)
@@ -52,6 +53,11 @@ public class MainMenu : MonoBehaviour
             loadbar.value = asyncoperation.progress;
             yield return null;
         }
+    }
+
+    public void ChangeMusicVol(float sliderValue)
+    {
+        mixer.SetFloat("MusicVol", Mathf.Log10( sliderValue)*20);
     }
 
 }

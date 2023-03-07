@@ -36,7 +36,9 @@ public class SpawnManager : MonoBehaviour
 
     //Delimitar en el inspector
     private bool isWaiting;
-    
+
+
+    public AudioClip[] sounds;
 
     private void Start()
     {
@@ -105,7 +107,6 @@ public class SpawnManager : MonoBehaviour
         rounds++;
         if(rounds > 30)
         {
-            PlayerPrefs.SetString("Resul", "WIN");
             PlayerPrefs.SetInt("Rounds", rounds - 1);
             SceneManager.LoadScene(2);
             
@@ -113,6 +114,7 @@ public class SpawnManager : MonoBehaviour
             return;
         }
 
+        AudioManager.Instance.PlaySound(this.gameObject, sounds[0]);
         UiManager.Instance.UpdateRounds();
         UiManager.Instance.UpdatePoints();
 

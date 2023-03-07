@@ -85,6 +85,10 @@ public class TowerSystem : MonoBehaviour
 
     public bool notShoot;
 
+    //SOUND EFFECTS
+
+    public AudioClip[] towerSounds;
+
 
 
 
@@ -133,7 +137,7 @@ public class TowerSystem : MonoBehaviour
         CheckForTargets();
 
 
-        // Comprobamos si es el momento de disparar
+        // CHECK IF IT HAS TO SHOOT
         if (hasToShoot.Equals(true) && Time.time >= tiempoSiguienteDisparo)
         {
             if (Type.Equals(TowerType.Cannon))
@@ -154,8 +158,7 @@ public class TowerSystem : MonoBehaviour
             }
            
 
-
-            // Actualizamos el tiempo del próximo disparo permitido
+            //UPDATE THE TIME FOR THE NEXT SHOOT
             tiempoSiguienteDisparo = Time.time + shootingSpeed;
         }
     }
@@ -165,10 +168,10 @@ public class TowerSystem : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Lanzar rayo circular desde la posición de la torre
+        // CREATES A CIRCLE RAYCAST ON THE TORRET
         hit = Physics2D.CircleCast(transform.position, range, Vector2.zero,EnemyLayer);
 
-        // Dibujar rayo circular en la escena
+        // DRAW THE RAYCAST
         Debug.DrawRay(transform.position, Vector2.right * range, Color.red);
         Debug.DrawRay(transform.position, Vector2.up * range, Color.red);
         Debug.DrawRay(transform.position, Vector2.left * range, Color.red);
@@ -182,38 +185,40 @@ public class TowerSystem : MonoBehaviour
         if(!useRayCast)
         {
 
-            if (Type.Equals(TowerType.Cannon))
+            if (Type.Equals(TowerType.Cannon)) //IF THE TOWER IS CANNON
             {
-                //Si no existen objetos en la cola es dificil dispararlos
+                //IF THE POOL IS EMPTY CREATES NEW OBJECTS
                 if (_objPool.poolDictionary[proyectailPool].Count.Equals(0))
                 {
                     _objPool.AddObject(proyectailPool, proyectail);
                 }
 
-                //Agrega el daño al proyectil
+                //ADD THE DAMAGE TO THE SPAWNED OBJECT
                 _objPool.poolDictionary[proyectailPool].Peek().GetComponent<ProyectailLogic>().damage = damage;
                 _objPool.poolDictionary[proyectailPool].Peek().GetComponent<ProyectailLogic>().seeCamo = seeCamuf;
             }
-            else if (Type.Equals(TowerType.Boomerang))
+            else if (Type.Equals(TowerType.Boomerang)) //IF THE TOWER IS BOOMERANG
             {
-                //Si no existen objetos en la cola es dificil dispararlos
+                //IF THE POOL IS EMPTY CREATES NEW OBJECTS
                 if (_objPool.poolDictionary[proyectailPool].Count.Equals(0))
                 {
                     _objPool.AddObject(proyectailPool, proyectail);
                 }
 
-                //Agrega el daño al proyectil
+                //ADD THE DAMAGE TO THE SPAWNED OBJECT
                 _objPool.poolDictionary[proyectailPool].Peek().GetComponentInChildren<ProyectailBoomerang>().damage = damage;
                 _objPool.poolDictionary[proyectailPool].Peek().GetComponentInChildren<ProyectailBoomerang>().seeCamo = seeCamuf;
             }
 
 
-            //Dispara el proyectil
+            //SHOOT THE PROYECTAIL
             _objPool.SpawnFromPool(proyectailPool, this.gameObject.transform.GetChild(0).transform.position, transform.rotation);
+
+            AudioManager.Instance.PlaySound(this.gameObject, towerSounds[0]);
         }
-        else
+        else  // IF USES RAYCAST
         {
-            //Lanza el rayo a la posicion del enemigo mas alto en la cola
+            //SHOOT THE RAYCAST IN THE POSITION OF THE HIGHEST OBJECT OF THE QUEUE
             Color raycolor = Color.green;
             Vector2 ShotDirection = transform.up = currentTarget.transform.position - transform.position;
 
@@ -222,21 +227,30 @@ public class TowerSystem : MonoBehaviour
 
             if (shottingHit.collider)
             {
+                Enemy hittedEnemy = shottingHit.collider.GetComponent<Enemy>();
+
+                hittedEnemy.armor -= damage;
+
+                AudioManager.Instance.PlaySound(this.gameObject, towerSounds[0]);
+
+                hittedEnemy.UpdateArmor();
+
+                if(hittedEnemy.armor > 0)
+                {
+                    return;
+                }
+
                 if (shottingHit.collider.gameObject.CompareTag("Enemy"))
                 {
-                    //Comprueba que exista el gameobject en la cola y desactiva y devuelve a la cola
+                    //CHECK IF EXIST THE HITTED OBJECT IN THE QUEUE AND DESACTIVATED
                     if (_objPool.poolDictionary["Enemy1"].Contains(shottingHit.collider.gameObject))
                     {
                         _gm.points += shottingHit.collider.GetComponent<Enemy>().rewardEnemy;
 
-                        //Reset del Enemy
-                        shottingHit.collider.gameObject.SetActive(false);
-                        _objPool.poolDictionary["Enemy1"].Enqueue(shottingHit.collider.gameObject);
-
-                        print("Le ha dado");
+                        //Reset OF Enemy
+                        _objPool.ReturnToQueue("Enemy1",shottingHit.collider.gameObject);
                     }
                 }
-                Debug.Log("EL FRANCOTIRADOR LE HA REVENTAO");
             }
         }
        

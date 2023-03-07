@@ -18,9 +18,15 @@ public class ProyectailBoomerang : MonoBehaviour, IPoolInterface
     private Enemy _enemyS;
     private ObjectPooler _objP;
 
+    private bool hasbeenDesactivated;
+
+    public AudioClip[] sounds;
+
     public void OnObjectSpawn()
     {
-        StartCoroutine(DestroyAfter(8));
+        hasbeenDesactivated = false;
+        //StartCoroutine(DestroyAfter(1));
+        
     }
 
     private void Start()
@@ -47,6 +53,7 @@ public class ProyectailBoomerang : MonoBehaviour, IPoolInterface
                     name = name.Replace(a, "");
 
                     ObjectPooler.Instance.ReturnToQueue(name, gameObject);
+                    hasbeenDesactivated = true;
                 }
 
                 return;
@@ -62,6 +69,7 @@ public class ProyectailBoomerang : MonoBehaviour, IPoolInterface
                     name = name.Replace(a, "");
 
                     ObjectPooler.Instance.ReturnToQueue(name, gameObject);
+                    hasbeenDesactivated = true;
                 }
 
                 return;
@@ -77,27 +85,32 @@ public class ProyectailBoomerang : MonoBehaviour, IPoolInterface
                 hittedEnemy.armor = 0;
             }
 
-            hittedEnemy.UpdateArmor();
-        }
-
-        if (collision.gameObject.CompareTag("FireEnemy"))
-        {
-            if (bulletIsFire.Equals(true))
+            // PLAY SOUND OF HIT
+            if (hittedEnemy.armor > 0)
             {
-
-                EnemyHitted(collision.GetComponent<Enemy>().rewardEnemy);
+                AudioManager.Instance.PlaySound(this.gameObject,sounds[0]);
             }
+            else
+            {
+                AudioManager.Instance.PlaySound(this.gameObject, sounds[1]);
+            }
+
+            hittedEnemy.UpdateArmor();
         }
     }
 
     IEnumerator DestroyAfter(int timeleft)
     {
-        yield return new WaitForSeconds(timeleft);
-        string name = gameObject.name;
-        string a = "(Clone)";
-        name = name.Replace(a, "");
+        if (hasbeenDesactivated.Equals(false))
+        {
+            yield return new WaitForSeconds(timeleft);
+            string name = gameObject.name;
+            string a = "(Clone)";
+            name = name.Replace(a, "");
 
-        ObjectPooler.Instance.ReturnToQueue(name, gameObject);
+            ObjectPooler.Instance.ReturnToQueue(name, gameObject);
+            hasbeenDesactivated = true;
+        }       
     }
 
     void EnemyHitted(int points)
