@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GAMEOVER : MonoBehaviour
 {
@@ -14,9 +15,6 @@ public class GAMEOVER : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-       
-
         int HighScore = PlayerPrefs.GetInt("EnemyKill");
         int totalKill = PlayerPrefs.GetInt("TotalKill");
         int currentRounds = PlayerPrefs.GetInt("Rounds");
@@ -45,4 +43,12 @@ public class GAMEOVER : MonoBehaviour
         highScore.text = PlayerPrefs.GetInt("EnemyKill").ToString();
 
     }
+
+
+    public void GoScene(int scene)
+    {
+        SceneManager.LoadScene(scene); 
+    }
+
+    
 }

@@ -258,8 +258,8 @@ public class TowerSystem : MonoBehaviour
 
     void CheckForTargets()
     {
-        if (!useRayCast)
-        {
+        //if (!useRayCast)
+        //{
             if (EnemyQueue.Count > 0)
             {
 
@@ -283,8 +283,8 @@ public class TowerSystem : MonoBehaviour
             {
                 hasToShoot = false;
             }
-        }
-        else if(useRayCast)
+        //}
+        /*else if(useRayCast)
         {
             if(_objPool.poolDictionary["Enemy1"].Count > 0)
             {
@@ -299,7 +299,7 @@ public class TowerSystem : MonoBehaviour
                 hasToShoot = false;
             }
 
-        }
+        }*/
      }
 
     void DobleCannonShot(string proyectailPool)

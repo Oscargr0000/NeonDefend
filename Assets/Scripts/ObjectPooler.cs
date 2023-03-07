@@ -100,6 +100,8 @@ public class ObjectPooler : MonoBehaviour
 
     public void ReturnToQueue(string dictionaryTag, GameObject objectdestroyet)
     {
+
+        objectdestroyet.transform.position = new Vector3(-12f, 0.4f, 0f);
         poolDictionary[dictionaryTag].Enqueue(objectdestroyet);
         objectdestroyet.SetActive(false);
     }

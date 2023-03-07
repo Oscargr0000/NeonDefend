@@ -159,7 +159,6 @@ public class Enemy : MonoBehaviour, IPoolInterface
 
                 ObjectPooler.Instance.ReturnToQueue("Enemy1", this.gameObject);
                 _gm.totalEnemyKill++;
-                print(_gm.totalEnemyKill);
             }
         }
     }
