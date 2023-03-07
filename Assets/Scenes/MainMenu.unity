@@ -1061,10 +1061,22 @@ MonoBehaviour:
   m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.0001
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1440729757}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: ChangeEffectVol
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &923138527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,7 +1846,8 @@ MonoBehaviour:
   mainMenuCanvas: {fileID: 1160637528}
   optionsCanvas: {fileID: 1442476181}
   loadbar: {fileID: 1282156154}
-  mixer: {fileID: 24100000, guid: 466a534c9933ff44ca81d98479594b19, type: 2}
+  mixerMusic: {fileID: 24100000, guid: 466a534c9933ff44ca81d98479594b19, type: 2}
+  mixerEffects: {fileID: 24100000, guid: 1f3c42edf186fd04181f05e9bb1311ed, type: 2}
 --- !u!4 &1440729758
 Transform:
   m_ObjectHideFlags: 0
@@ -2244,8 +2257,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -5, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
+  m_AnchoredPosition: {x: -0.31015015, y: 0}
+  m_SizeDelta: {x: -10.619702, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1638070582
 GameObject:
@@ -2281,8 +2294,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -5, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
+  m_AnchoredPosition: {x: -0.3500061, y: 0}
+  m_SizeDelta: {x: -10.699981, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1733551700
 GameObject:

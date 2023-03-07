@@ -12,7 +12,8 @@ public class MainMenu : MonoBehaviour
 
     public Slider loadbar;
 
-    public AudioMixer mixer;
+    public AudioMixer mixerMusic;
+    public AudioMixer mixerEffects;
 
     private void Start()
     {
@@ -57,7 +58,12 @@ public class MainMenu : MonoBehaviour
 
     public void ChangeMusicVol(float sliderValue)
     {
-        mixer.SetFloat("MusicVol", Mathf.Log10( sliderValue)*20);
+        mixerMusic.SetFloat("MusicVol", Mathf.Log10( sliderValue)*20);
+    }
+
+    public void ChangeEffectVol(float sliderValue)
+    {
+        mixerEffects.SetFloat("EffectVol", Mathf.Log10(sliderValue) * 20);
     }
 
 }
