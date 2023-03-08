@@ -10,8 +10,6 @@ public class LaserTowerScript : MonoBehaviour
     public TowerScriptableObject scriptable_Stats;
     private GameManager _gm;
 
-    private Enemy _enemyS;
-    private ObjectPooler _objPool;
     private TowerSystem _ts;
 
     private CircleCollider2D TowerCollider;
@@ -26,14 +24,10 @@ public class LaserTowerScript : MonoBehaviour
 
     void Start()
     {
-       
-
         _gm = FindObjectOfType<GameManager>();
-        _enemyS = FindObjectOfType<Enemy>();
-        _objPool = ObjectPooler.Instance;
         TowerCollider = this.GetComponent<CircleCollider2D>();
 
-
+        // WHEN THE TOWER IS SET IT START THE SET UP MODE
         isSettingUp = true;
         UpdateRange(_ts.range);
 
@@ -44,7 +38,7 @@ public class LaserTowerScript : MonoBehaviour
     {
         if (isSettingUp.Equals(true))
         {
-            //Acede a la posicion del mouse cuando hace click
+            //ACCED TO THE POSITION OF THE MOUSE
 
             var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
             var angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
@@ -59,7 +53,7 @@ public class LaserTowerScript : MonoBehaviour
     }
 
    
-
+    // UPDATE THE RANGE OF THE LASER
     public void UpdateRange(float newRange)
     {
         transform.GetChild(1).transform.localScale += new Vector3(0f, newRange, 0f);

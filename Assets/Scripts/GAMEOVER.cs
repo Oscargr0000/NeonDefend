@@ -12,13 +12,17 @@ public class GAMEOVER : MonoBehaviour
     public TextMeshProUGUI highScore;
 
     public AudioClip[] sounds;
-    // Start is called before the first frame update
+ 
+
     void Start()
     {
+        //GET INFORMATION FROM DATA
         int HighScore = PlayerPrefs.GetInt("EnemyKill");
         int totalKill = PlayerPrefs.GetInt("TotalKill");
         int currentRounds = PlayerPrefs.GetInt("Rounds");
 
+
+        // CHANGE IF WIN OR LOSE DEPEND OF THE RESULT
         if(currentRounds>= 30)
         {
             resultText.text = "WIN";
@@ -38,6 +42,8 @@ public class GAMEOVER : MonoBehaviour
             PlayerPrefs.SetInt("EnemyKill", totalKill);
         }
 
+
+        // SET DATA TO THE TEXT
         totalRounds.text = currentRounds.ToString();
         enemyText.text = totalKill.ToString();
         highScore.text = PlayerPrefs.GetInt("EnemyKill").ToString();

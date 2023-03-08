@@ -12,11 +12,12 @@ public class MovementBoomerang : MonoBehaviour, IPoolInterface
         StartCoroutine(DestroyAfter(timeToDestroy));
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         transform.Translate(Vector2.up * proyectailSpeed * Time.deltaTime);
     }
+
     IEnumerator DestroyAfter(int timeleft)
     {
 
@@ -25,9 +26,6 @@ public class MovementBoomerang : MonoBehaviour, IPoolInterface
             string a = "(Clone)";
             name = name.Replace(a, "");
 
-            ObjectPooler.Instance.ReturnToQueue(name, gameObject);
-        print("lo ha devuetlo" + gameObject +" a la cola" + name);
-
-        
+            ObjectPooler.Instance.ReturnToQueue(name, gameObject);        
     }
 }

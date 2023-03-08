@@ -110,7 +110,6 @@ public class SpawnManager : MonoBehaviour
             PlayerPrefs.SetInt("Rounds", rounds - 1);
             SceneManager.LoadScene(2);
             
-            print("win");
             return;
         }
 

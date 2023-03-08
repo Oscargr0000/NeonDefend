@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProyectailBoomerang : MonoBehaviour, IPoolInterface
+public class ProyectailBoomerang : MonoBehaviour
 {
     public float proyectailSpeed;
     
@@ -14,26 +14,13 @@ public class ProyectailBoomerang : MonoBehaviour, IPoolInterface
     public bool seeCamo;
 
     private GameManager _gm;
-    private LvlUpSystem _lvl;
-    private Enemy _enemyS;
-    private ObjectPooler _objP;
-
-    private bool hasbeenDesactivated;
 
     public AudioClip[] sounds;
 
-    public void OnObjectSpawn()
-    {
-        hasbeenDesactivated = false;
-        //StartCoroutine(DestroyAfter(1));
-        
-    }
 
     private void Start()
     {
         _gm = FindObjectOfType<GameManager>();
-        _lvl = FindObjectOfType<LvlUpSystem>();
-        _objP = ObjectPooler.Instance;
         
     }
 
@@ -43,38 +30,38 @@ public class ProyectailBoomerang : MonoBehaviour, IPoolInterface
         {
             Enemy hittedEnemy = collision.GetComponent<Enemy>();
 
-            //Si el enemigo es de fuego y la bala no, no hace NADA
+            // IF THE ENEMY IS FIRE THE BULLET DOESNT DO NOTHING
             if (hittedEnemy.isFire.Equals(true) && !bulletIsFire)
             {
-                if (notDestroy.Equals(false)) //Si la bala no tiene el booleano en true las balas atravesaran los enemigos
+                if (notDestroy.Equals(false))
                 {
                     string name = gameObject.name;
                     string a = "(Clone)";
                     name = name.Replace(a, "");
 
                     ObjectPooler.Instance.ReturnToQueue(name, gameObject);
-                    hasbeenDesactivated = true;
                 }
 
                 return;
             }
 
-            //Si el enemigo es de camuflaje y la bala no, no hace NADA
+            // IF THE ENEMY IS CAMMO THE BULLET DOESNT DO NOTHING
+
             if (hittedEnemy.isCammo.Equals(true) && !seeCamo)
             {
-                if (notDestroy.Equals(false)) //Si la bala no tiene el booleano en true las balas atravesaran los enemigos
+                if (notDestroy.Equals(false)) 
                 {
                     string name = gameObject.name;
                     string a = "(Clone)";
                     name = name.Replace(a, "");
 
                     ObjectPooler.Instance.ReturnToQueue(name, gameObject);
-                    hasbeenDesactivated = true;
                 }
 
                 return;
             }
 
+            //UPDATE THE ENEMY
 
             EnemyHitted(collision.GetComponent<Enemy>().rewardEnemy);
 
@@ -90,22 +77,8 @@ public class ProyectailBoomerang : MonoBehaviour, IPoolInterface
         }
     }
 
-    IEnumerator DestroyAfter(int timeleft)
-    {
-        if (hasbeenDesactivated.Equals(false))
-        {
-            yield return new WaitForSeconds(timeleft);
-            string name = gameObject.name;
-            string a = "(Clone)";
-            name = name.Replace(a, "");
-
-            ObjectPooler.Instance.ReturnToQueue(name, gameObject);
-            hasbeenDesactivated = true;
-        }       
-    }
-
     void EnemyHitted(int points)
     {
-        _gm.points += points * damage;  //Cambiar en un futuro, acceder al daño de la bala y sumar esa cantidad de puntos
+        _gm.points += points * damage;
     }
 }

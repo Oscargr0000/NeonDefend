@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour, IPoolInterface
     public Transform[] GoPoints;
     private int indicePoints;
 
+    //STATS
     public int rewardEnemy;
     public int armor;
     private int maxArmor;
@@ -29,10 +30,8 @@ public class Enemy : MonoBehaviour, IPoolInterface
     public bool isFire;
     public bool isCammo;
 
-
     public AudioClip[] enemySounds;
 
-    //Particulas
     public ParticleSystem dieParticle;
 
     private void Awake()
@@ -42,8 +41,11 @@ public class Enemy : MonoBehaviour, IPoolInterface
 
     private void Start()
     {
+        //STATS
         agente.speed = 4;
         indicePoints = 1;
+
+        // FIX MOVEMENT FOR 2D IA
         agente.updateRotation = false;
         agente.updateUpAxis = false;
 
@@ -62,17 +64,15 @@ public class Enemy : MonoBehaviour, IPoolInterface
             maxArmor = 10;
         }
 
-        
         armor = Random.Range(minArmor, maxArmor);
 
         UpdateArmor(false);
 
 
 
+        //SELECT FIRE OR CAMMO
 
-        //SELECIONAR FIRE O CAMMO
-
-        if (SpawnManager.Instance.rounds < 15)
+        if (SpawnManager.Instance.rounds < 12)
         {
             return;
         }
@@ -99,26 +99,24 @@ public class Enemy : MonoBehaviour, IPoolInterface
             default:
                 isFire = false;
                 isCammo = false;
-                //QUITAR TEXTURAS
                 
                 break;
-
         }
     }
 
     private void Update()
     {
-        //Seguro de posicion
+        //FIX THE POSITION
         this.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-
       
         agente.SetDestination(GoPoints[indicePoints].position);
-        //transform.Translate(Vector2.up * 3 * Time.deltaTime);
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //SYSTEM FOR THE MOVEMENT OF THE IA
+        //When arrive to point change the objective to the next one
         if (collision.gameObject.CompareTag("GoPoints"))
         {
             if (indicePoints < GoPoints.Length - 1)
@@ -133,7 +131,7 @@ public class Enemy : MonoBehaviour, IPoolInterface
        
     }
 
-
+    // Aplicate the color for the new armor and reset the enemy in the queue if the armor is lower than 0
     public void UpdateArmor(bool playsound)
     {
         UiManager.Instance.UpdatePoints();

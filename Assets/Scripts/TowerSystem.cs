@@ -283,23 +283,6 @@ public class TowerSystem : MonoBehaviour
             {
                 hasToShoot = false;
             }
-        //}
-        /*else if(useRayCast)
-        {
-            if(_objPool.poolDictionary["Enemy1"].Count > 0)
-            {
-                currentTarget = _objPool.poolDictionary["Enemy1"].Peek();
-
-                transform.up = currentTarget.transform.position - transform.position;
-
-                //CUANDO A DE DISPARAR (CAMBIAR CUANDO COMIENCE EL SISTEMA DE RONDAS)
-                hasToShoot = true;
-            }else
-            {
-                hasToShoot = false;
-            }
-
-        }*/
      }
 
     void DobleCannonShot(string proyectailPool)

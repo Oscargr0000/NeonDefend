@@ -14,9 +14,6 @@ public class LvlUpSystem : MonoBehaviour
     private UiManager _uiM;
     //____________________________________________________________________________
 
-
-    private SpriteRenderer spriteRenderer;
-
     public TextMeshProUGUI r1Price;
     public TextMeshProUGUI r2Price;
 
@@ -40,7 +37,6 @@ public class LvlUpSystem : MonoBehaviour
     public void SelectTower()
     {
         stats_tower = currentTower.GetComponent<TowerSystem>();
-        spriteRenderer = currentTower.GetComponent<SpriteRenderer>();
 
 
         // ABRIR PANEL CUANDO SELECCIONES UNA TORRE
@@ -59,7 +55,7 @@ public class LvlUpSystem : MonoBehaviour
         UpdateVisuals();
 
     }
-
+    //SELECT THE BUTTON WITH A NUMBER SET IN THE INSPECTOR
     public void OnButtonLvl(int added)
     {
         if(currentTower == null)
@@ -71,6 +67,8 @@ public class LvlUpSystem : MonoBehaviour
         {
             if (added.Equals(1))
             {
+                // UPDATE THE POWER OF THE SELECTED TOWER
+                // RAMA 1
                 if(_gm.points>= stats_tower.scriptable_Stats.priceR1[stats_tower.idxR1])
                 {
                     _gm.points -= stats_tower.scriptable_Stats.priceR1[stats_tower.idxR1];
@@ -88,6 +86,8 @@ public class LvlUpSystem : MonoBehaviour
         {
             if(added.Equals(2))
             {
+                // UPDATE THE POWER OF THE SELECTED TOWER
+                // RAMA 2
                 if (_gm.points >= stats_tower.scriptable_Stats.priceR2[stats_tower.idxR2])
                 {
                     _gm.points -= stats_tower.scriptable_Stats.priceR2[stats_tower.idxR2];
@@ -97,7 +97,6 @@ public class LvlUpSystem : MonoBehaviour
                 else
                 {
                     UiManager.Instance.NoPointsAnoun();
-                    print("No cuentas con puntos suficientes");
                 }
             }
         }
@@ -116,12 +115,14 @@ public class LvlUpSystem : MonoBehaviour
             RefreshButtons();
         }
 
+        // UPDATE THE UI
         UpdateVisuals();
 
         
         
     }
 
+    // UPDATE THE BUTTONS
     void RefreshButtons()
     {
         if (stats_tower.maxR1.Equals(stats_tower.idxR1))

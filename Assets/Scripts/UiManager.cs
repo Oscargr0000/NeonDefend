@@ -17,8 +17,6 @@ public class UiManager : MonoBehaviour
 
     #endregion   
 
-    private TowerSystem _ts;
-    private LvlUpSystem _ls;
     private GameManager _gm;
     private SpawnManager _sp;
 
@@ -39,8 +37,6 @@ public class UiManager : MonoBehaviour
 
     private void Start()
     {
-        _ts = FindObjectOfType<TowerSystem>();
-        _ls = FindObjectOfType<LvlUpSystem>();
         _gm = FindObjectOfType<GameManager>();
         _sp = FindObjectOfType<SpawnManager>();
 

@@ -38,24 +38,30 @@ public class SetToweSystem : MonoBehaviour
 
     private void Start()
     {
+        // GET THE INFO FOR THE POSTPROCESS
         Volume postpro = postProcess.GetComponent<Volume>();
         postpro.profile.TryGet(out cm);
 
         cm.active = false;
-
         settingMode = false;
         _gm = FindObjectOfType<GameManager>();
 
+
+        //DESACTIVATE ALL THE BLUEPRINTS
         for(int i = 0; i < bluePrints.Length; i++)
         {
             bluePrints[i].gameObject.SetActive(false);
         }
     }
+
+
     private void Update()
     {
+        //RAYCAST FOR THE MOUSE
         RaycastHit2D[] hits = Physics2D.CircleCastAll(MousePos(), radius, Vector2.zero, 0, carrilLayer);
         foreach (RaycastHit2D hit in hits)
         {
+            // WHEN THE PLAYER TRIES TO PUT THE TOWER IN A RESTRICTED AREA ACTIVATE THE POST PROCESS
             if (hit.collider != null)
             {
                 Volume postpro = postProcess.GetComponent<Volume>();
@@ -91,7 +97,7 @@ public class SetToweSystem : MonoBehaviour
 
     }
 
-
+    // CREATE THE TOWER IN THE POSITION SELECTED
     void SetTower(Vector2 MousePos)
     {
         //Colocar la torre en la posicion del raton
@@ -113,7 +119,7 @@ public class SetToweSystem : MonoBehaviour
         UiManager.Instance.UpdatePoints();
     }
 
-
+    //SELECT THE TOWER AND ACTIVATE THE BLUEPRINT
     public void SelectMode(int towerToSelect)
     {
         if(_gm.points >= priceList[towerToSelect])

@@ -26,14 +26,15 @@ public class GameManager : MonoBehaviour
     public Slider musicSlider;
     public Slider effectsSlider;
 
-    // Start is called before the first frame update
     void Start()
     {
+        //STATS
         points = 150;
         playerHP = 100;
 
         UiManager.Instance.HpUpdate();
 
+        // PAUSE MENU
         pauseCanvas.gameObject.SetActive(false);
 
         musicSlider.value = PlayerPrefs.GetFloat("Music");
@@ -42,12 +43,15 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+
+        // USED FOR THE PRESENTATION
         if (Input.GetKeyDown(KeyCode.F))
         {
             points += 1000;
             UiManager.Instance.UpdatePoints();
         }
 
+        // CLOSE AND OPEN DE PAUSE MENU
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!pauseMenu)
@@ -61,6 +65,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // SAVE INFO ON GAME OVER
     public void GameOver()
     {
         PlayerPrefs.SetInt("TotalKill", totalEnemyKill);

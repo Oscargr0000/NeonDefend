@@ -160,8 +160,8 @@ MonoBehaviour:
   - {r: 1, g: 0.6213614, b: 0, a: 1}
   - {r: 1, g: 0, b: 0.16001606, a: 1}
   - {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 1}
-  fireColor: {r: 0.2015842, g: 0.21871679, b: 0.2830189, a: 0}
-  cammoColor: {r: 0.12208477, g: 0.2924528, b: 0.111739054, a: 0}
+  fireColor: {r: 0.2015842, g: 0.21871679, b: 0.2830189, a: 1}
+  cammoColor: {r: 0.111722894, g: 0.5566038, b: 0.08139017, a: 0.5372549}
   speed: 1
   damage: 0
   isFire: 0
@@ -179,7 +179,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.15
-  m_Speed: 38.30007
+  m_Speed: 40.70008
   m_Acceleration: 200
   avoidancePriority: 50
   m_AngularSpeed: 0

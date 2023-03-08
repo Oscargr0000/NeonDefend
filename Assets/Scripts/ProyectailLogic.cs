@@ -14,9 +14,6 @@ public class ProyectailLogic : MonoBehaviour, IPoolInterface
     public bool seeCamo;
 
     private GameManager _gm;
-    private LvlUpSystem _lvl;
-    private Enemy _enemyS;
-    private ObjectPooler _objP;
 
     private bool hasbeenDesactivated;
 
@@ -33,9 +30,6 @@ public class ProyectailLogic : MonoBehaviour, IPoolInterface
     private void Start()
     {
         _gm = FindObjectOfType<GameManager>();
-        _lvl = FindObjectOfType<LvlUpSystem>();
-        _objP = ObjectPooler.Instance;
-       
     }
 
     void Update()

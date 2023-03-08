@@ -14,7 +14,7 @@ public class AudioManager : MonoBehaviour
 
     #endregion
 
-
+    // ACCCED TO THE GAMEOBJECT WITH AND AUDIOSOURCE ATTACH AND PLAY THE AUDIOCLIP OF THE OBJECT
     public void PlaySound(GameObject entity, AudioClip sounds)
     {
         entity.GetComponent<AudioSource>().PlayOneShot(sounds);
